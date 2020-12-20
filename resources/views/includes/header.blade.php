@@ -22,6 +22,8 @@
     <link rel="stylesheet" href="resources/theme/css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="resources/theme/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="resources/theme/css/style.css" type="text/css">
+
+    
 </head>
 
 <body>
@@ -75,7 +77,7 @@
                             <ul>
                                 <li><a href="{{url('/')}}">Home</a></li>
                                 <li><a href="{{url('/cars')}}">Carros</a></li>
-                                <li class="active"><a href="{{url('/about')}}">Sobre nós</a></li>
+                                <li><a href="{{url('/about')}}">Sobre nós</a></li>
                                 <li><a href="./contact.html">Contactos</a></li>
                             </ul>
                         </nav>
@@ -101,6 +103,8 @@
     <!-- Js Plugins -->
     <script src="resources/theme/js/jquery-3.3.1.min.js"></script>
     <script src="resources/theme/js/bootstrap.min.js"></script>
+    
+    
     <script src="resources/theme/js/jquery.nice-select.min.js"></script>
     <script src="resources/theme/js/jquery-ui.min.js"></script>
     <script src="resources/theme/js/jquery.magnific-popup.min.js"></script>

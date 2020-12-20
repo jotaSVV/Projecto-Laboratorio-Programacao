@@ -7,6 +7,32 @@
 
 
 @section('content')
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="HVAC Template">
+    <meta name="keywords" content="HVAC, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="resources/theme/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="resources/theme/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="resources/theme/css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="resources/theme/css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="resources/theme/css/magnific-popup.css" type="text/css">
+    <link rel="stylesheet" href="resources/theme/css/jquery-ui.min.css" type="text/css">
+    <link rel="stylesheet" href="resources/theme/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="resources/theme/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="resources/theme/css/style.css" type="text/css">
+
+    
+</head>
+
+
 <!-- Breadcrumb End -->
 <div class="breadcrumb-option set-bg" data-setbg="resources/theme/img/breadcrumb-bg.jpg">
         <div class="container">
@@ -37,6 +63,7 @@
                         <div class="car__filter">
                             <h5>Filtros:</h5>
                             <form action="#">
+                                
                                 <select>
                                     <option data-display="Marca">Marca</option>
                                     <option value="">Acura</option>
@@ -367,6 +394,17 @@
         </div>
     </section>
     <!-- Car Section End -->
-
+<!-- Js Plugins -->
+<script src="resources/theme/js/jquery-3.3.1.min.js"></script>
+    <script src="resources/theme/js/bootstrap.min.js"></script>
+    
+    
+    <script src="resources/theme/js/jquery.nice-select.min.js"></script>
+    <script src="resources/theme/js/jquery-ui.min.js"></script>
+    <script src="resources/theme/js/jquery.magnific-popup.min.js"></script>
+    <script src="resources/theme/js/mixitup.min.js"></script>
+    <script src="resources/theme/js/jquery.slicknav.js"></script>
+    <script src="resources/theme/js/owl.carousel.min.js"></script>
+    <script src="resources/theme/js/main.js"></script>
 
 @endsection

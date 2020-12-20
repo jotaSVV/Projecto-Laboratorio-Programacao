@@ -6,9 +6,33 @@
 @endsection('title')
 
 @section('content')
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="HVAC Template">
+    <meta name="keywords" content="HVAC, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="resources/theme/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="resources/theme/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="resources/theme/css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="resources/theme/css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="resources/theme/css/magnific-popup.css" type="text/css">
+    <link rel="stylesheet" href="resources/theme/css/jquery-ui.min.css" type="text/css">
+    <link rel="stylesheet" href="resources/theme/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="resources/theme/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="resources/theme/css/style.css" type="text/css">
+
+    
+</head>
 
    <!-- Hero Section Begin -->
-   <section class="hero spad set-bg" data-setbg="img/hero-bg.jpg">
+   <section class="hero spad set-bg" data-setbg="resources/theme/img/hero-bg.jpg">
         <div class="container">
             <div class="row">
                 <div class="col-lg-7">
@@ -21,7 +45,7 @@
                             <div class="car-model">Model 2019</div>
                             <h2>$399<span>/Month</span></h2>
                         </div>
-                        <a href="#" class="primary-btn"><img src="img/wheel.png" alt=""> Test Drive</a>
+                        <a href="#" class="primary-btn"><img src="resources/theme/img/wheel.png" alt=""> Test Drive</a>
                         <a href="#" class="primary-btn more-btn">Learn More</a>
                     </div>
                 </div>
@@ -186,10 +210,10 @@
                 <div class="col-lg-3 col-md-4 col-sm-6 mix sale">
                     <div class="car__item">
                         <div class="car__item__pic__slider owl-carousel">
-                            <img src="img/cars/car-2.jpg" alt="">
-                            <img src="img/cars/car-8.jpg" alt="">
-                            <img src="img/cars/car-6.jpg" alt="">
-                            <img src="img/cars/car-4.jpg" alt="">
+                            <img src="resources/theme/img/cars/car-2.jpg" alt="">
+                            <img src="resources/theme/img/cars/car-8.jpg" alt="">
+                            <img src="resources/theme/img/cars/car-6.jpg" alt="">
+                            <img src="resources/theme/img/cars/car-4.jpg" alt="">
                         </div>
                         <div class="car__item__text">
                             <div class="car__item__text__inner">
@@ -211,10 +235,10 @@
                 <div class="col-lg-3 col-md-4 col-sm-6 mix sale">
                     <div class="car__item">
                         <div class="car__item__pic__slider owl-carousel">
-                            <img src="img/cars/car-4.jpg" alt="">
-                            <img src="img/cars/car-8.jpg" alt="">
-                            <img src="img/cars/car-2.jpg" alt="">
-                            <img src="img/cars/car-1.jpg" alt="">
+                            <img src="resources/theme/img/cars/car-4.jpg" alt="">
+                            <img src="resources/theme/img/cars/car-8.jpg" alt="">
+                            <img src="resources/theme/img/cars/car-2.jpg" alt="">
+                            <img src="resources/theme/img/cars/car-1.jpg" alt="">
                         </div>
                         <div class="car__item__text">
                             <div class="car__item__text__inner">
@@ -236,10 +260,10 @@
                 <div class="col-lg-3 col-md-4 col-sm-6 mix sale">
                     <div class="car__item">
                         <div class="car__item__pic__slider owl-carousel">
-                            <img src="img/cars/car-6.jpg" alt="">
-                            <img src="img/cars/car-8.jpg" alt="">
-                            <img src="img/cars/car-3.jpg" alt="">
-                            <img src="img/cars/car-1.jpg" alt="">
+                            <img src="resources/theme/img/cars/car-6.jpg" alt="">
+                            <img src="resources/theme/img/cars/car-8.jpg" alt="">
+                            <img src="resources/theme/img/cars/car-3.jpg" alt="">
+                            <img src="resources/theme/img/cars/car-1.jpg" alt="">
                         </div>
                         <div class="car__item__text">
                             <div class="car__item__text__inner">
@@ -280,7 +304,7 @@
 			
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="services__item">
-                        <img src="img/services/services-1.png" alt="">
+                        <img src="resources/theme/img/services/services-1.png" alt="">
                         <h5>Aluguer de Carros</h5>
                         <p>Consectetur adipiscing elit incididunt ut labore et dolore magna aliqua. Risus commodo
                             viverra maecenas.</p>
@@ -289,7 +313,7 @@
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="services__item">
-                        <img src="img/services/services-2.png" alt="">
+                        <img src="resources/theme/img/services/services-2.png" alt="">
                         <h5>Venda de Carros</h5>
                         <p>Consectetur adipiscing elit incididunt ut labore et dolore magna aliqua. Risus commodo
                             viverra maecenas.</p>
@@ -298,7 +322,7 @@
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="services__item">
-                        <img src="img/services/services-4.png" alt="">
+                        <img src="resources/theme/img/services/services-4.png" alt="">
                         <h5>Suporte 24/7</h5>
                         <p>Consectetur adipiscing elit incididunt ut labore et dolore magna aliqua. Risus commodo
                             viverra maecenas.</p>
@@ -330,10 +354,10 @@
                 <div class="col-lg-3 col-md-4 col-sm-6 mix">
                     <div class="car__item">
                         <div class="car__item__pic__slider owl-carousel">
-                            <img src="img/cars/car-1.jpg" alt="">
-                            <img src="img/cars/car-8.jpg" alt="">
-                            <img src="img/cars/car-6.jpg" alt="">
-                            <img src="img/cars/car-3.jpg" alt="">
+                            <img src="resources/theme/img/cars/car-1.jpg" alt="">
+                            <img src="resources/theme/img/cars/car-8.jpg" alt="">
+                            <img src="resources/theme/img/cars/car-6.jpg" alt="">
+                            <img src="resources/theme/img/cars/car-3.jpg" alt="">
                         </div>
                         <div class="car__item__text">
                             <div class="car__item__text__inner">
@@ -355,10 +379,10 @@
                 <div class="col-lg-3 col-md-4 col-sm-6 mix sale">
                     <div class="car__item">
                         <div class="car__item__pic__slider owl-carousel">
-                            <img src="img/cars/car-2.jpg" alt="">
-                            <img src="img/cars/car-8.jpg" alt="">
-                            <img src="img/cars/car-6.jpg" alt="">
-                            <img src="img/cars/car-4.jpg" alt="">
+                            <img src="resources/theme/img/cars/car-2.jpg" alt="">
+                            <img src="resources/theme/img/cars/car-8.jpg" alt="">
+                            <img src="resources/theme/img/cars/car-6.jpg" alt="">
+                            <img src="resources/theme/img/cars/car-4.jpg" alt="">
                         </div>
                         <div class="car__item__text">
                             <div class="car__item__text__inner">
@@ -380,10 +404,10 @@
                 <div class="col-lg-3 col-md-4 col-sm-6 mix">
                     <div class="car__item">
                         <div class="car__item__pic__slider owl-carousel">
-                            <img src="img/cars/car-3.jpg" alt="">
-                            <img src="img/cars/car-8.jpg" alt="">
-                            <img src="img/cars/car-6.jpg" alt="">
-                            <img src="img/cars/car-5.jpg" alt="">
+                            <img src="resources/theme/img/cars/car-3.jpg" alt="">
+                            <img src="resources/theme/img/cars/car-8.jpg" alt="">
+                            <img src="resources/theme/img/cars/car-6.jpg" alt="">
+                            <img src="resources/theme/img/cars/car-5.jpg" alt="">
                         </div>
                         <div class="car__item__text">
                             <div class="car__item__text__inner">
@@ -405,10 +429,10 @@
                 <div class="col-lg-3 col-md-4 col-sm-6 mix sale">
                     <div class="car__item">
                         <div class="car__item__pic__slider owl-carousel">
-                            <img src="img/cars/car-4.jpg" alt="">
-                            <img src="img/cars/car-8.jpg" alt="">
-                            <img src="img/cars/car-2.jpg" alt="">
-                            <img src="img/cars/car-1.jpg" alt="">
+                            <img src="resources/theme/img/cars/car-4.jpg" alt="">
+                            <img src="resources/theme/img/cars/car-8.jpg" alt="">
+                            <img src="resources/theme/img/cars/car-2.jpg" alt="">
+                            <img src="resources/theme/img/cars/car-1.jpg" alt="">
                         </div>
                         <div class="car__item__text">
                             <div class="car__item__text__inner">
@@ -430,10 +454,10 @@
                 <div class="col-lg-3 col-md-4 col-sm-6 mix">
                     <div class="car__item">
                         <div class="car__item__pic__slider owl-carousel">
-                            <img src="img/cars/car-5.jpg" alt="">
-                            <img src="img/cars/car-8.jpg" alt="">
-                            <img src="img/cars/car-7.jpg" alt="">
-                            <img src="img/cars/car-2.jpg" alt="">
+                            <img src="resources/theme/img/cars/car-5.jpg" alt="">
+                            <img src="resources/theme/img/cars/car-8.jpg" alt="">
+                            <img src="resources/theme/img/cars/car-7.jpg" alt="">
+                            <img src="resources/theme/img/cars/car-2.jpg" alt="">
                         </div>
                         <div class="car__item__text">
                             <div class="car__item__text__inner">
@@ -455,10 +479,10 @@
                 <div class="col-lg-3 col-md-4 col-sm-6 mix sale">
                     <div class="car__item">
                         <div class="car__item__pic__slider owl-carousel">
-                            <img src="img/cars/car-6.jpg" alt="">
-                            <img src="img/cars/car-8.jpg" alt="">
-                            <img src="img/cars/car-3.jpg" alt="">
-                            <img src="img/cars/car-1.jpg" alt="">
+                            <img src="resources/theme/img/cars/car-6.jpg" alt="">
+                            <img src="resources/theme/img/cars/car-8.jpg" alt="">
+                            <img src="resources/theme/img/cars/car-3.jpg" alt="">
+                            <img src="resources/theme/img/cars/car-1.jpg" alt="">
                         </div>
                         <div class="car__item__text">
                             <div class="car__item__text__inner">
@@ -480,10 +504,10 @@
                 <div class="col-lg-3 col-md-4 col-sm-6 mix">
                     <div class="car__item">
                         <div class="car__item__pic__slider owl-carousel">
-                            <img src="img/cars/car-7.jpg" alt="">
-                            <img src="img/cars/car-2.jpg" alt="">
-                            <img src="img/cars/car-4.jpg" alt="">
-                            <img src="img/cars/car-1.jpg" alt="">
+                            <img src="resources/theme/img/cars/car-7.jpg" alt="">
+                            <img src="resources/theme/img/cars/car-2.jpg" alt="">
+                            <img src="resources/theme/img/cars/car-4.jpg" alt="">
+                            <img src="resources/theme/img/cars/car-1.jpg" alt="">
                         </div>
                         <div class="car__item__text">
                             <div class="car__item__text__inner">
@@ -505,10 +529,10 @@
                 <div class="col-lg-3 col-md-4 col-sm-6 mix">
                     <div class="car__item">
                         <div class="car__item__pic__slider owl-carousel">
-                            <img src="img/cars/car-8.jpg" alt="">
-                            <img src="img/cars/car-3.jpg" alt="">
-                            <img src="img/cars/car-5.jpg" alt="">
-                            <img src="img/cars/car-2.jpg" alt="">
+                            <img src="resources/theme/img/cars/car-8.jpg" alt="">
+                            <img src="resources/theme/img/cars/car-3.jpg" alt="">
+                            <img src="resources/theme/img/cars/car-5.jpg" alt="">
+                            <img src="resources/theme/img/cars/car-2.jpg" alt="">
                         </div>
                         <div class="car__item__text">
                             <div class="car__item__text__inner">
@@ -566,6 +590,17 @@
     <!-- Chooseus Section End -->
 
 <br>
-
+<!-- Js Plugins -->
+<script src="resources/theme/js/jquery-3.3.1.min.js"></script>
+    <script src="resources/theme/js/bootstrap.min.js"></script>
+    
+    
+    <script src="resources/theme/js/jquery.nice-select.min.js"></script>
+    <script src="resources/theme/js/jquery-ui.min.js"></script>
+    <script src="resources/theme/js/jquery.magnific-popup.min.js"></script>
+    <script src="resources/theme/js/mixitup.min.js"></script>
+    <script src="resources/theme/js/jquery.slicknav.js"></script>
+    <script src="resources/theme/js/owl.carousel.min.js"></script>
+    <script src="resources/theme/js/main.js"></script>
 
 @endsection
