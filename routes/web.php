@@ -17,6 +17,14 @@ Route::get('/', function () {
     return view('layouts.frontpage');
 });
 
+Route::get('/about', function () {
+    return view('layouts.about');
+});
+
+Route::get('/cars', function () {
+    return view('layouts.cars');
+});
+
 
 Route::get('/header', function () {
     return view('includes.header');
