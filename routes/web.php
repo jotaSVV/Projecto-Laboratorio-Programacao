@@ -14,10 +14,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('layouts.frontpage');
 });
 
 
 Route::get('/header', function () {
     return view('includes.header');
+});
+
+Route::get('/footer', function () {
+    return view('includes.footer');
 });
