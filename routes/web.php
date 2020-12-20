@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UtilizadoresController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,4 +25,14 @@ Route::get('/header', function () {
 
 Route::get('/footer', function () {
     return view('includes.footer');
+});
+
+Route::get('/register', function () {
+    return view('users.register');
+});
+
+Route::post('/register',[UtilizadoresController::class, 'store']);
+
+Route::get('/index', function () {
+    return view('users.index');
 });

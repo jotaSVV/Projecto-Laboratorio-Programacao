@@ -24,7 +24,7 @@ class UtilizadoresController extends Controller
      */
     public function create()
     {
-        //
+        return view("users.create");
     }
 
     /**
@@ -35,7 +35,23 @@ class UtilizadoresController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nome' => 'required',
+            'apelido' => 'required',
+            'email' => 'required',
+            'telefone' => 'required',
+            'data_nascimento' => 'required',
+            'sexo' => 'required',
+            'tipovendedor' => 'required',
+            'admin' => 'required',
+            'password' => 'required',
+            'id_freguesia' => 'required',
+            'foto_perfil' => 'required',
+        ]);
+
+        utilizadores::create($request->all());
+
+        return redirect('/register')->with('success', 'User created successfully.'); 
     }
 
     /**
@@ -46,7 +62,7 @@ class UtilizadoresController extends Controller
      */
     public function show(utilizadores $utilizadores)
     {
-        //
+        return view('user.index', ['user' => $utilizadores]);
     }
 
     /**
