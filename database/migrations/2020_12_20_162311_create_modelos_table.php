@@ -13,15 +13,19 @@ class CreateModelosTable extends Migration
      */
     public function up()
     {
-        Schema::enableForeignKeyConstraints();
-        Schema::create('modelos', function (Blueprint $table) {
-            
-            $table->increments('id_modelo')->primary;
-            $table->integer('id_marca')->unsigned();
-            $table->string('nome');
-            $table->foreign('id_marca')->references('id_marca')->on('marcas')->onDelete('cascade');
-        });
+        
+        if ( !Schema::hasTable('modelos') ) {
+            Schema::enableForeignKeyConstraints();
+            Schema::create('modelos', function (Blueprint $table) {
+                
+                $table->increments('id_modelo')->primary;
+                $table->integer('id_marca')->unsigned();
+                $table->string('nome');
+                $table->foreign('id_marca')->references('id_marca')->on('marcas')->onDelete('cascade');
+            });
 
+
+        }
     
         
     }

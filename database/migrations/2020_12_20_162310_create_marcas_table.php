@@ -13,12 +13,17 @@ class CreateMarcasTable extends Migration
      */
     public function up()
     {
-        Schema::create('marcas', function (Blueprint $table) {
+
+        
+        if ( !Schema::hasTable('marcas') ) {
+
+            Schema::create('marcas', function (Blueprint $table) {
             
-            $table->increments('id_marca')->primary;
-            $table->string('nome',60);
-            
-        });
+                $table->increments('id_marca')->primary;
+                $table->string('nome',60);
+                
+            });
+        }
     }
 
     /**

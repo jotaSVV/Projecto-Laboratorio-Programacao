@@ -12,14 +12,19 @@ class CreateFreguesiasTable extends Migration
      * @return void
      */
     public function up()
-    {
-        Schema::create('freguesias', function (Blueprint $table) {
-            $table->increments('id_freguesia')->primary;
-            $table->string('nome');
-            $table->string('concelho',60);
-            $table->foreign('concelho')->references('nome')->on('concelhos')->onDelete('cascade');
-            
-        });
+    {   
+
+
+        if ( !Schema::hasTable('freguesias') ) {
+            Schema::create('freguesias', function (Blueprint $table) {
+                $table->increments('id_freguesia')->primary;
+                $table->string('nome');
+                $table->string('concelho',60);
+                $table->foreign('concelho')->references('nome')->on('concelhos')->onDelete('cascade');
+                
+            });
+        }
+        
     }
 
     /**

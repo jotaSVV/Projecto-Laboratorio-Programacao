@@ -33,3 +33,7 @@ Route::get('/header', function () {
 Route::get('/footer', function () {
     return view('includes.footer');
 });
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

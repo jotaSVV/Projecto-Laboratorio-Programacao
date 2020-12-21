@@ -13,12 +13,18 @@ class CreateConcelhosTable extends Migration
      */
     public function up()
     {   
-        Schema::create('concelhos', function (Blueprint $table) {
-            $table->string('nome',60)->primary();
-            $table->string('distrito',60);
-            $table->foreign('distrito')->references('nome')->on('distritos')->onDelete('cascade');
 
-        });
+        if ( !Schema::hasTable('concelhos') ) {
+            Schema::create('concelhos', function (Blueprint $table) {
+                $table->string('nome',60)->primary();
+                $table->string('distrito',60);
+                $table->foreign('distrito')->references('nome')->on('distritos')->onDelete('cascade');
+    
+            });
+
+        }
+
+        
 
        
     }

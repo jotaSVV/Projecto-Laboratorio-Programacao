@@ -12,11 +12,15 @@ class CreateDistritosTable extends Migration
      * @return void
      */
     public function up()
-    {
-        Schema::create('distritos', function (Blueprint $table) {
-            $table->string('nome',60)->primary();
-            
-        });
+    {   
+
+        if ( !Schema::hasTable('distritos') ) {
+            Schema::create('distritos', function (Blueprint $table) {
+                $table->string('nome',60)->primary();
+                
+            });
+        }
+        
     }
 
     /**
