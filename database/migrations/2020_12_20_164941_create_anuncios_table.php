@@ -16,7 +16,7 @@ class CreateAnunciosTable extends Migration
         Schema::create('anuncios', function (Blueprint $table) {
             $table->increments('id_anuncio')->primary;
             $table->integer('id_utilizador')->unsigned();
-            $table->foreign('id_utilizador')->references('id_utilizador')->on('utilizadores')->onDelete('cascade');
+            $table->foreign('id_utilizador')->references('id')->on('utilizadores')->onDelete('cascade');
             $table->string('descricao',9000)->nullable(false);
             $table->string('titulo',90)->nullable(false);
             $table->tinyinteger('valor_fixo')->nullable(false);

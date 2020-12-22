@@ -17,8 +17,8 @@ class CreateMensagensTable extends Migration
             $table->increments('id_mensagem')->primary;
             $table->integer('id_emissor')->unsigned();
             $table->integer('id_recetor')->unsigned();
-            $table->foreign('id_emissor')->references('id_utilizador')->on('utilizadores')->onDelete('cascade');
-            $table->foreign('id_recetor')->references('id_utilizador')->on('utilizadores')->onDelete('cascade');
+            $table->foreign('id_emissor')->references('id')->on('utilizadores')->onDelete('cascade');
+            $table->foreign('id_recetor')->references('id')->on('utilizadores')->onDelete('cascade');
             $table->string('texto')->nullable(false);
             $table->date('data')->nullable(false);
             $table->string('fotos',99);
