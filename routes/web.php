@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\UtilizadoresController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,9 +28,30 @@ Route::get('/cars', function () {
 });
 
 
+
+
+////Rotas Relativas aos Utilizadores
+
+
+Route::get('/dashboard', function () {
+    return view('Utilizadores.utilizadorDash');
+});
+
+Route::get('/dashboard/definicoes', function () {
+    return view('Utilizadores.utilizadorDashDef');
+});
+
+Route::get('/dashboard/edit/{utilizadores}', [UtilizadoresController::class, 'edit']);
+Route::post('/dashboard/definicoes/update/{utilizadores}', [UtilizadoresController::class, 'update']);
+Route::post('/dashboard/definicoes/updateemail/{utilizadores}', [UtilizadoresController::class, 'updateemail']);
+Route::post('/dashboard/definicoes/updatepassword/{utilizadores}', [UtilizadoresController::class, 'updatepassword']);
+
+
+
 Route::get('/header', function () {
     return view('includes.header');
 });
+
 
 Route::get('/footer', function () {
     return view('includes.footer');

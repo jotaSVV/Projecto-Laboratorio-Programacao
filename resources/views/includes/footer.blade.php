@@ -1,25 +1,25 @@
 
     
     <!-- Css Styles -->
-    <link rel="stylesheet" href="resources/theme/css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="resources/theme/css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="resources/theme/css/elegant-icons.css" type="text/css">
-    <link rel="stylesheet" href="resources/theme/css/nice-select.css" type="text/css">
-    <link rel="stylesheet" href="resources/theme/css/magnific-popup.css" type="text/css">
-    <link rel="stylesheet" href="resources/theme/css/jquery-ui.min.css" type="text/css">
-    <link rel="stylesheet" href="resources/theme/css/owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="resources/theme/css/slicknav.min.css" type="text/css">
-    <link rel="stylesheet" href="resources/theme/css/style.css" type="text/css">
+    <link rel="stylesheet" href="/resources/theme/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="/resources/theme/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="/resources/theme/css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="/resources/theme/css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="/resources/theme/css/magnific-popup.css" type="text/css">
+    <link rel="stylesheet" href="/resources/theme/css/jquery-ui.min.css" type="text/css">
+    <link rel="stylesheet" href="/resources/theme/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="/resources/theme/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="/resources/theme/css/style.css" type="text/css">
     
     <!-- Footer Section Begin -->
-    <footer class="footer set-bg" data-setbg="resources/theme/img/footer-bg.jpg">
+    <footer class="footer set-bg" data-setbg="/resources/theme/img/footer-bg.jpg">
         <div class="container">
 
             <div class="row">
                 <div class="col-lg-4 col-md-4">
                     <div class="footer__about">
                         <div class="footer__logo">
-                            <a href="#"><img src="resources/theme/img/footer-logo.png" alt=""></a>
+                            <a href="#"><img src="/resources/theme/img/footer-logo.png" alt=""></a>
                         </div>
                         <p>Any questions? Let us know in store at 625 Gloria Union, California, United Stated or call us
                             on (+1) 96 123 8888</p>
@@ -92,12 +92,12 @@
     <!-- Search End -->
 
     <!-- Js Plugins -->
-    <script src="resources/theme/js/jquery-3.3.1.min.js"></script>
-    <script src="resources/theme/js/bootstrap.min.js"></script>
-    <script src="resources/theme/js/jquery.nice-select.min.js"></script>
-    <script src="resources/theme/js/jquery-ui.min.js"></script>
-    <script src="resources/theme/js/jquery.magnific-popup.min.js"></script>
-    <script src="resources/theme/js/mixitup.min.js"></script>
-    <script src="resources/theme/js/jquery.slicknav.js"></script>
-    <script src="resources/theme/js/owl.carousel.min.js"></script>
-    <script src="resources/theme/js/main.js"></script>
+    <script src="/resources/theme/js/jquery-3.3.1.min.js"></script>
+    <script src="/resources/theme/js/bootstrap.min.js"></script>
+    <script src="/resources/theme/js/jquery.nice-select.min.js"></script>
+    <script src="/resources/theme/js/jquery-ui.min.js"></script>
+    <script src="/resources/theme/js/jquery.magnific-popup.min.js"></script>
+    <script src="/resources/theme/js/mixitup.min.js"></script>
+    <script src="/resources/theme/js/jquery.slicknav.js"></script>
+    <script src="/resources/theme/js/owl.carousel.min.js"></script>
+    <script src="/resources/theme/js/main.js"></script>

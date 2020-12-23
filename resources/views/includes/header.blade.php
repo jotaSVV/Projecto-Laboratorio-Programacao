@@ -8,20 +8,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     
-
+<!-- CSRF Token -->
+<meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
 
     <!-- Css Styles -->
-    <link rel="stylesheet" href="resources/theme/css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="resources/theme/css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="resources/theme/css/elegant-icons.css" type="text/css">
-    <link rel="stylesheet" href="resources/theme/css/nice-select.css" type="text/css">
-    <link rel="stylesheet" href="resources/theme/css/magnific-popup.css" type="text/css">
-    <link rel="stylesheet" href="resources/theme/css/jquery-ui.min.css" type="text/css">
-    <link rel="stylesheet" href="resources/theme/css/owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="resources/theme/css/slicknav.min.css" type="text/css">
-    <link rel="stylesheet" href="resources/theme/css/style.css" type="text/css">
+    <link rel="stylesheet" href="/resources/theme/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="/resources/theme/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="/resources/theme/css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="/resources/theme/css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="/resources/theme/css/magnific-popup.css" type="text/css">
+    <link rel="stylesheet" href="/resources/theme/css/jquery-ui.min.css" type="text/css">
+    <link rel="stylesheet" href="/resources/theme/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="/resources/theme/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="/resources/theme/css/style.css" type="text/css">
 
     
 </head>
@@ -68,7 +69,7 @@
             <div class="row">
                 <div class="col-lg-2">
                     <div class="header__logo">
-                        <a href="{{url('/')}}"><img src="resources/theme/img/logotipo.png" alt=""></a>
+                        <a href="{{url('/')}}"><img src="/resources/theme/img/logotipo.png" alt=""></a>
                     </div>
                 </div>
                 <div class="col-lg-10">
@@ -86,9 +87,52 @@
                                 <a href="#"><i class="fa fa-cart-plus"></i></a>
                                 <a href="#" class="search-switch"><i class="fa fa-search"></i></a>
                             </div>
-                            <a href="#" class="primary-btn">Registo</a>
-                            <a href="#" class="primary-btn">Login</a>
+                           
+
                         </div>
+                        <div class="header__nav__widget">
+                        <div class="header__nav__widget__btn">
+                                @guest
+                            @if (Route::has('login'))
+                                
+                                    <a class="primary-btn" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                
+                            @endif
+                            
+                            @if (Route::has('register'))
+                                
+                                    <a class="primary-btn" href="{{ route('register') }}">{{ __('Registo') }}</a>
+                                
+                            @endif
+                        @else    
+                        
+                        
+
+                        
+                        <a href="/dashboard"  class="search-switch"><i class="fa fa-user" aria-hidden="true"></i>
+                        {{ Auth::user()->nome  }}
+                        {{ Auth::user()->apelido  }}
+                        </a>
+
+                        <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                 Logout
+                         </a>
+
+                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                  {{ csrf_field() }}
+                </form>
+
+
+                                       
+                        
+                        
+                        
+                                    
+                        @endguest
+
+                           </div> 
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -101,17 +145,17 @@
 
    
     <!-- Js Plugins -->
-    <script src="resources/theme/js/jquery-3.3.1.min.js"></script>
-    <script src="resources/theme/js/bootstrap.min.js"></script>
+    <script src="/resources/theme/js/jquery-3.3.1.min.js"></script>
+    <script src="/resources/theme/js/bootstrap.min.js"></script>
     
     
-    <script src="resources/theme/js/jquery.nice-select.min.js"></script>
-    <script src="resources/theme/js/jquery-ui.min.js"></script>
-    <script src="resources/theme/js/jquery.magnific-popup.min.js"></script>
-    <script src="resources/theme/js/mixitup.min.js"></script>
-    <script src="resources/theme/js/jquery.slicknav.js"></script>
-    <script src="resources/theme/js/owl.carousel.min.js"></script>
-    <script src="resources/theme/js/main.js"></script>
+    <script src="/resources/theme/js/jquery.nice-select.min.js"></script>
+    <script src="/resources/theme/js/jquery-ui.min.js"></script>
+    <script src="/resources/theme/js/jquery.magnific-popup.min.js"></script>
+    <script src="/resources/theme/js/mixitup.min.js"></script>
+    <script src="/resources/theme/js/jquery.slicknav.js"></script>
+    <script src="/resources/theme/js/owl.carousel.min.js"></script>
+    <script src="/resources/theme/js/main.js"></script>
 </body>
 
 </html>
