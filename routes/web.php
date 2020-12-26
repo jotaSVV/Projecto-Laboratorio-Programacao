@@ -60,3 +60,27 @@ Route::get('/footer', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/admin', function() {
+    return view('admin.index');
+});
+
+Route::get('/admin/login', function() {
+    return view('admin.login');
+});
+
+Route::get('/admin/layout-static', function() {
+    return view('admin.layout-static');
+});
+
+Route::get('/admin/layout-sidenav-light', function() {
+    return view('admin.layout-sidenav-light');
+});
+
+Route::get('/admin/charts', function() {
+    return view('admin.charts');
+});
+
+Route::get('/admin/tables', function() {
+    return view('admin.tables');
+});
