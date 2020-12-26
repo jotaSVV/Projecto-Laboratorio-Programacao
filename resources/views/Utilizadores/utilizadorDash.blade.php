@@ -33,6 +33,80 @@
 </div>
 
 
+
+ <div class="container-fluid">
+  <div class="p-3 mb-2 bg-secondary text-white">
+  <nav class="header__menu">
+  <ul>
+                                <li><a href="{{url('/')}}">Activos</a></li>
+                                <li><a href="{{url('/cars')}}">Arquivados</a></li>
+  </ul>
+  </nav>
+
+    <div class="container-fluid">
+    <div class="row">
+        <div class="col-12 mt-3">
+            <div class="card">
+                <div class="card-horizontal" style = "display: flex; flex: 1 1 auto;">
+                    <div class="img-square-wrapper">
+                        <img class="" src="http://via.placeholder.com/300x180" alt="Card image cap">
+                    </div>
+                    <div class="card-body" >
+                     <div class="row">
+    <div class="col-sm-10 text-dark">
+      <h4 class="card-title text-dark"  >Card title</h4>
+    </div>
+    <div class="col-sm-2 text-dark">
+    Preço
+    </div>
+    </div>
+                        
+                        <p class="card-text text-dark small">Ativo desde: </p>
+                        <div class="container">
+  <div class="row">
+    <div class="col-sm-3 text-dark">
+      Visualizar anúncio
+    </div>
+    <div class="col-sm-2 text-dark">
+      Editar
+    </div>
+    <div class="col-sm-2 text-dark">
+      Remover
+    </div>
+  </div>
+</div>
+                        
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="container">
+  <div class="row">
+    <div class="col-sm-3 text-dark">
+      
+    </div>
+    <div class="col-sm-2 text-dark">
+    <i class="fa fa-eye" aria-hidden="true"></i>
+      Views
+    </div>
+    <div class="col-sm-2 text-dark">
+    <i class="fa fa-envelope" aria-hidden="true"></i>
+      Msg
+    </div>
+    <div class="col-sm-2 text-dark">
+    <i class="fa fa-heart" aria-hidden="true"></i>
+      Favs
+    </div>
+  </div>
+</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+  </div>
+</div>   
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
 
 
