@@ -10,6 +10,9 @@ class anuncios extends Model
     use HasFactory;
     protected $fillable = [
         'titulo',
+        'id_utilizador',
+        'disponivel',
+        'foto_perfil',
         'descricao',
         'id_marca',
         'id_modelo',

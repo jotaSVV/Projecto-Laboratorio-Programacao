@@ -8,7 +8,8 @@
     <link rel="stylesheet" href="/resources/theme/css/magnific-popup.css" type="text/css">
     <link rel="stylesheet" href="/resources/theme/css/jquery-ui.min.css" type="text/css">
     <link rel="stylesheet" href="/resources/theme/css/owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="/resources/theme/css/slicknav.min.css" type="text/css">
+    <!-- <link rel="stylesheet" href="/resources/theme/css/slicknav.min.css" type="text/css"> -->
+    
     <link rel="stylesheet" href="/resources/theme/css/style.css" type="text/css">
     
     <!-- Footer Section Begin -->
@@ -92,12 +93,13 @@
     <!-- Search End -->
 
     <!-- Js Plugins -->
-    <script src="/resources/theme/js/jquery-3.3.1.min.js"></script>
+   <script src="/resources/theme/js/jquery-3.3.1.min.js"></script>
     <script src="/resources/theme/js/bootstrap.min.js"></script>
+    <script src="/resources/theme/js/popper.js"></script>
     <script src="/resources/theme/js/jquery.nice-select.min.js"></script>
     <script src="/resources/theme/js/jquery-ui.min.js"></script>
     <script src="/resources/theme/js/jquery.magnific-popup.min.js"></script>
     <script src="/resources/theme/js/mixitup.min.js"></script>
-    <script src="/resources/theme/js/jquery.slicknav.js"></script>
+
     <script src="/resources/theme/js/owl.carousel.min.js"></script>
     <script src="/resources/theme/js/main.js"></script>

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\UtilizadoresController;
+use App\Http\Controllers\AnunciosController;
 
 /*
 |--------------------------------------------------------------------------

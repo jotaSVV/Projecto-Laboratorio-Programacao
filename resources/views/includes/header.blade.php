@@ -145,17 +145,7 @@
 
    
     <!-- Js Plugins -->
-    <script src="/resources/theme/js/jquery-3.3.1.min.js"></script>
-    <script src="/resources/theme/js/bootstrap.min.js"></script>
     
-    
-    <script src="/resources/theme/js/jquery.nice-select.min.js"></script>
-    <script src="/resources/theme/js/jquery-ui.min.js"></script>
-    <script src="/resources/theme/js/jquery.magnific-popup.min.js"></script>
-    <script src="/resources/theme/js/mixitup.min.js"></script>
-    <script src="/resources/theme/js/jquery.slicknav.js"></script>
-    <script src="/resources/theme/js/owl.carousel.min.js"></script>
-    <script src="/resources/theme/js/main.js"></script>
 </body>
 
 </html>

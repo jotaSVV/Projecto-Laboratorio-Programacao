@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
 <!--  Error handle -->
 @if($errors->any())
 <div class="row collapse">
@@ -13,8 +14,8 @@
 @endif
 <div>
     <form class="tm-edit-product-form" action="{{ url('/anuncios') }}" method="POST">
+
         @csrf
-        
         @method('POST')
 
         <div class="row">
@@ -23,12 +24,16 @@
             </div>
         </div>
 
-       
+        <div class="form-group mb-3">
+            <label for="titulo">Titulo:
+            </label>
+            <input id="titulo" name="titulo" type="text" class="form-control validate" required="">
+        </div>
 
         <div class="form-group mb-3">
-            <label for="marca_id" class="col-md-4 col-form-label text-md-right">{{ __('Marca:') }}</label>
+            <label for="id_marca" class="col-md-4 col-form-label text-md-right">{{ __('Marca:') }}</label>
             <div class="col-xs-6">
-                <select class="form-control" name="id_marca" id="marca_id">
+                <select class="form-control" name="id_marca" id="id_marca">
                     @foreach(App\Http\Controllers\AnunciosController::findMarcas() as $marca)
                     <option value="{{ $marca->id_marca }}">{{ $marca->nome }}</option>
                     @endforeach
@@ -38,9 +43,9 @@
 
 
         <div class="form-group mb-3">
-            <label for="modelo_id" class="col-md-4 col-form-label text-md-right">{{ __('Modelo:') }}</label>
+            <label for="id_modelo" class="col-md-4 col-form-label text-md-right">{{ __('Modelo:') }}</label>
             <div class="col-xs-6">
-                <select class="form-control" name="id_modelo" id="modelo_id">
+                <select class="form-control" name="id_modelo" id="id_modelo">
                     @foreach(App\Http\Controllers\AnunciosController::findModelos() as $modelo)
                     <option value="{{ $modelo->id_marca }}-{{ $modelo->id_modelo }}">{{ $modelo->nome }}</option>
                     @endforeach
@@ -189,7 +194,7 @@
 
         </select>
         <select name="tracao" class="form-select" aria-label="Default select example">
-            <option value="Tração dianteira">Tração</option>
+            <option value="Tração ">Tração</option>
             <option value="Tração traseira">Tração traseira</option>
         </select>
         <div class="form-check">
@@ -287,12 +292,20 @@
 
     </form>
 </div>
-
+<script src="/resources/theme/js/jquery-3.3.1.min.js"></script>
+    <script src="/resources/theme/js/bootstrap.min.js"></script>
+    <script src="/resources/theme/js/popper.js"></script>
+    <script src="/resources/theme/js/jquery.nice-select.min.js"></script>
+    <script src="/resources/theme/js/jquery-ui.min.js"></script>
+    <script src="/resources/theme/js/jquery.magnific-popup.min.js"></script>
+    <script src="/resources/theme/js/mixitup.min.js"></script>
+    <script src="/resources/theme/js/owl.carousel.min.js"></script>
+    <script src="/resources/theme/js/main.js"></script>
 <script>
     $(document).ready(function() {
-        var $options = $("#modelo_id").clone(); // this will save all initial options in the second dropdown
+        var $options = $("#id_modelo").clone(); // this will save all initial options in the second dropdown
 
-        $("#marca_id").change(function() {
+        $("#id_marca").change(function() {
             var filters = [];
             if ($(this).val() == "") {
                 $(this).find("option").each(function(index, option) {
@@ -303,12 +316,12 @@
                 filters.push($(this).val())
             }
 
-            $("#modelo_id").html("");
+            $("#id_modelo").html("");
 
             $.each(filters, function(index, value) {
                 $options.find("option").each(function(optionIndex, option) { // a second loop that check if the option value starts with the filter value
                     if ($(option).val().startsWith(value))
-                        $(option).clone().appendTo($("#modelo_id"));
+                        $(option).clone().appendTo($("#id_modelo"));
                 });
 
             });
@@ -316,16 +329,6 @@
         });
     });
 </script>
-
-   <script src="/resources/theme/js/jquery-3.3.1.min.js"></script>
-   <script src="/resources/theme/js/popper.js"></script>
-    <script src="/resources/theme/js/bootstrap.min.js"></script>
-    <script src="/resources/theme/js/jquery.nice-select.min.js"></script>
-    <script src="/resources/theme/js/jquery-ui.min.js"></script>
-    <script src="/resources/theme/js/jquery.magnific-popup.min.js"></script>
-    <script src="/resources/theme/js/mixitup.min.js"></script>
-    <script src="/resources/theme/js/jquery.slicknav.js"></script>
-    <script src="/resources/theme/js/owl.carousel.min.js"></script>
-    <script src="/resources/theme/js/main.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
 
 @endsection

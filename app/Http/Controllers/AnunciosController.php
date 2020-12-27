@@ -80,6 +80,8 @@ class AnunciosController extends Controller
         list($lixo, $id_modelo) = explode("-", $request['id_modelo']);
         $request['id_modelo'] = $id_modelo;
         $request['id_utilizador'] = Auth::user()->id;
+        $request['disponivel'] = 1;
+        $request['foto_perfil'] = $request['fotos'];
 
         anuncios::create($request->all());
         return redirect('/dashboard');
@@ -146,4 +148,8 @@ class AnunciosController extends Controller
         //return view('register'); //sent data to view~
         return ($modelos);
     }
+
+
+
+    
 }
