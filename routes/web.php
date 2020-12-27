@@ -34,9 +34,7 @@ Route::get('/cars', function () {
 ////Rotas Relativas aos Utilizadores
 
 
-Route::get('/dashboard', function () {
-    return view('Utilizadores.utilizadorDash');
-});
+
 
 Route::get('/dashboard/definicoes', function () {
     return view('Utilizadores.utilizadorDashDef');
@@ -92,3 +90,12 @@ Route::get('/product', function () {
 });
 
 Route::post('/anuncios', [AnunciosController::class, 'store']);
+
+
+
+Route::get('/anuncios/show/{anuncio}', [AnunciosController::class, 'show']);
+
+
+Route::get('/dashboard', function () {
+    return view('Utilizadores.utilizadorDash');
+});

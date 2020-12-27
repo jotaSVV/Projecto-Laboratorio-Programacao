@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class anuncios extends Model
 {
     use HasFactory;
+    protected $primaryKey = 'id_anuncio';
     protected $fillable = [
         'titulo',
         'id_utilizador',

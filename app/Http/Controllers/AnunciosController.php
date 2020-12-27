@@ -17,7 +17,7 @@ class AnunciosController extends Controller
      */
     public function index()
     {
-        //
+       //
     }
 
     /**
@@ -93,10 +93,15 @@ class AnunciosController extends Controller
      * @param  \App\Models\anuncios  $anuncios
      * @return \Illuminate\Http\Response
      */
-    public function show(anuncios $anuncios)
+    public function show(anuncios $anuncio)
     {
-        //
+        $anuncio = anuncios::findOrFail($anuncio->id_anuncio);
+        return view('Anuncios.detalhesanuncio', [
+            'anuncio' => $anuncio,
+        ]);
     }
+
+   
 
     /**
      * Show the form for editing the specified resource.
@@ -149,6 +154,19 @@ class AnunciosController extends Controller
         return ($modelos);
     }
 
+    public static function findAnunciosId()
+    {
+        $anuncios = anuncios::orderBy('created_at', 'desc')->where('id_utilizador','=',Auth::user()->id)->get();
+        //$anuncios = anuncios::orderBy('id_utilizador', 'asc')->get();
+        return ($anuncios);
+    }
+
+    public static function findAnunciosId()
+    {
+        $anuncios = anuncios::orderBy('created_at', 'desc')->where('id_utilizador','=',Auth::user()->id)->get();
+        //$anuncios = anuncios::orderBy('id_utilizador', 'asc')->get();
+        return ($anuncios);
+    }
 
 
     

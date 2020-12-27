@@ -32,9 +32,7 @@
 
 </div>
 
-
-
- <div class="container-fluid">
+<div class="container-fluid">
   <div class="p-3 mb-2 bg-secondary text-white">
   <nav class="header__menu">
   <ul>
@@ -44,8 +42,13 @@
   </nav>
 
     <div class="container-fluid">
+   
     <div class="row">
+     @foreach(App\Http\Controllers\AnunciosController::findAnunciosId() as $anuncio)
         <div class="col-12 mt-3">
+        
+                    
+            
             <div class="card">
                 <div class="card-horizontal" style = "display: flex; flex: 1 1 auto;">
                     <div class="img-square-wrapper">
@@ -54,14 +57,14 @@
                     <div class="card-body" >
                      <div class="row">
     <div class="col-sm-10 text-dark">
-      <h4 class="card-title text-dark"  >Card title</h4>
+      <h4 class="card-title text-dark"  >{{ $anuncio->titulo }}</h4>
     </div>
     <div class="col-sm-2 text-dark">
-    Preço
+    Preço:  {{ $anuncio->preco }} €
     </div>
     </div>
                         
-                        <p class="card-text text-dark small">Ativo desde: </p>
+                        <p class="card-text text-dark small">Ativo desde: {{ $anuncio->created_at }} </p>
                         <div class="container">
   <div class="row">
     <div class="col-sm-3 text-dark">
@@ -102,10 +105,19 @@
             </div>
         </div>
     </div>
+   
 </div>
-
+ @endforeach
   </div>
 </div>   
+
+
+
+
+
+
+
+ 
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
 
