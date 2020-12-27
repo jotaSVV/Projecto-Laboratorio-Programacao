@@ -84,3 +84,10 @@ Route::get('/admin/charts', function() {
 Route::get('/admin/tables', function() {
     return view('admin.tables');
 });
+
+
+Route::get('/product', function () {
+    return view('layouts.novoanuncio');
+});
+
+Route::post('/anuncios', [AnunciosController::class, 'store']);
