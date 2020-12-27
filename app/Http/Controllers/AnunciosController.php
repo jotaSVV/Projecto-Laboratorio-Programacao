@@ -52,29 +52,29 @@ class AnunciosController extends Controller
             'estado' => ['required', 'integer', 'max:1'], //*
             'versao' => ['required', 'string', 'max:60'], ///-----------
             'combustivel' => ['required', 'string', 'max:30'],
-            'quilometragem' => ['required', 'integer', 'max:3000000'],
+            'quilometragem' => ['required', 'integer', 'max:30000000'],
             'potencia' => ['required', 'integer', 'max:1000'],
             'cilindrada' => ['required', 'integer', 'max:32767'],
             'retoma' => ['required', 'integer', 'max:1'],
             'financiamento' => ['required', 'integer', 'max:1'],
             'segmento' => ['required', 'string', 'max:20'],
-            'metalizado' => ['required', 'integer', 'max:1'],
+            'metalizado' => ['integer', 'max:1'],
             'caixa' => ['required', 'integer', 'max:10'],
             'lotacao' => ['required', 'integer', 'max:9'],
             'portas' => ['required', 'integer', 'max:5'],
             'classe_veiculo' => ['required', 'string', 'max:50'],
-            'garantia_stand' => ['required', 'integer', 'max:1'],
+            'garantia_stand' => ['integer', 'max:1'],
             'nr_registos' => ['required', 'integer', 'max:50'],
             'tracao' => ['required', 'string', 'max:10'],
-            'livro_revisoes' => ['required', 'integer', 'max:1'],
-            'seg_chave' => ['required', 'integer', 'max:1'],
-            'jantes_liga_leve' => ['required', 'integer', 'max:1'],
+            'livro_revisoes' => ['integer', 'max:1'],
+            'seg_chave' => ['integer', 'max:1'],
+            'jantes_liga_leve' => ['integer', 'max:1'],
             'estofos' => ['required', 'string', 'max:10'],
             'medida_jantes' => ['required', 'integer', 'max:50'],
-            'airbags' => ['required', 'integer', 'max:1'],
-            'ar_condicionado' => ['required', 'integer', 'max:1'],
-            'importado' => ['required', 'integer', 'max:1'],
-            'fotos' => ['required', 'string', 'max:60'],
+            'airbags' => ['integer', 'max:1'],
+            'ar_condicionado' => ['integer', 'max:1'],
+            'importado' => ['integer', 'max:1'],
+            'fotos' => ['string', 'max:60'],
         ]);
 
         list($lixo, $id_modelo) = explode("-", $request['id_modelo']);
@@ -82,6 +82,63 @@ class AnunciosController extends Controller
         $request['id_utilizador'] = Auth::user()->id;
         $request['disponivel'] = 1;
         $request['foto_perfil'] = $request['fotos'];
+        $data = $request ->all();
+        if(empty($data['garantia_stand'])) {
+            $request['garantia_stand'] = 0;
+        } else
+        {
+            $request['garantia_stand'] = 1;
+
+        }
+        if(empty($data['livro_revisoes'])) {
+        } else
+        $request['livro_revisoes'] = 0;
+        {
+            $request['livro_revisoes'] = 1;
+
+        }
+        if(empty($data['seg_chave'])) {
+            $request['seg_chave'] = 0;
+        } else
+        {
+            $request['seg_chave'] = 1;
+
+        }
+        if(empty($data['jantes_liga_leve'])) {
+            $request['jantes_liga_leve'] = 0;
+        } else
+        {
+            $request['jantes_liga_leve'] = 1;
+
+        }
+        if(empty($data['airbags'])) {
+            $request['airbags'] = 0;
+        } else
+        {
+            $request['airbags'] = 1;
+
+        }
+        if(empty($data['ar_condicionado'])) {
+            $request['ar_condicionado'] = 0;
+        } else
+        {
+            $request['ar_condicionado'] = 1;
+
+        }
+        if(empty($data['importado'])) {
+            $request['importado'] = 0;
+        } else
+        {
+            $request['importado'] = 1;
+
+        }
+        if(empty($data['metalizado'])) {
+            $request['metalizado'] = 0;
+        } else
+        {
+            $request['metalizado'] = 1;
+
+        }
 
         anuncios::create($request->all());
         return redirect('/dashboard');
