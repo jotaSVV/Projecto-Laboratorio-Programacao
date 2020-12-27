@@ -218,12 +218,7 @@ class AnunciosController extends Controller
         return ($anuncios);
     }
 
-    public static function findAnunciosId()
-    {
-        $anuncios = anuncios::orderBy('created_at', 'desc')->where('id_utilizador','=',Auth::user()->id)->get();
-        //$anuncios = anuncios::orderBy('id_utilizador', 'asc')->get();
-        return ($anuncios);
-    }
+    
 
 
     
