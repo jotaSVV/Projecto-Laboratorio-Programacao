@@ -34,7 +34,7 @@
         <div class="row">
             <div class="col-6">
                 <div class="form-group mb-3">
-                    <label for="id_marca" >{{ __('Marca:') }}</label>
+                    <label for="id_marca">{{ __('Marca:') }}</label>
                     <div class="col-xs-6">
                         <select class="form-control" name="id_marca" id="id_marca">
                             @foreach(App\Http\Controllers\AnunciosController::findMarcas() as $marca)
@@ -44,12 +44,12 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="col-6">
                 <div class="form-group mb-3">
-                    <label for="id_modelo" >{{ __('Modelo:') }}</label>
+                    <label for="id_modelo">{{ __('Modelo:') }}</label>
                     <div class="col-xs-6">
-                    <select class="form-control" name="id_modelo" id="id_modelo">
+                        <select class="form-control" name="id_modelo" id="id_modelo">
                             @foreach(App\Http\Controllers\AnunciosController::findModelos() as $modelo)
                             <option value="{{ $modelo->id_marca }}-{{ $modelo->id_modelo }}">{{ $modelo->nome }}</option>
                             @endforeach
@@ -67,51 +67,60 @@
         <label for="preco">Preço:</label>
         <div class="input-group mb-3">
             <span class="input-group-text">€</span>
-            <input type="number" id= "preco" name="preco" placeholder="Ex: 5999.99" min="1" max="10000000" class="form-control" aria-label="Euro amount (with dot and two decimal places)">
+            <input type="number" id="preco" name="preco" placeholder="Ex: 5999.99" min="1" max="10000000" class="form-control" aria-label="Euro amount (with dot and two decimal places)">
         </div>
         <div style="margin-bottom: 16px;">
             <label style="margin-right: 3px;">{{ __('Valor Negociável:') }}</label>
             <div class="form-check-inline" style="margin-right: 3px;">
-                <label class="form-check-label" >
-                Sim
+                <label class="form-check-label">
+                    Sim
                 </label>
                 <input class="form-check-input" type="radio" name="valor_fixo" id="radio" value="1">
             </div>
             <div class="form-check-inline">
-                <label class="form-check-label" >
-                Não
+                <label class="form-check-label">
+                    Não
                 </label>
-                <input class="form-check-input" type="radio" name="valor_fixo" id="radio" value="0" checked >
+                <input class="form-check-input" type="radio" name="valor_fixo" id="radio" value="0" checked>
             </div>
         </div>
 
         <label for="cor">Cor:</label>
-        <div class="input-group mb-3">
-            <input type="text" id="cor" name="cor" class="form-control" maxlength="10" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+        <div style="margin-bottom: 16px;">
+            <select id="cor" name="cor" class="form-select">
+                <option value="Vermelho">Vermelho</option>
+                <option value="Azul">Azul</option>
+                <option value="Preto">Preto</option>
+                <option value="Amarelo">Amarelo</option>
+                <option value="Verde">Verde</option>
+                <option value="Cinza">Cinza</option>
+                <option value="Branco">Branco</option>
+                <option value="Outro">Outro</option>
+            </select>
         </div>
 
         <div class="row" style="margin-bottom: 16px;">
-        <div class="col-3">
-            <label style="margin-right: 6px;" >{{ __('Data de Registo:') }}</label>
-            <input type="date" id="data_registo" name="data_registo">
-        </div>
-
-        <div class="col-6">
-            <label style="margin-right: 3px;" >{{ __('Estado do Veiculo:') }}</label>
-            <div class="form-check-inline" style="margin-right: 3px;">
-                <label class="form-check-label">
-                    Novo
-                </label>
-                <input class="form-check-input" type="radio" name="estado" id="radio" value="1">
-
+            <div class="col-3">
+                <label style="margin-right: 6px;">{{ __('Data de Registo:') }}</label>
+                <input type="date" id="data_registo" name="data_registo">
             </div>
-            <div class="form-check-inline">
-                <label class="form-check-label">
-                    Usado
-                </label>
-                <input class="form-check-input" type="radio" name="estado" id="radio" value="0" checked>
+
+            <div class="col-6">
+                <label style="margin-right: 3px;">{{ __('Estado do Veiculo:') }}</label>
+                <div class="form-check-inline" style="margin-right: 3px;">
+                    <label class="form-check-label">
+                        Novo
+                    </label>
+                    <input class="form-check-input" type="radio" name="estado" id="radio" value="1">
+
+                </div>
+                <div class="form-check-inline">
+                    <label class="form-check-label">
+                        Usado
+                    </label>
+                    <input class="form-check-input" type="radio" name="estado" id="radio" value="0" checked>
+                </div>
             </div>
-        </div>
         </div>
 
         <label for="versao">Versão:</label>
@@ -122,10 +131,10 @@
         <label for="combustivel">Tipo de combustível do veículo: </label>
         <div style="margin-bottom: 16px;">
             <select id="combustivel" name="combustivel" class="form-select" aria-label="Default select example">
-                <option selected value="Gasolina premium">Gasolina</option>
+                <option selected value="Gasolina">Gasolina</option>
                 <option value="Diesel">Diesel</option>
-                <option value="Diesel S-10">GPL</option>
-                <option value="Diesel aditivado">Híbrido</option>
+                <option value="GPL">GPL</option>
+                <option value="Híbrido">Híbrido</option>
                 <option value="Elétrico">Elétrico</option>
             </select>
         </div>
@@ -151,38 +160,38 @@
         </div>
 
         <div class="row" style="margin-bottom: 16px;">
-        <div class="col-3">
-            <label style="margin-right: 3px;">{{ __('Retoma:') }}</label>
-            <div class="form-check-inline" style="margin-right: 3px;">
-                <label class="form-check-label">
-                    Sim
-                </label>
-                <input class="form-check-input" type="radio" name="retoma" id="radio" value="1">
+            <div class="col-3">
+                <label style="margin-right: 3px;">{{ __('Retoma:') }}</label>
+                <div class="form-check-inline" style="margin-right: 3px;">
+                    <label class="form-check-label">
+                        Sim
+                    </label>
+                    <input class="form-check-input" type="radio" name="retoma" id="radio" value="1">
+                </div>
+                <div class="form-check-inline">
+                    <label class="form-check-label">
+                        Não
+                    </label>
+                    <input class="form-check-input" type="radio" name="retoma" id="radio" value="0" checked>
+                </div>
             </div>
-            <div class="form-check-inline">
-                <label class="form-check-label">
-                    Não
-                </label>
-                <input class="form-check-input" type="radio" name="retoma" id="radio" value="0" checked>
-            </div>
-        </div>
 
-        <div class="col-3">
-            <label style="margin-right: 3px;">{{ __('Financiamento:') }}</label>
-            <div class="form-check-inline" style="margin-right: 3px;">
-                <label class="form-check-label">
-                    Sim
-                </label>
-                <input class="form-check-input" type="radio" name="financiamento" id="flexRadioDefault_Financiamento1" value="1">
+            <div class="col-3">
+                <label style="margin-right: 3px;">{{ __('Financiamento:') }}</label>
+                <div class="form-check-inline" style="margin-right: 3px;">
+                    <label class="form-check-label">
+                        Sim
+                    </label>
+                    <input class="form-check-input" type="radio" name="financiamento" id="radio" value="1">
 
+                </div>
+                <div class="form-check-inline">
+                    <label class="form-check-label">
+                        Não
+                    </label>
+                    <input class="form-check-input" type="radio" name="financiamento" id="radio" value="0" checked>
+                </div>
             </div>
-            <div class="form-check-inline">
-                <label class="form-check-label">
-                    Não
-                </label>
-                <input class="form-check-input" type="radio" name="financiamento" id="flexRadioDefault_Financiamento2" value="0" checked>
-            </div>
-        </div>
         </div>
 
         <label for="segmento">Segmento:</label>
@@ -192,7 +201,7 @@
 
         <label for="lotacao">Lotação:</label>
         <div class="input-group input-group-sm mb-3">
-            <input type="number" class="form-control" id="lotacao" min="2" max="9"  name="lotacao" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+            <input type="number" class="form-control" id="lotacao" min="2" max="9" name="lotacao" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
         </div>
 
         <label for="portas">Nº de portas:</label>
@@ -204,15 +213,15 @@
             <div class="col-4">
                 <label for="classe">Classe do veículo:</label>
                 <select name="classe_veiculo" id="classe" class="form-select" aria-label="Default select example">
-                <option value="classe 1" selected>Classe 1 (Motociclos e veículos com altura inferior a 1,1m)</option>
-                <option value="classe 2">Classe 2 (Veículos com 2 eixos com altura superior a 1,1m)</option>
+                    <option value="classe 1" selected>Classe 1 (Motociclos e veículos com altura inferior a 1,1m)</option>
+                    <option value="classe 2">Classe 2 (Veículos com 2 eixos com altura superior a 1,1m)</option>
                 </select>
             </div>
 
             <div class="col-4">
                 <label for="tracao">Tração do veículo:</label>
                 <select name="tracao" id="tracao" class="form-select" aria-label="Default select example">
-                    <option value="Dianteira ">Tração Dianteira</option>
+                    <option value="Dianteira ">Tração dianteira</option>
                     <option value="Traseira">Tração traseira</option>
                 </select>
             </div>
@@ -226,9 +235,9 @@
         </div>
 
 
+        <label for="nr_registos">Número de Registos:</label>
         <div class="input-group input-group-sm mb-3">
-            <span class="input-group-text" id="inputGroup-sizing-sm_portas">Numero de Registos:</span>
-            <input type="number" class="form-control" name="nr_registos" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+            <input type="number" id="nr_registos" class="form-control" name="nr_registos" min="0" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
         </div>
 
         <div class="row" style="margin-bottom: 16px;">
@@ -254,11 +263,11 @@
             </div>
         </div>
 
+        <label for="nr_registos">Medida das Jantes (polegadas):</label>
         <div class="input-group input-group-sm mb-3">
-            <span class="input-group-text" id="inputGroup-sizing-medida_jantes">Medida das Jantes:</span>
-            <input type="number" class="form-control" name="medida_jantes" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+            <input type="number" class="form-control" name="medida_jantes" id="medida_jantes" min="5" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
         </div>
-        
+
         <div class="row" style="margin-bottom: 16px;">
             <div class="form-check mb-3 col-3" style="padding-left: 38px;">
                 <input name="airbags" class="form-check-input" type="checkbox" value="0" id="flexCheckChecked_jantes_airbags">
@@ -333,14 +342,14 @@
     </form>
 </div>
 <script src="/resources/theme/js/jquery-3.3.1.min.js"></script>
-    <script src="/resources/theme/js/bootstrap.min.js"></script>
-    <script src="/resources/theme/js/popper.js"></script>
-    <script src="/resources/theme/js/jquery.nice-select.min.js"></script>
-    <script src="/resources/theme/js/jquery-ui.min.js"></script>
-    <script src="/resources/theme/js/jquery.magnific-popup.min.js"></script>
-    <script src="/resources/theme/js/mixitup.min.js"></script>
-    <script src="/resources/theme/js/owl.carousel.min.js"></script>
-    <script src="/resources/theme/js/main.js"></script>
+<script src="/resources/theme/js/bootstrap.min.js"></script>
+<script src="/resources/theme/js/popper.js"></script>
+<script src="/resources/theme/js/jquery.nice-select.min.js"></script>
+<script src="/resources/theme/js/jquery-ui.min.js"></script>
+<script src="/resources/theme/js/jquery.magnific-popup.min.js"></script>
+<script src="/resources/theme/js/mixitup.min.js"></script>
+<script src="/resources/theme/js/owl.carousel.min.js"></script>
+<script src="/resources/theme/js/main.js"></script>
 <script>
     $(document).ready(function() {
         var $options = $("#id_modelo").clone(); // this will save all initial options in the second dropdown
