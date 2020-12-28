@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\DB;
 use App\Models\frequesias;
 use Illuminate\Http\Request;
 
@@ -81,5 +81,13 @@ class FrequesiasController extends Controller
     public function destroy(frequesias $frequesias)
     {
         //
+    }
+
+
+    public static function findFregById($id)
+    {
+        $freguesia = DB::table('freguesias')->where('id_freguesia','=',$id)->get();
+        //$anuncios = anuncios::orderBy('id_utilizador', 'asc')->get();
+        return ($freguesia);
     }
 }
