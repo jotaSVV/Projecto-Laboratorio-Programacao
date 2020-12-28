@@ -14,7 +14,7 @@
 </div>
 @endif
 <div class="container-fluid">
-    <form class="tm-edit-product-form" action="{{ url('/anuncios') }}" method="POST">
+    <form class="tm-edit-product-form" action="{{ url('/anuncios') }}" method="POST" enctype="multipart/form-data">
 
         @csrf
         @method('POST')

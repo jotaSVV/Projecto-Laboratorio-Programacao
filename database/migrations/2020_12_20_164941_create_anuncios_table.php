@@ -54,7 +54,7 @@ class CreateAnunciosTable extends Migration
             $table->tinyinteger('importado')->nullable(false);
             $table->tinyinteger('disponivel')->nullable(false);
             $table->string('fotos', 60)->nullable(false);
-            $table->string('foto_perfil', 60)->nullable(false);
+            $table->string('foto_perfil', 255)->nullable(false);
             $table->timestamps();
         });
     }

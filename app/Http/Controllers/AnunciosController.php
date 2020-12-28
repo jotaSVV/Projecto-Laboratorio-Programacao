@@ -6,7 +6,9 @@ use App\Models\anuncios;
 use Illuminate\Http\Request;
 use App\Models\modelos;
 use App\Models\marcas;
+use Illuminate\Support\Facades\Storage;
 use Auth;
+use Illuminate\Contracts\Cache\Store;
 
 class AnunciosController extends Controller
 {
@@ -17,7 +19,7 @@ class AnunciosController extends Controller
      */
     public function index()
     {
-       //
+        //
     }
 
     /**
@@ -74,7 +76,7 @@ class AnunciosController extends Controller
             'airbags' => ['integer', 'max:1'],
             'ar_condicionado' => ['integer', 'max:1'],
             'importado' => ['integer', 'max:1'],
-            'fotos' => ['string', 'max:60'],
+            'fotos' => ['required', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048']
         ]);
 
         list($lixo, $id_modelo) = explode("-", $request['id_modelo']);
@@ -82,65 +84,67 @@ class AnunciosController extends Controller
         $request['id_utilizador'] = Auth::user()->id;
         $request['disponivel'] = 1;
         $request['foto_perfil'] = $request['fotos'];
-        $data = $request ->all();
-        if(empty($data['garantia_stand'])) {
+        $data = $request->all();
+        if (empty($data['garantia_stand'])) {
             $request['garantia_stand'] = 0;
-        } else
-        {
+        } else {
             $request['garantia_stand'] = 1;
-
         }
-        if(empty($data['livro_revisoes'])) {
+        if (empty($data['livro_revisoes'])) {
         } else
-        $request['livro_revisoes'] = 0;
-        {
+            $request['livro_revisoes'] = 0; {
             $request['livro_revisoes'] = 1;
-
         }
-        if(empty($data['seg_chave'])) {
+        if (empty($data['seg_chave'])) {
             $request['seg_chave'] = 0;
-        } else
-        {
+        } else {
             $request['seg_chave'] = 1;
-
         }
-        if(empty($data['jantes_liga_leve'])) {
+        if (empty($data['jantes_liga_leve'])) {
             $request['jantes_liga_leve'] = 0;
-        } else
-        {
+        } else {
             $request['jantes_liga_leve'] = 1;
-
         }
-        if(empty($data['airbags'])) {
+        if (empty($data['airbags'])) {
             $request['airbags'] = 0;
-        } else
-        {
+        } else {
             $request['airbags'] = 1;
-
         }
-        if(empty($data['ar_condicionado'])) {
+        if (empty($data['ar_condicionado'])) {
             $request['ar_condicionado'] = 0;
-        } else
-        {
+        } else {
             $request['ar_condicionado'] = 1;
-
         }
-        if(empty($data['importado'])) {
+        if (empty($data['importado'])) {
             $request['importado'] = 0;
-        } else
-        {
+        } else {
             $request['importado'] = 1;
-
         }
-        if(empty($data['metalizado'])) {
+        if (empty($data['metalizado'])) {
             $request['metalizado'] = 0;
-        } else
-        {
+        } else {
             $request['metalizado'] = 1;
-
         }
 
-        anuncios::create($request->all());
+        $a = anuncios::create($request->all());
+
+
+        $dir = "anunciosImg";
+        $scan = Storage::directories($dir);
+        if (in_array("anunciosImg" . "/" . $a['id_utilizador'], $scan)) {
+            Storage::makeDirectory("anunciosImg". "/"  . $a['id_utilizador'] . "/" . $a['id_anuncio']);
+            $name = Storage::putFile("anunciosImg". "/"  . $a['id_utilizador'] . "/" . $a['id_anuncio'], $request->file('fotos'));
+        } 
+        else {
+            Storage::makeDirectory($dir . "/" . $a['id_utilizador']);
+            Storage::makeDirectory("anunciosImg". "/"  . $a['id_utilizador'] . "/" . $a['id_anuncio']);
+            $name = Storage::putFile("anunciosImg". "/"  . $a['id_utilizador'] . "/" . $a['id_anuncio'], $request->file('fotos'));
+        }
+
+        $a['fotos'] = "anunciosImg". "/"  . $a['id_utilizador'] . "/" . $a['id_anuncio'];
+        $a['foto_perfil'] = $name;
+        $a->save();
+
         return redirect('/dashboard');
     }
 
@@ -158,7 +162,7 @@ class AnunciosController extends Controller
         ]);
     }
 
-   
+
 
     /**
      * Show the form for editing the specified resource.
@@ -203,7 +207,7 @@ class AnunciosController extends Controller
     }
     public static function  findModelos()
     {
-        
+
         $modelos = modelos::orderBy('nome', 'asc')->get(); //get data from table
         //dd($distrito);
         //return view('findDistritos'); //sent data to view
@@ -213,13 +217,8 @@ class AnunciosController extends Controller
 
     public static function findAnunciosId()
     {
-        $anuncios = anuncios::orderBy('created_at', 'desc')->where('id_utilizador','=',Auth::user()->id)->get();
+        $anuncios = anuncios::orderBy('created_at', 'desc')->where('id_utilizador', '=', Auth::user()->id)->get();
         //$anuncios = anuncios::orderBy('id_utilizador', 'asc')->get();
         return ($anuncios);
     }
-
-    
-
-
-    
 }
