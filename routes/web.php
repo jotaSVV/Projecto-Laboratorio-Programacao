@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\UtilizadoresController;
 use App\Http\Controllers\AnunciosController;
+use App\Http\Controllers\MensagensController;
 
 /*
 |--------------------------------------------------------------------------
@@ -91,7 +92,7 @@ Route::get('/product', function () {
 
 Route::post('/anuncios', [AnunciosController::class, 'store']);
 
-
+Route::post('/msg', [MensagensController::class, 'store']);
 
 Route::get('/anuncios/show/{anuncio}', [AnunciosController::class, 'show']);
 

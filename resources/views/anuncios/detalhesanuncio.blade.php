@@ -70,7 +70,17 @@
                                                 <label> {{$anuncio->descricao}}  </label>
                                             </div>
                                         </div>
-                                        
+
+ <form  action="{{ ('/msg') }}" method="POST">
+@csrf
+  <div class="form-group">
+    <label for="exampleFormControlTextarea1">Mensagem:</label>
+    <textarea class="form-control" name="texto" id="exampleFormControlTextarea1" rows="3"></textarea>
+    
+  </div>
+  <input type="hidden" id="id_recetor" name="id_recetor" value="{{$anuncio->id_utilizador}}">
+  <button type="submit" class="btn btn-primary mb-2">Enviar</button>
+</form>
                                     </div>
                                 </div>
                                </div>
@@ -345,22 +355,59 @@
                         </div>
                     </div>
                 </div>
+
+
                 <div class="col-lg-3">
                     <div class="car__details__sidebar">
                         <div class="car__details__sidebar__model">
                             <ul>
-                                <li>Stock <span>K99D10459934</span></li>
-                                <li>Vin <span>3VWKM245686</span></li>
+                                <li><span>{{$anuncio->titulo}}</span></li>
+                                <li>{{$anuncio->data_registo}}<i class="fa fa-circle" aria-hidden="true"></i>
+{{$anuncio->quilometragem}} km<i class="fa fa-circle" aria-hidden="true"></i>{{$anuncio->combustivel}}
+</li>
                             </ul>
-                            <a href="#" class="primary-btn">Get Today Is Price</a>
-                            <p>Pricing in 11/26/2019</p>
+                            <ul>
+                                <li>Preço <span>{{$anuncio->preco}} €</span></li>
+                            </ul>
+                            @foreach(App\Http\Controllers\UtilizadoresController::findUserById($anuncio->id_utilizador) as $utilizador)
+                            <div class="car__details__sidebar__payment">
+                            <ul>
+                                <p> {{$utilizador->tipovendedor}} </p>
+                                <li> <span>{{$utilizador->nome}} {{$utilizador->apelido}}</span></li>
+                                
+                            </ul>
+                            </div>
+                             <div class="car__details__sidebar__payment">
+                                <h6><i class="fa fa-map-marker" aria-hidden="true"></i>
+ Localização </h6>      
+                                @foreach(App\Http\Controllers\FrequesiasController::findFregById($utilizador->id_freguesia) as $freguesia)
+                                <li> <span>{{$freguesia->nome}}, concelho de {{$freguesia->concelho}} </span></li>
+                                @endforeach
+                            
+                            </div>
+                            <p></p>
+                           
+                            
+                            @endforeach
                         </div>
                         <div class="car__details__sidebar__payment">
-                            <ul>
-                                <li>MSRP <span>$120,000</span></li>
-                                <li>Dealer Discounts <span>$3,000</span></li>
-                                <li>Price <span>$117,000</span></li>
-                            </ul>
+                        <h5><i class="fa fa-phone" aria-hidden="true"></i>
+ Telefone </h5>
+                        <p><button  class="primary-btn" id="myDIV" onclick="myFunction()">Mostrar</button></p>
+
+
+
+<script>
+function myFunction() {
+  var x = document.getElementById("myDIV");
+  if (x.innerHTML === "Mostrar") {
+    x.innerHTML = {{$utilizador->telefone}};
+  } else {
+    x.innerHTML = "Mostrar";
+  }
+}
+</script>
+                            
                             <a href="#" class="primary-btn"><i class="fa fa-credit-card"></i> Express Purchase</a>
                             <a href="#" class="primary-btn sidebar-btn"><i class="fa fa-sliders"></i> Build Payment</a>
                             <a href="#" class="primary-btn sidebar-btn"><i class="fa fa-money"></i> Value Trade</a>

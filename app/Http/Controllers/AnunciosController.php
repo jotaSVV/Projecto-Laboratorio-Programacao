@@ -221,4 +221,10 @@ class AnunciosController extends Controller
         //$anuncios = anuncios::orderBy('id_utilizador', 'asc')->get();
         return ($anuncios);
     }
+
+   
+    
+
+
+    
 }

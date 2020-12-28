@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\DB;
 use App\Models\utilizadores;
 use Illuminate\Http\Request;
 use Auth;
@@ -169,5 +169,13 @@ class UtilizadoresController extends Controller
     public function destroy(utilizadores $utilizadores)
     {
         //
+    }
+
+
+    public static function findUserById($id)
+    {
+        $utilizador = DB::table('utilizadores')->where('id','=',$id)->get();
+        //$anuncios = anuncios::orderBy('id_utilizador', 'asc')->get();
+        return ($utilizador);
     }
 }
