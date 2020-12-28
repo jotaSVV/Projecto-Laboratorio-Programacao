@@ -44,7 +44,7 @@
     <div class="container-fluid">
    
     <div class="row">
-     @foreach(App\Http\Controllers\AnunciosController::findAnunciosId() as $anuncio)
+     @forelse(App\Http\Controllers\AnunciosController::findAnunciosId() as $anuncio)
         <div class="col-12 mt-3">
         
                     
@@ -68,7 +68,9 @@
                         <div class="container">
   <div class="row">
     <div class="col-sm-3 text-dark">
-      Visualizar anúncio
+      
+  <a href="/anuncios/show/{{$anuncio->id_anuncio}}" target="_blank" style="color:black;">Visualizar</a>
+
     </div>
     <div class="col-sm-2 text-dark">
       Editar
@@ -107,7 +109,9 @@
     </div>
    
 </div>
- @endforeach
+@empty
+ <h5 class="text-center">Ainda não possui anuncios!</h5>
+ @endforelse
   </div>
 </div>   
 
