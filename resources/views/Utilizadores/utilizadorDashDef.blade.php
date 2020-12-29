@@ -17,7 +17,7 @@
                         <nav class="header__menu">
                             <ul>
                                 <li><a href="{{url('/')}}">Anúncios</a></li>
-                                <li><a href="{{url('/cars')}}">Mensagens</a></li>
+                                <li><a href="{{url('/dashboard/mensagens')}}">Mensagens</a></li>
                                 <li><a href="{{url('/about')}}">Pagamentos</a></li>
                                 <li><a href="{{url('/dashboard/definicoes')}}">Definições</a></li>
                             </ul>

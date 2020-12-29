@@ -217,7 +217,23 @@ class AnunciosController extends Controller
 
     public static function findAnunciosId()
     {
-        $anuncios = anuncios::orderBy('created_at', 'desc')->where('id_utilizador', '=', Auth::user()->id)->get();
+        $anuncios = anuncios::orderBy('created_at', 'desc')->where('id_anuncio', '=', Auth::user()->id)->get();
+        //$anuncios = anuncios::orderBy('id_utilizador', 'asc')->get();
+        return ($anuncios);
+    }
+
+    public static function findAnunciosById($id)
+    {
+        $anuncios = anuncios::orderBy('created_at', 'desc')->where('id_utilizador', '=', $id)->get();
+        //$anuncios = anuncios::orderBy('id_utilizador', 'asc')->get();
+        return ($anuncios);
+    }
+
+    public static function randomAdds($id)
+    {   
+        ///o id que recebe como argumento é o id que é para excluir.
+
+        $anuncios = anuncios::inRandomOrder()->where('id_anuncio', '!=', $id)->limit(3)->get();
         //$anuncios = anuncios::orderBy('id_utilizador', 'asc')->get();
         return ($anuncios);
     }

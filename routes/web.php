@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
 use App\Http\Controllers\UtilizadoresController;
 use App\Http\Controllers\AnunciosController;
 use App\Http\Controllers\MensagensController;
@@ -40,6 +39,11 @@ Route::get('/cars', function () {
 Route::get('/dashboard/definicoes', function () {
     return view('Utilizadores.utilizadorDashDef');
 });
+Route::get('/dashboard/mensagens', function () {
+    return view('Utilizadores.utilizadorDashMsg');
+});
+
+Route::get('/mensagens/show/{mensagem}', [MensagensController::class, 'show']);
 
 Route::get('/dashboard/edit/{utilizadores}', [UtilizadoresController::class, 'edit']);
 Route::post('/dashboard/definicoes/update/{utilizadores}', [UtilizadoresController::class, 'update']);
