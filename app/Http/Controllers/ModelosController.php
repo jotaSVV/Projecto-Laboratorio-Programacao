@@ -82,4 +82,11 @@ class ModelosController extends Controller
     {
         //
     }
+
+    public static function findModeloById($id)
+    {
+        $modelo = modelos::orderBy('nome', 'desc')->where('id_modelo', '=', $id)->get();
+        
+        return ($modelo);
+    }
 }

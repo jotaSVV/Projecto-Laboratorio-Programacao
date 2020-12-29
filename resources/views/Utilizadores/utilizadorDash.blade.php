@@ -15,8 +15,8 @@
                     <div class="header__nav">
                         <nav class="header__menu">
                             <ul>
-                                <li><a href="{{url('/')}}">Anúncios</a></li>
-                                <li><a href="{{url('/cars')}}">Mensagens</a></li>
+                                <li><a href="{{url('/dashboard')}}">Anúncios</a></li>
+                                <li><a href="{{url('/dashboard/mensagens')}}">Mensagens</a></li>
                                 <li><a href="{{url('/about')}}">Pagamentos</a></li>
                                 <li><a href="{{url('/dashboard/definicoes')}}">Definições</a></li>
                             </ul>
@@ -42,7 +42,7 @@
   </nav>
 
     <div class="container-fluid">
-   
+   <a class="btn btn-primary" href="{{ url('/product') }}" role="button">Criar Anuncio</a>
     <div class="row">
      @forelse(App\Http\Controllers\AnunciosController::findAnunciosId() as $anuncio)
         <div class="col-12 mt-3">
@@ -52,7 +52,7 @@
             <div class="card">
                 <div class="card-horizontal" style = "display: flex; flex: 1 1 auto;">
                     <div class="img-square-wrapper">
-                        <img class="" src="http://via.placeholder.com/300x180" alt="Card image cap">
+                        <img class="" src="/storage/app/{{$anuncio->foto_perfil}}" alt="Card image cap">
                     </div>
                     <div class="card-body" >
                      <div class="row">
@@ -95,7 +95,12 @@
     </div>
     <div class="col-sm-2 text-dark">
     <i class="fa fa-envelope" aria-hidden="true"></i>
-      Msg
+       @if(App\Http\Controllers\MensagensController::countConversas($anuncio->id_anuncio)  > 0 )
+    {{App\Http\Controllers\MensagensController::countConversas($anuncio->id_anuncio)}} Mensagens
+    @else
+    {{'0 Mensagens'}}
+    @endif
+      
     </div>
     <div class="col-sm-2 text-dark">
     <i class="fa fa-heart" aria-hidden="true"></i>
@@ -111,6 +116,7 @@
 </div>
 @empty
  <h5 class="text-center">Ainda não possui anuncios!</h5>
+ <a class="btn btn-primary" href="{{ url('/product') }}" role="button">Criar Anuncio</a>
  @endforelse
   </div>
 </div>   

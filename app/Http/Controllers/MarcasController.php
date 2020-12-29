@@ -82,4 +82,13 @@ class MarcasController extends Controller
     {
         //
     }
+
+
+
+    public static function findMarcasById($id)
+    {
+        $marcas = marcas::orderBy('nome', 'desc')->where('id_marca', '=', $id)->get();
+        
+        return ($marcas);
+    }
 }

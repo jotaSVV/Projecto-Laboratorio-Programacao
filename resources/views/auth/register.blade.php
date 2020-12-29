@@ -196,8 +196,6 @@
         </div>
     </div>
 </div>
-
-
 @if (isset($errors) && count($errors))
 
 There were {{count($errors->all())}} Error(s)
@@ -208,4 +206,5 @@ There were {{count($errors->all())}} Error(s)
 </ul>
 
 @endif
+
 @endsection

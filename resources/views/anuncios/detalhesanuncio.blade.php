@@ -27,8 +27,9 @@
             <div class="row">
                 <div class="col-lg-9">
                     <div class="car__details__pic">
+                    
                         <div class="car__details__pic__large">
-                            <img class="car-big-img" src="img/cars/details/cd-1.jpg" alt="">
+                            <img class="car-big-img" src="/storage/app/{{$anuncio->foto_perfil}}" alt="">
                         </div>
                         <div class="car-thumbs">
                             <div class="car-thumbs-track car__thumb__slider owl-carousel">
@@ -79,6 +80,7 @@
     
   </div>
   <input type="hidden" id="id_recetor" name="id_recetor" value="{{$anuncio->id_utilizador}}">
+  <input type="hidden" id="id_anuncio" name="id_anuncio" value="{{$anuncio->id_anuncio}}">
   <button type="submit" class="btn btn-primary mb-2">Enviar</button>
 </form>
                                     </div>
@@ -91,19 +93,30 @@
                                             <div class="car__details__tab__info__item">
                                                 <h5>General Information2</h5>
                                                 <ul>
-                                                    <li><i class="fa fa-long-arrow-right"></i> Anunciante: {{$anuncio->id_utilizador}}</li>
-                                                    <li><i class="fa fa-long-arrow-right"></i> Marca: {{$anuncio->id_marca}}</li>
-                                                    <li><i class="fa fa-long-arrow-right"></i> Modelo: {{$anuncio->id_modelo}}</li>
+                                                     @foreach(App\Http\Controllers\MarcasController::findMarcasById($anuncio->id_marca) as $marca)
+                                                    <li><i class="fa fa-long-arrow-right"></i> Marca: {{$marca->nome}}</li>
+                                                    @endforeach
+                                                    @foreach(App\Http\Controllers\ModelosController::findModeloById($anuncio->id_modelo) as $modelo)
+                                                    <li><i class="fa fa-long-arrow-right"></i> Modelo: {{$modelo->nome}}</li>
+                                                    @endforeach
+                                                    
                                                     <li><i class="fa fa-long-arrow-right"></i> Versao: {{$anuncio->versao}}</li>
                                                     <li><i class="fa fa-long-arrow-right"></i> Cor: {{$anuncio->cor}}</li>
                                                     <li><i class="fa fa-long-arrow-right"></i> Combustivel: {{$anuncio->combustivel}}</li>
-                                                    <li><i class="fa fa-long-arrow-right"></i> Mês de Registo: {{$anuncio->data_registo}}</li>
-                                                    <li><i class="fa fa-long-arrow-right"></i> Ano de Registo: {{$anuncio->data_registo}}</li>
+                                                    <li><i class="fa fa-long-arrow-right"></i> Data de Registo: {{$anuncio->data_registo}}</li>
                                                     <li><i class="fa fa-long-arrow-right"></i> Quilómetros: {{$anuncio->quilometragem}} km</li>
                                                     <li><i class="fa fa-long-arrow-right"></i> Cilindrada: {{$anuncio->cilindrada}} cc</li>
                                                     <li><i class="fa fa-long-arrow-right"></i> Potência: {{$anuncio->potencia}} cv</li>
-                                                    <li><i class="fa fa-long-arrow-right"></i> Retoma: {{$anuncio->retoma}} </li>
-                                                    <li><i class="fa fa-long-arrow-right"></i> Financiamento: {{$anuncio->financiamento}} </li>
+                                                    @if($anuncio->retoma == 0)
+                                                    <li><i class="fa fa-long-arrow-right"></i> Retoma: Não </li>
+                                                    @else
+                                                    <li><i class="fa fa-long-arrow-right"></i> Retoma: Sim </li>
+                                                    @endif
+                                                    @if($anuncio->financiamento == 0)
+                                                    <li><i class="fa fa-long-arrow-right"></i> Financiamento: Não </li>
+                                                    @else
+                                                    <li><i class="fa fa-long-arrow-right"></i> Financiamento: Sim </li>
+                                                    @endif
                                                     <li><i class="fa fa-long-arrow-right"></i> Segmento: {{$anuncio->segmento}} </li>
                                                     <li><i class="fa fa-long-arrow-right"></i> Metalizado: {{$anuncio->metalizado}} </li>
                                                     <li><i class="fa fa-long-arrow-right"></i> Caixa: {{$anuncio->caixa}} </li>
@@ -111,16 +124,46 @@
                                                     <li><i class="fa fa-long-arrow-right"></i> Portas: {{$anuncio->portas}} </li>
                                                     <li><i class="fa fa-long-arrow-right"></i> Classe Veiculo: {{$anuncio->classe_veiculo}} </li>
                                                     <li><i class="fa fa-long-arrow-right"></i> Tração: {{$anuncio->tracao}} </li>
-                                                    <li><i class="fa fa-long-arrow-right"></i> Garantia Stand: {{$anuncio->garantia_stand}} </li>
+                                                    @if($anuncio->garantia_stand == 0)
+                                                    <li><i class="fa fa-long-arrow-right"></i> Garantia Stand: Não </li>
+                                                    @else
+                                                    <li><i class="fa fa-long-arrow-right"></i> Garantia Stand: Sim </li>
+                                                    @endif
                                                     <li><i class="fa fa-long-arrow-right"></i> Número de Registos: {{$anuncio->nr_registos}} </li>
-                                                    <li><i class="fa fa-long-arrow-right"></i> Livro de Revisões: {{$anuncio->livro_revisoes}} </li>
-                                                    <li><i class="fa fa-long-arrow-right"></i> Segunda-Chave: {{$anuncio->seg_chave}} </li>
-                                                    <li><i class="fa fa-long-arrow-right"></i> Jantes Liga Leve: {{$anuncio->jantes_liga_leve}} </li>
+                                                    @if($anuncio->livro_revisoes == 0)
+                                                    <li><i class="fa fa-long-arrow-right"></i> Livro de Revisões: Não </li>
+                                                    @else
+                                                    <li><i class="fa fa-long-arrow-right"></i> Livro de Revisões: Sim </li>
+                                                    @endif
+                                                    @if($anuncio->seg_chave == 0)
+                                                    <li><i class="fa fa-long-arrow-right"></i> Segunda-chave: Não </li>
+                                                    @else
+                                                    <li><i class="fa fa-long-arrow-right"></i> Segunda-chave: Sim </li>
+                                                    @endif
+                                                    @if($anuncio->jantes_liga_leve == 0)
+                                                    <li><i class="fa fa-long-arrow-right"></i> Jantes Liga Leve: Não </li>
+                                                    @else
+                                                    <li><i class="fa fa-long-arrow-right"></i> Jantes Liga Leve: Sim </li>
+                                                    @endif
+                                                    
                                                     <li><i class="fa fa-long-arrow-right"></i> Estofos: {{$anuncio->estofos}} </li>
                                                     <li><i class="fa fa-long-arrow-right"></i> Medida Jantes: {{$anuncio->medida_jantes}} </li>
-                                                    <li><i class="fa fa-long-arrow-right"></i> Airbags: {{$anuncio->airbags}} </li>
-                                                    <li><i class="fa fa-long-arrow-right"></i> Ar Condicionado: {{$anuncio->ar_condicionado}} </li>
-                                                    <li><i class="fa fa-long-arrow-right"></i> Importado: {{$anuncio->importado}} </li>
+                                                    @if($anuncio->airbags == 0)
+                                                    <li><i class="fa fa-long-arrow-right"></i> Airbags: Não </li>
+                                                    @else
+                                                    <li><i class="fa fa-long-arrow-right"></i> Airbags: Sim </li>
+                                                    @endif
+                                                    @if($anuncio->ar_condicionado == 0)
+                                                    <li><i class="fa fa-long-arrow-right"></i> Ar Condicionado: Não </li>
+                                                    @else
+                                                    <li><i class="fa fa-long-arrow-right"></i> Ar Condicionado: Sim </li>
+                                                    @endif
+                                                    @if($anuncio->importado == 0)
+                                                    <li><i class="fa fa-long-arrow-right"></i> Origem: Nacional </li>
+                                                    @else
+                                                    <li><i class="fa fa-long-arrow-right"></i> Origem: Importado </li>
+                                                    @endif
+                                                    
                                                 </ul>
                                             </div>
                                         </div>
@@ -422,85 +465,35 @@ function myFunction() {
                     
                     
                 </div>
+ 
 
-
-<div class="container">
+<div class="container-fluid">
   <div class="row">
-    <div class="col-sm">
-      <div class="car__item">
-                        <div class="car__item__pic__slider owl-carousel">
-                            <img src="/resources/theme/img/cars/car-2.jpg" alt="">
-                            <img src="/resources/theme/img/cars/car-8.jpg" alt="">
-                            <img src="/resources/theme/img/cars/car-6.jpg" alt="">
-                            <img src="resources/theme/img/cars/car-4.jpg" alt="">
-                        </div>
-                        <div class="car__item__text">
-                            <div class="car__item__text__inner">
-                                <div class="label-date">2020</div>
-                                <h5><a href="#">Toyota camry asv50l-jeteku</a></h5>
-                                <ul>
-                                    <li><span>35,000</span> mi</li>
-                                    <li>Auto</li>
-                                    <li><span>700</span> hp</li>
-                                </ul>
-                            </div>
-                            <div class="car__item__price">
-                                <span class="car-option sale">For Sale</span>
-                                <h6>$73,900</h6>
-                            </div>
-                        </div>
-                    </div>
-    </div>
-    <div class="col-sm">
-      <div class="car__item">
-                        <div class="car__item__pic__slider owl-carousel">
-                            <img src="/resources/theme/img/cars/car-2.jpg" alt="">
-                            <img src="/resources/theme/img/cars/car-8.jpg" alt="">
-                            <img src="/resources/theme/img/cars/car-6.jpg" alt="">
-                            <img src="resources/theme/img/cars/car-4.jpg" alt="">
-                        </div>
-                        <div class="car__item__text">
-                            <div class="car__item__text__inner">
-                                <div class="label-date">2020</div>
-                                <h5><a href="#">Toyota camry asv50l-jeteku</a></h5>
-                                <ul>
-                                    <li><span>35,000</span> mi</li>
-                                    <li>Auto</li>
-                                    <li><span>700</span> hp</li>
-                                </ul>
-                            </div>
-                            <div class="car__item__price">
-                                <span class="car-option sale">For Sale</span>
-                                <h6>$73,900</h6>
+  @foreach(App\Http\Controllers\AnunciosController::randomAdds($anuncio->id_anuncio) as $anuncio)                     
+    <div class="col-lg-4 col-md-4">
+                            <div class="car__item">
+                                <div class="car__item__pic " >
+                                    <img src="/storage/app/{{$anuncio->foto_perfil}}" alt="" style="width:156px;height:156px;" class="center">
+                                </div>
+                                <div class="car__item__text">
+                                    <div class="car__item__text__inner">
+                                        <div class="label-date">{{$anuncio->data_registo}}</div>
+                                        <h5><a href="/anuncios/show/{{$anuncio->id_anuncio}}" target="_blank" style="color:black;">{{$anuncio->titulo}}</a></h5>
+                                        <ul>
+                                            <li><span>{{$anuncio->quilometragem}}</span> km</li>
+                                            <li>{{$anuncio->caixa}}</li>
+                                            <li><span>{{$anuncio->potencia}}</span> cv</li>
+                                        </ul>
+                                    </div>
+                                    <div class="car__item__price">
+                                        <span class="car-option sale">Venda</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-    </div>
-    <div class="col-sm">
-      <div class="car__item">
-                        <div class="car__item__pic__slider owl-carousel">
-                            <img src="/resources/theme/img/cars/car-2.jpg" alt="">
-                            <img src="/resources/theme/img/cars/car-8.jpg" alt="">
-                            <img src="/resources/theme/img/cars/car-6.jpg" alt="">
-                            <img src="resources/theme/img/cars/car-4.jpg" alt="">
-                        </div>
-                        <div class="car__item__text">
-                            <div class="car__item__text__inner">
-                                <div class="label-date">2020</div>
-                                <h5><a href="#">Toyota camry asv50l-jeteku</a></h5>
-                                <ul>
-                                    <li><span>35,000</span> mi</li>
-                                    <li>Auto</li>
-                                    <li><span>700</span> hp</li>
-                                </ul>
-                            </div>
-                            <div class="car__item__price">
-                                <span class="car-option sale">For Sale</span>
-                                <h6>$73,900</h6>
-                            </div>
-                        </div>
-                    </div>
-    </div>
+    @endforeach
+    
+   
   </div>
 </div>
                 
