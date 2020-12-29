@@ -290,4 +290,84 @@ class AnunciosController extends Controller
         //$anuncios = anuncios::orderBy('id_utilizador', 'asc')->get();
         return ($anuncios);
     }
+
+    public static function findAllAnuncios()
+    {
+
+        $anuncio = anuncios::All(); //get data from table
+        return ($anuncio);
+    }
+    public static function getYear($data)
+    {
+        list($year, $month, $day) = explode("-", $data);
+        return $year;
+    }
+
+    
+    public function filter(Request $request)
+    {
+
+        $filter = array();  //  $filter = ['marca' => $request->marca, 'cor' => $request->cor, 'quilometragem' => $request->quilometragem];
+        $count = 0;
+        if ($request->marca != null) {
+            $filter['id_marca'] = $request->marca;
+            $count++;
+        }
+        if ($request->modelo != null) {
+            $filter['id_modelo'] = $request->modelo;
+            $count++;
+        }
+        if ($request->cor != null) {
+            $filter['cor'] = $request->cor;
+            $count++;
+        }
+        if ($request->combustivel != null) {
+            $filter['combustivel'] = $request->combustivel;
+            $count++;
+        }
+        if ($request->estado != null) {
+            $filter['estado'] = $request->estado;
+            $count++;
+        }
+
+
+        if ($request->preco != null && $request->quilometragem != null) { //preco + quilometragem
+            $count += 2;
+            if ($count > 2)
+                $anuncios = anuncios::where($filter)->whereRaw('preco <=' . $request->preco)->whereRaw('quilometragem <=' . $request->quilometragem)->get();
+            else
+                $anuncios = anuncios::whereRaw('preco <=' . $request->preco)->whereRaw('quilometragem <=' . $request->quilometragem)->get();
+        }
+
+        if ($request->preco != null && $request->quilometragem == null) {  //preco 
+            $count++;
+            if ($count > 1)
+                $anuncios = anuncios::where($filter)->whereRaw('preco <=' . $request->preco)->get();
+            else
+                $anuncios = anuncios::whereRaw('preco <=' . $request->preco)->get();
+        }
+
+        if ($request->preco == null && $request->quilometragem != null) { // quilometragem
+            $count++;
+            if ($count > 1)
+                $anuncios = anuncios::where($filter)->whereRaw('quilometragem <=' . $request->quilometragem)->get();
+            else
+                $anuncios = anuncios::whereRaw('quilometragem <=' . $request->quilometragem)->get();
+        }
+
+        if ($request->preco == null && $request->quilometragem == null)
+            $anuncios = anuncios::where($filter)->get();
+
+
+
+
+
+        if ($request->filled('filtrar') && $count > 0) {
+
+            return view('layouts.cars', [
+                'anuncios_filtrados' => $anuncios,
+            ]);
+        }
+        return view('layouts.cars');
+    }
 }

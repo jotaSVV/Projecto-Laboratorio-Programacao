@@ -435,20 +435,16 @@
 
 
 
-                        <script>
-                            function myFunction() {
-                                var x = document.getElementById("myDIV");
-                                if (x.innerHTML === "Mostrar") {
-                                    x.innerHTML = {
-                                        {
-                                            $utilizador - > telefone
-                                        }
-                                    };
-                                } else {
-                                    x.innerHTML = "Mostrar";
-                                }
-                            }
-                        </script>
+<script>
+function myFunction() {
+  var x = document.getElementById("myDIV");
+  if (x.innerHTML === "Mostrar") {
+    x.innerHTML = {{$utilizador->telefone}};
+  } else {
+    x.innerHTML = "Mostrar";
+  }
+}
+</script>
 
                         <a href="#" class="primary-btn"><i class="fa fa-credit-card"></i> Express Purchase</a>
                         <a href="#" class="primary-btn sidebar-btn"><i class="fa fa-sliders"></i> Build Payment</a>
