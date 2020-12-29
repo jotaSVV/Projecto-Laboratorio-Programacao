@@ -14,7 +14,7 @@
 @endif
 <div>
     <form class="tm-edit-product-form" action="{{ url('/anuncios') }}" method="POST">
-        
+
         @csrf
         @method('POST')
 

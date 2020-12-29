@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\modelos;
 use App\Models\marcas;
 use Illuminate\Support\Facades\Storage;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Contracts\Cache\Store;
 
 class AnunciosController extends Controller
@@ -46,9 +46,7 @@ class AnunciosController extends Controller
             'id_marca' => ['required', 'integer', 'max:100'],
             'id_modelo' => ['required', 'string', 'max:100'], //*
             'preco' => ['required', 'integer', 'max:10000000'], //*
-
             'valor_fixo' => ['required', 'integer', 'max:1'], //* //*
-
             'data_registo' => ['required', 'date'], //validar
             'cor' => ['required', 'string', 'max:10'],
             'estado' => ['required', 'integer', 'max:1'], //*
@@ -76,14 +74,13 @@ class AnunciosController extends Controller
             'airbags' => ['integer', 'max:1'],
             'ar_condicionado' => ['integer', 'max:1'],
             'importado' => ['integer', 'max:1'],
-            'fotos' => ['required', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048']
+            'fotos.*' => ['image', 'mimes:jpeg,png,jpg,gif,svg', 'max:10240']
         ]);
 
         list($lixo, $id_modelo) = explode("-", $request['id_modelo']);
         $request['id_modelo'] = $id_modelo;
         $request['id_utilizador'] = Auth::user()->id;
         $request['disponivel'] = 1;
-        $request['foto_perfil'] = $request['fotos'];
         $data = $request->all();
         if (empty($data['garantia_stand'])) {
             $request['garantia_stand'] = 0;
@@ -126,25 +123,81 @@ class AnunciosController extends Controller
             $request['metalizado'] = 1;
         }
 
-        $a = anuncios::create($request->all());
+        
 
+        if ($request->hasFile('fotos')) {
 
-        $dir = "anunciosImg";
-        $scan = Storage::directories($dir);
-        if (in_array("anunciosImg" . "/" . $a['id_utilizador'], $scan)) {
-            Storage::makeDirectory("anunciosImg". "/"  . $a['id_utilizador'] . "/" . $a['id_anuncio']);
-            $name = Storage::putFile("anunciosImg". "/"  . $a['id_utilizador'] . "/" . $a['id_anuncio'], $request->file('fotos'));
-        } 
-        else {
-            Storage::makeDirectory($dir . "/" . $a['id_utilizador']);
-            Storage::makeDirectory("anunciosImg". "/"  . $a['id_utilizador'] . "/" . $a['id_anuncio']);
-            $name = Storage::putFile("anunciosImg". "/"  . $a['id_utilizador'] . "/" . $a['id_anuncio'], $request->file('fotos'));
+            $save = $request->fotos;
+            $a = new anuncios;
+
+            $a->titulo = $request->titulo;
+            $a->id_utilizador = $request->id_utilizador;
+            $a->disponivel = $request->disponivel;
+            $a->foto_perfil = "teste";
+            $a->descricao = $request->descricao;
+            $a->id_marca = $request->id_marca;
+            $a->id_modelo = $request->id_modelo;
+            $a->preco = $request->preco;
+            $a->valor_fixo = $request->valor_fixo;
+            $a->data_registo = $request->data_registo;
+            $a->cor = $request->cor;
+            $a->estado = $request->estado;
+            $a->versao = $request->versao;
+            $a->combustivel = $request->combustivel;
+            $a->quilometragem = $request->quilometragem;
+            $a->potencia = $request->potencia;
+            $a->cilindrada = $request->cilindrada;
+            $a->retoma = $request->retoma;
+            $a->financiamento = $request->financiamento;
+            $a->segmento = $request->segmento;
+            $a->metalizado = $request->metalizado;
+            $a->caixa = $request->caixa;
+            $a->lotacao = $request->lotacao;
+            $a->portas = $request->portas;
+            $a->classe_veiculo = $request->classe_veiculo;
+            $a->garantia_stand = $request->garantia_stand;
+            $a->nr_registos = $request->nr_registos;
+            $a->tracao = $request->tracao;
+            $a->livro_revisoes = $request->livro_revisoes;
+            $a->seg_chave = $request->seg_chave;
+            $a->jantes_liga_leve = $request->jantes_liga_leve;
+            $a->estofos = $request->estofos;
+            $a->medida_jantes = $request->medida_jantes;
+            $a->airbags = $request->airbags;
+            $a->ar_condicionado = $request->ar_condicionado;
+            $a->importado = $request->importado;
+            $a->fotos = "teste";
+            //var_dump($a);
+            $a->save();
+
+            $dir = "anunciosImg";
+            $scan = Storage::directories($dir);
+            if (in_array("anunciosImg" . "/" . $a['id_utilizador'], $scan)) {
+                Storage::makeDirectory("anunciosImg" . "/"  . $a['id_utilizador'] . "/" . $a->id_anuncio);
+                $files = $save;
+                foreach ($files as $pics) {
+                    Storage::putFile("anunciosImg" . "/"  . $a['id_utilizador'] . "/" . $a['id_anuncio'], $pics);
+                }
+            } else {
+                Storage::makeDirectory($dir . "/" . $a['id_utilizador']);
+                Storage::makeDirectory("anunciosImg" . "/"  . $a['id_utilizador'] . "/" . $a->id_anuncio);
+                $files = $save;
+                foreach ($files as $pics) {
+                    /*$fileName = $pics->getClientOriginalName();
+                    $extension = $pics->getClientOriginalExtension();
+                    $storeName = $fileName . '.' . $extension;
+                    $pics->move("anunciosImg" . "/"  . $a['id_utilizador'] . "/" . $a->id_anuncio, $storeName);*/
+                    Storage::putFile("anunciosImg" . "/"  . $a['id_utilizador'] . "/" . $a['id_anuncio'], $pics);
+                }
+            }
+
+            $a['fotos'] = "anunciosImg" . "/"  . $a['id_utilizador'] . "/" . $a->id_anuncio;
+            $files = scandir("storage/app/anunciosImg" . "/"  . $a['id_utilizador'] . "/" . $a->id_anuncio);
+            //var_dump($files);
+            $name = $files[2];
+            $a['foto_perfil'] = $name;
+            $a->save();
         }
-
-        $a['fotos'] = "anunciosImg". "/"  . $a['id_utilizador'] . "/" . $a['id_anuncio'];
-        $a['foto_perfil'] = $name;
-        $a->save();
-
         return redirect('/dashboard');
     }
 
@@ -221,10 +274,4 @@ class AnunciosController extends Controller
         //$anuncios = anuncios::orderBy('id_utilizador', 'asc')->get();
         return ($anuncios);
     }
-
-   
-    
-
-
-    
 }

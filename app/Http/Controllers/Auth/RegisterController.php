@@ -8,6 +8,8 @@ use App\Models\utilizadores;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 
 class RegisterController extends Controller
 {
@@ -50,16 +52,16 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
+            'nome' => ['required', 'string', 'max:255'],
             'apelido' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:utilizadores'],
-            'telefone' => ['integer', 'min:9','unique:utilizadores'],
+            'telefone' => ['integer', 'min:9', 'unique:utilizadores'],
             'data_nascimento' => ['required', 'date'],
             'sexo' => ['required', 'string', 'max:1'],
             'tipovendedor' => ['required', 'string', 'max:15'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'id_freguesia' => ['required', 'integer', 'max:10'],
-            'foto_perfil' => ['required', 'string', 'max:255'],
+            'id_freguesia' => ['required', 'integer', 'max:3092'],
+            'foto_perfil' => ['required', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:10240'],
         ]);
     }
 
@@ -71,22 +73,32 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        
+        $request = request();
+        $request->foto_perfil;
+        //var_dump($request);
 
-        return utilizadores::create([
-            'nome' => $data['name'],
-            'apelido' => $data['apelido'],
-            'email' => $data['email'],
-            'telefone' => $data['telefone'],
-            'data_nascimento' => $data['data_nascimento'],
-            'sexo' => $data['sexo'],
-            'tipovendedor' => $data['tipovendedor'],
-            'admin' => 0,
-            'password' => Hash::make($data['password']),
-            'id_freguesia' => $data['id_freguesia'],
-            'foto_perfil' => $data['foto_perfil'],
-        ]);
+        $a = new utilizadores;
+        $a->nome = $request->nome;
+        //var_dump($request->nome);
+        $a->apelido = $request->apelido;
+        $a->email = $request->email;
+        $a->telefone = $request->telefone;
+        $a->data_nascimento = $request->data_nascimento;
+        $a->sexo = $request->sexo;
+        $a->tipovendedor = $request->tipovendedor;
+        $a->password = $request->password;
+        $a->id_freguesia = $request->id_freguesia;
+        $a->admin = 0;
+        $a->foto_perfil = "teste";
+        $a->save();
 
-        
+        $dir = "utilizadoresImg";
+        //var_dump($a);
+        Storage::makeDirectory($dir . "/"  . $a['id']);
+        $name = Storage::putFile($dir . "/" . $a['id'], $request->foto_perfil);
+        $a->foto_perfil = $name;
+        $a->save();
+
+        return $a;
     }
 }

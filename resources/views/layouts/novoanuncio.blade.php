@@ -28,7 +28,7 @@
         <div class="form-group mb-3">
             <label for="titulo">Titulo do anúncio:
             </label>
-            <input id="titulo" name="titulo" type="text" maxlength="90" class="form-control validate" required="">
+            <input id="titulo" name="titulo" type="text" maxlength="90" placeholder="Máx. 90 caracteres" class="form-control validate" required="">
         </div>
 
         <div class="row">
@@ -102,7 +102,7 @@
         <div class="row" style="margin-bottom: 16px;">
             <div class="col-3">
                 <label style="margin-right: 6px;">{{ __('Data de Registo:') }}</label>
-                <input type="date" id="data_registo" name="data_registo">
+                <input type="date" id="data_registo" max="<?php echo date("Y-m-d"); ?>" name="data_registo">
             </div>
 
             <div class="col-6">
@@ -125,7 +125,7 @@
 
         <label for="versao">Versão:</label>
         <div class="input-group input-group-sm mb-3">
-            <input type="text" id="versao" name="versao" placeholder="Ex: Mini Cooper D, Mini Cooper S ..." max="60" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+            <input type="text" id="versao" name="versao" placeholder="Ex: Mini Cooper D, Mini Cooper S..." max="60" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
         </div>
 
         <label for="combustivel">Tipo de combustível do veículo: </label>
@@ -143,19 +143,18 @@
             <label for="quilometragem">Quilometragem:</label>
             <div class="input-group input-group-sm mb-3">
                 <span class="input-group-text" id="inputGroup-sizing-sm_quilometragem">KMs</span>
-                <input name="quilometragem" id="quilometragem" type="number" min="0" max="3000000" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                <input name="quilometragem" id="quilometragem" type="number" placeholder="Máx. 3000000" min="0" max="3000000" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
             </div>
 
             <label for="potencia">Potência:</label>
             <div class="input-group input-group-sm mb-3">
                 <span class="input-group-text" id="inputGroup-sizing-sm_potencia">CV</span>
-                <input name="potencia" id="potencia" type="number" min="0" max="1000" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                <input name="potencia" id="potencia" type="number" placeholder="Máx. 1000" min="0" max="1000" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
             </div>
 
             <label for="cilindrada">Cilindrada:</label>
             <div class="input-group input-group-sm mb-3">
-                <span class="input-group-text" id="inputGroup-sizing-sm_cilindrada">Cilindros</span>
-                <input name="cilindrada" id="cilindrada" type="number" min="0" max="20" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                <input name="cilindrada" id="cilindrada" type="number" placeholder="Máx. 10000" min="0" max="10000" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
             </div>
         </div>
 
@@ -196,17 +195,17 @@
 
         <label for="segmento">Segmento:</label>
         <div class="input-group input-group-sm mb-3">
-            <input type="text" id="segmento" placeholder="SUV, Coupé ..." maxlength="15" class="form-control" name="segmento" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+            <input type="text" id="segmento" placeholder="SUV, Coupé..." maxlength="15" class="form-control" name="segmento" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
         </div>
 
         <label for="lotacao">Lotação:</label>
         <div class="input-group input-group-sm mb-3">
-            <input type="number" class="form-control" id="lotacao" min="2" max="9" name="lotacao" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+            <input type="number" class="form-control" id="lotacao" placeholder="Mín: 1  Máx: 9" min="2" max="9" name="lotacao" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
         </div>
 
         <label for="portas">Nº de portas:</label>
         <div class="input-group input-group-sm mb-3">
-            <input type="number" id="portas" class="form-control" min="2" max="6" name="portas" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+            <input type="number" id="portas" class="form-control" placeholder="Mín: 2   Máx: 5" min="2" max="5" name="portas" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
         </div>
 
         <div class="row" style="margin-bottom: 16px;">
@@ -223,6 +222,7 @@
                 <select name="tracao" id="tracao" class="form-select" aria-label="Default select example">
                     <option value="Dianteira ">Tração dianteira</option>
                     <option value="Traseira">Tração traseira</option>
+                    <option value="Integral">Tração integral</option>
                 </select>
             </div>
         </div>
@@ -237,25 +237,25 @@
 
         <label for="nr_registos">Número de Registos:</label>
         <div class="input-group input-group-sm mb-3">
-            <input type="number" id="nr_registos" class="form-control" name="nr_registos" min="0" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+            <input type="number" id="nr_registos" class="form-control" placeholder="Mín: 0" name="nr_registos" min="0" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
         </div>
 
-        <div class="row" style="margin-bottom: 16px;">
-            <div class="form-check mb-3 col-2" style="padding-left: 38px;">
+        <div class="row row-col-cols-6" style="margin-bottom: 16px;">
+            <div class="form-check mb-3 col" style="padding-left: 38px;">
                 <input name="livro_revisoes" class="form-check-input" type="checkbox" value="0" id="flexCheckChecked_livro_revisoes">
                 <label class="form-check-label" for="flexCheckChecked">
                     Livro de Revisões
                 </label>
             </div>
 
-            <div class="form-check mb-3 col-2">
+            <div class="form-check mb-3 col">
                 <input name="seg_chave" class="form-check-input" type="checkbox" value="0" id="flexCheckChecked_seg_chave">
                 <label class="form-check-label" for="flexCheckChecked">
                     Segunda Chave
                 </label>
             </div>
 
-            <div class="form-check mb-3 col-2">
+            <div class="form-check mb-3 col">
                 <input name="jantes_liga_leve" class="form-check-input" type="checkbox" value="0" id="flexCheckChecked_jantes_liga_leve">
                 <label class="form-check-label" for="flexCheckChecked_jantes_liga_leve">
                     Jantes Liga-Leve
@@ -265,32 +265,32 @@
 
         <label for="nr_registos">Medida das Jantes (polegadas):</label>
         <div class="input-group input-group-sm mb-3">
-            <input type="number" class="form-control" name="medida_jantes" id="medida_jantes" min="5" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+            <input type="number" class="form-control" name="medida_jantes" placeholder="Mín: 5  Máx: 24" id="medida_jantes" min="5" max="24" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
         </div>
 
-        <div class="row" style="margin-bottom: 16px;">
-            <div class="form-check mb-3 col-3" style="padding-left: 38px;">
+        <div class="row row-col-cols-4" style="margin-bottom: 16px;">
+            <div class="form-check mb-3 col" style="padding-left: 38px;">
                 <input name="airbags" class="form-check-input" type="checkbox" value="0" id="flexCheckChecked_jantes_airbags">
                 <label class="form-check-label" for="flexCheckChecked_jantes_airbags">
                     Airbags
                 </label>
             </div>
 
-            <div class="form-check mb-3 col-3">
+            <div class="form-check mb-3 col">
                 <input name="ar_condicionado" class="form-check-input" type="checkbox" value="0" id="flexCheckChecked_ar_condicionado">
                 <label class="form-check-label" for="flexCheckChecked_ar_condicionado">
                     Ar condicionado
                 </label>
             </div>
 
-            <div class="form-check mb-3 col-3">
+            <div class="form-check mb-3 col">
                 <input name="importado" class="form-check-input" type="checkbox" value="0" id="flexCheckChecked_importado">
                 <label class="form-check-label" for="flexCheckChecked_importado">
                     Importado
                 </label>
             </div>
 
-            <div class="form-check mb-3 col-3">
+            <div class="form-check mb-3 col">
                 <input name="metalizado" class="form-check-input" type="checkbox" value="0" id="flexCheckChecked_metalizado">
                 <label class="form-check-label" for="flexCheckChecked_metalizado">
                     Metalizado
@@ -302,20 +302,21 @@
             <div class="col-3">
                 <label for="caixa">Caixa de velocidades:</label>
                 <div class="input-group input-group-sm mb-3">
-                    <input type="number" id="caixa" class="form-control" name="caixa" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                    <input type="number" id="caixa" class="form-control" placeholder="Mín: 5    Máx: 9" min="5" max="9" name="caixa" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
                 </div>
             </div>
 
             <div class="col-3">
                 <label for="estofos">Estofos:</label>
                 <div class="input-group input-group-sm mb-3">
-                    <input type="text" id="estofos" class="form-control" name="estofos" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                    <input type="text" id="estofos" class="form-control" placeholder="Couro, pele..." name="estofos" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
                 </div>
             </div>
         </div>
 
+        <label for="nr_registos">Fotos do veículo (pode selecionar mais do que uma):</label>
         <div class="input-group mb-3">
-            <input name="fotos" type="file" class="form-control" id="inputGroupFile_fotos">
+            <input name="fotos[]" type="file" class="form-control" id="inputGroupFile_fotos" multiple>
         </div>
 
 
