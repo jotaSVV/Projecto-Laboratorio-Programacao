@@ -52,7 +52,7 @@ class AnunciosController extends Controller
             'estado' => ['required', 'integer', 'max:1'], //*
             'versao' => ['required', 'string', 'max:60'], ///-----------
             'combustivel' => ['required', 'string', 'max:30'],
-            'quilometragem' => ['required', 'integer', 'max:30000000'],
+            'quilometragem' => ['required', 'integer', 'max:30000000', 'min:0'],
             'potencia' => ['required', 'integer', 'max:1000'],
             'cilindrada' => ['required', 'integer', 'max:32767'],
             'retoma' => ['required', 'integer', 'max:1'],
