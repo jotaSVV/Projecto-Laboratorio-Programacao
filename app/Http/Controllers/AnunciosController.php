@@ -6,6 +6,7 @@ use App\Models\anuncios;
 use Illuminate\Http\Request;
 use App\Models\modelos;
 use App\Models\marcas;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Contracts\Cache\Store;
@@ -301,6 +302,13 @@ class AnunciosController extends Controller
     {
         list($year, $month, $day) = explode("-", $data);
         return $year;
+    }
+
+    public static function getImgs($dir)
+    {   
+        $files = File::allFiles($dir);
+        //$files = Storage::files('/storage/app/anunciosImg/1/1');
+        return ($files);
     }
 
     
