@@ -86,7 +86,7 @@ class RegisterController extends Controller
         $a->data_nascimento = $request->data_nascimento;
         $a->sexo = $request->sexo;
         $a->tipovendedor = $request->tipovendedor;
-        $a->password = $request->password;
+        $a->password = Hash::make($request->password);
         $a->id_freguesia = $request->id_freguesia;
         $a->admin = 0;
         $a->foto_perfil = "teste";
@@ -97,6 +97,7 @@ class RegisterController extends Controller
         Storage::makeDirectory($dir . "/"  . $a['id']);
         $name = Storage::putFile($dir . "/" . $a['id'], $request->foto_perfil);
         $a->foto_perfil = $name;
+        //dd($a->foto_perfil);
         $a->save();
 
         return $a;
