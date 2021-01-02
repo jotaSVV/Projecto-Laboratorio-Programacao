@@ -1,8 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Auth;
-
 
 use App\Http\Controllers\UtilizadoresController;
 use App\Http\Controllers\AnunciosController;
@@ -27,8 +25,15 @@ Route::get('/about', function () {
     return view('layouts.about');
 });
 
-Route::get('/cars', [AnunciosController::class, 'filter']);
 
+/*
+Route::get('/cars', function () {
+    return view('layouts.cars');
+});
+*/
+
+
+Route::get('/cars', [AnunciosController::class, 'anuncios']);
 
 
 
@@ -40,11 +45,6 @@ Route::get('/cars', [AnunciosController::class, 'filter']);
 Route::get('/dashboard/definicoes', function () {
     return view('Utilizadores.utilizadorDashDef');
 });
-Route::get('/dashboard/mensagens', function () {
-    return view('Utilizadores.utilizadorDashMsg');
-});
-
-Route::get('/mensagens/show/{mensagem}', [MensagensController::class, 'show']);
 
 Route::get('/dashboard/edit/{utilizadores}', [UtilizadoresController::class, 'edit']);
 Route::post('/dashboard/definicoes/update/{utilizadores}', [UtilizadoresController::class, 'update']);
