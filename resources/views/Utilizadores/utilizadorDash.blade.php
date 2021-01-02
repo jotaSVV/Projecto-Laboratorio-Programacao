@@ -73,7 +73,7 @@
 
                     </div>
                     <div class="col-sm-2 text-dark">
-                      Editar
+                      <a href="/anuncios/edit/{{$anuncio->id_anuncio}}" target="_blank" style="color:black;">Editar</a>
                     </div>
                     <div class="col-sm-2 text-dark">
                       Remover

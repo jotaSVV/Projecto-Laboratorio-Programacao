@@ -119,7 +119,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <button type="submit" class="site-btn">Searching</button>
+                                        <button type="submit" class="site-btn">Procurar</button>
                                     </form>
                                 </div>
                             </div>

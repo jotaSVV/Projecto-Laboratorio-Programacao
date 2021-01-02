@@ -9,6 +9,7 @@ use App\Models\marcas;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Contracts\Cache\Store;
 
 class AnunciosController extends Controller
@@ -124,7 +125,7 @@ class AnunciosController extends Controller
             $request['metalizado'] = 1;
         }
 
-        
+
 
         if ($request->hasFile('fotos')) {
 
@@ -205,7 +206,7 @@ class AnunciosController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\anuncios  $anuncios
+     * @param  \App\Models\anuncios  $anuncio
      * @return \Illuminate\Http\Response
      */
     public function show(anuncios $anuncio)
@@ -224,9 +225,11 @@ class AnunciosController extends Controller
      * @param  \App\Models\anuncios  $anuncios
      * @return \Illuminate\Http\Response
      */
-    public function edit(anuncios $anuncios)
+    public function edit(anuncios $anuncio)
     {
-        //
+        return view('Anuncios.editAnuncio', [
+            'anuncio' => $anuncio,
+        ]);
     }
 
     /**
@@ -238,7 +241,58 @@ class AnunciosController extends Controller
      */
     public function update(Request $request, anuncios $anuncios)
     {
-        //
+        $request->validate([
+            'titulo' => ['required', 'string', 'max:90'],
+            'descricao' => ['required', 'string', 'max:9000'],
+            'id_marca' => ['required', 'integer', 'max:100'],
+            'id_modelo' => ['required', 'string', 'max:100'], //*
+            'preco' => ['required', 'integer', 'max:10000000'], //*
+            'valor_fixo' => ['required', 'integer', 'max:1'], //* //*
+            'data_registo' => ['required', 'date'], //validar
+            'cor' => ['required', 'string', 'max:10'],
+            'estado' => ['required', 'integer', 'max:1'], //*
+            'versao' => ['required', 'string', 'max:60'], ///-----------
+            'combustivel' => ['required', 'string', 'max:30'],
+            'quilometragem' => ['required', 'integer', 'max:30000000', 'min:0'],
+            'potencia' => ['required', 'integer', 'max:1000'],
+            'cilindrada' => ['required', 'integer', 'max:32767'],
+            'retoma' => ['required', 'integer', 'max:1'],
+            'financiamento' => ['required', 'integer', 'max:1'],
+            'segmento' => ['required', 'string', 'max:20'],
+            'metalizado' => ['integer', 'max:1'],
+            'caixa' => ['required', 'integer', 'max:10'],
+            'lotacao' => ['required', 'integer', 'max:9'],
+            'portas' => ['required', 'integer', 'max:5'],
+            'classe_veiculo' => ['required', 'string', 'max:50'],
+            'garantia_stand' => ['integer', 'max:1'],
+            'nr_registos' => ['required', 'integer', 'max:50'],
+            'tracao' => ['required', 'string', 'max:10'],
+            'livro_revisoes' => ['integer', 'max:1'],
+            'seg_chave' => ['integer', 'max:1'],
+            'jantes_liga_leve' => ['integer', 'max:1'],
+            'estofos' => ['required', 'string', 'max:10'],
+            'medida_jantes' => ['required', 'integer', 'max:50'],
+            'airbags' => ['integer', 'max:1'],
+            'ar_condicionado' => ['integer', 'max:1'],
+            'importado' => ['integer', 'max:1'],
+            'fotos.*' => ['image', 'mimes:jpeg,png,jpg,gif,svg', 'max:10240']
+        ]);
+
+        $files = Storage::allFiles('anunciosImg/' . $anuncios['id_utilizador'] . "/" . $anuncios['id_anuncio']);
+        dd($files);
+        Storage::delete($files);
+        $save = $request['fotos'];
+        foreach ($save as $pics) {
+            Storage::putFile('anunciosImg/' . $anuncios['id_utilizador'] . "/" . $anuncios['id_anuncio'], $pics);
+        }
+
+        $anuncios['fotos'] = 'anunciosImg/' . $anuncios['id_utilizador'] . "/" . $anuncios['id_anuncio'];
+        $files = scandir("storage/app/anunciosImg" . "/"  . $anuncios['id_utilizador'] . "/" . $anuncios['id_anuncio']);
+        $name = $files[2];
+        $anuncios['foto_perfil'] = $name;
+
+        $anuncios->update($request->only(['titulo', 'descricao', 'id_marca', 'id_modelo', 'preco', 'valor_fixo', 'data_registo', 'cor', 'estado', ' versao', 'combustivel', 'quilometragem', 'potencia', 'cilindrada', 'retoma', 'financiamento', 'segmento', 'metalizado', 'caixa', 'lotacao', 'portas', 'classe_veiculo', 'garantia_stand', 'nr_registos', 'tracao', 'livro_revisoes', 'seg_chave', 'jantes_liga_leve', 'estofos', 'medida_jantes', 'airbags', 'ar_condicionado', 'importado']));
+        return redirect('/dashboard')->with('success', 'Anúncio alterado com sucesso!');;
     }
 
     /**
@@ -284,7 +338,7 @@ class AnunciosController extends Controller
     }
 
     public static function randomAdds($id)
-    {   
+    {
         ///o id que recebe como argumento é o id que é para excluir.
 
         $anuncios = anuncios::inRandomOrder()->where('id_anuncio', '!=', $id)->limit(3)->get();
@@ -305,13 +359,13 @@ class AnunciosController extends Controller
     }
 
     public static function getImgs($dir)
-    {   
+    {
         $files = File::allFiles($dir);
         //$files = Storage::files('/storage/app/anunciosImg/1/1');
         return ($files);
     }
 
-    
+
     public function filter(Request $request)
     {
 

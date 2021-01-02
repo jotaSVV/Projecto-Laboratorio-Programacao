@@ -100,6 +100,8 @@ Route::post('/anuncios', [AnunciosController::class, 'store']);
 Route::post('/msg', [MensagensController::class, 'store']);
 
 Route::get('/anuncios/show/{anuncio}', [AnunciosController::class, 'show']);
+Route::get('/anuncios/edit/{anuncio}', [AnunciosController::class, 'edit']);
+Route::post('/anuncios/edit/{anuncio}', [AnunciosController::class, 'update']);
 
 
 Route::get('/dashboard', function () {
