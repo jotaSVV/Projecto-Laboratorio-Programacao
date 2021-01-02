@@ -61,7 +61,7 @@
 
         <div class="form-group mb-3">
             <label for="descricao_id">Descrição:</label>
-            <textarea name="descricao" id="descricao_id" class="form-control validate" placeholder="Máx. 9000 caracteres" value="{{$anuncio->descricao}}" rows="5" required=""></textarea>
+            <textarea name="descricao" id="descricao_id" class="form-control validate" placeholder="{{$anuncio->descricao}}" value="{{$anuncio->descricao}}" rows="5" required=""></textarea>
         </div>
 
         <label for="preco">Preço:</label>
@@ -194,8 +194,18 @@
         </div>
 
         <label for="segmento">Segmento:</label>
-        <div class="input-group input-group-sm mb-3">
-            <input type="text" id="segmento" placeholder="SUV, Coupé..." maxlength="15" class="form-control" name="segmento" value="{{$anuncio->segmento}}" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+        <div style="margin-bottom: 16px;">
+            <select id="segmento" name="segmento" class="form-select">
+            <option value="Pequeno Citadino" {{$anuncio->segmento === 'Pequeno Citadino' ? 'selected' : ""}}>Pequeno Citadino</option>
+               <option value="Citadino" {{$anuncio->segmento === 'Citadino' ? 'selected' : ""}}>Citadino</option>
+                <option value="Utilitario" {{$anuncio->segmento === 'Utilitario' ? 'selected' : ""}}>Utilitario</option>
+                <option value="Sedan" {{$anuncio->segmento === 'Sedan' ? 'selected' : ""}}>Sedan</option>
+                <option value="Carrinha" {{$anuncio->segmento === 'Carrinha' ? 'selected' : ""}}>Carrinha</option>
+                <option value="Monovolume" {{$anuncio->segmento === 'Monovolume' ? 'selected' : ""}}>Monovolume</option>
+                <option value="SUV/TT" {{$anuncio->segmento === 'SUV/TT' ? 'selected' : ""}}>SUV/TT</option>
+                <option value="Cabrio" {{$anuncio->segmento === 'Cabrio' ? 'selected' : ""}}>Cabrio</option>
+                <option value="Coupe" {{$anuncio->segmento === 'Coupe' ? 'selected' : ""}}>Coupe</option>
+            </select>
         </div>
 
         <label for="lotacao">Lotação:</label>

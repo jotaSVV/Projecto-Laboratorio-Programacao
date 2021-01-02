@@ -193,10 +193,27 @@
             </div>
         </div>
 
+
+
         <label for="segmento">Segmento:</label>
-        <div class="input-group input-group-sm mb-3">
-            <input type="text" id="segmento" placeholder="SUV, Coupé..." maxlength="15" class="form-control" name="segmento" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+        <div style="margin-bottom: 16px;">
+            <select id="segmento" name="segmento" class="form-select">
+                <option value="Pequeno Citadino">Pequeno Citadino</option>
+                <option value="Citadino">Citadino</option>
+                <option value="Utilitario">Utilitario</option>
+                <option value="Sedan">Sedan</option>
+                <option value="Carrinha">Carrinha</option>
+                <option value="Monovolume">Monovolume</option>
+                <option value="SUV/TT">SUV/TT</option>
+                <option value="Cabrio">Cabrio</option>
+                <option value="Coupe">Coupé</option>
+            </select>
         </div>
+
+
+
+
+      
 
         <label for="lotacao">Lotação:</label>
         <div class="input-group input-group-sm mb-3">

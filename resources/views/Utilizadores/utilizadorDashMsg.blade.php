@@ -58,30 +58,30 @@
   </tbody>
 </table>
   @forelse(App\Http\Controllers\MensagensController::findMensagemId() as $mensagens)
-    @if($mensagens->isEmpty())
+    @if(empty($mensagens))
     <h5 class="text-center">Não existem conversas!</h5>
     @else
    <table class="table">
   <tbody>
     <tr>
-      <th scope="row"> <a href="/mensagens/show/{{$mensagens[0]->id_mensagem}}">Abrir Conversa</a> </th>
+      <th scope="row"> <a href="/mensagens/show/{{$mensagens->id_conversa}}">Abrir Conversa</a> </th>
 
       <td>
-      @foreach(App\Http\Controllers\UtilizadoresController::findUserById($mensagens[0]->id_emissor) as $utilizador)
+      @foreach(App\Http\Controllers\UtilizadoresController::findUserById($mensagens->id_emissor) as $utilizador)
         {{$utilizador->nome}}
         {{$utilizador->apelido}}
      @endforeach
      
       
       </td>
-     <td> <a href="/anuncios/show/{{$mensagens[0]->id_anuncio}}" target="_blank" style="color:black;">
-     @foreach(App\Http\Controllers\AnunciosController::findAnunciosById($mensagens[0]->id_anuncio) as $anuncio)
+     <td> <a href="/anuncios/show/{{$mensagens->id_anuncio}}" target="_blank" style="color:black;">
+     @foreach(App\Http\Controllers\AnunciosController::findAnunciosById($mensagens->id_anuncio) as $anuncio)
         {{$anuncio->titulo}}
      @endforeach
      
      </a></td>
       
-      <td>{{$mensagens[0]->created_at}}</td>
+      <td>{{$mensagens->created_at}}</td>
     </tr>
   </tbody>
 </table>
