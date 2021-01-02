@@ -253,6 +253,8 @@ class AnunciosController extends Controller
     }
 
 
+    
+
     public static function findMarcas()
     {
 
