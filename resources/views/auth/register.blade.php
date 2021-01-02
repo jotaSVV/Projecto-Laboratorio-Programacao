@@ -116,27 +116,19 @@
                                 @enderror
                             </div>
                         </div>
-                         <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Tipo de Vendedor') }}</label>
 
-                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Tipo Vendedor') }}</label>
 
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input " type="radio" name="tipovendedor" id="inlineRadi1" value="Particular">
-                                    <label class="form-check-label" for="inlineRadi1">Particular</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="tipovendedor" id="inlineRadi2" value="Profissional">
-                                    <label class="form-check-label" for="inlineRadi2">Profissional</label>
-                                </div>
-                                
-                                @error('tipovendedor')
+                            <div class="col-md-6">
+                                <input id="tipovendedor" type="text" class="form-control @error('name') is-invalid @enderror" name="tipovendedor" value="{{ old('name') }}" required autocomplete="name" autofocus>
+
+                                @error('name')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
                                 @enderror
                             </div>
-                        </div>
                         </div>
 
 

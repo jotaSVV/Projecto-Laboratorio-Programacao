@@ -219,9 +219,11 @@ class MensagensController extends Controller
         ///o id que recebe como argumento é o id que é para excluir.
         
         
-        $mensagens = DB::table('conversas')
+        $mensagens = DB::table('mensagens')
             ->select()
             ->where('id_anuncio','=',$id)
+            ->where('id_recetor', '=' , Auth::user()->id)
+            ->where('id_recetor','!=',DB::raw('id_emissor'))
             ->count();
             
   
