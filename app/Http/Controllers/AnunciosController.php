@@ -227,8 +227,9 @@ class AnunciosController extends Controller
      */
     public function edit(anuncios $anuncio)
     {
+        $data = anuncios::findOrFail($anuncio->id_anuncio);
         return view('Anuncios.editAnuncio', [
-            'anuncio' => $anuncio,
+            'anuncio' => $data,
         ]);
     }
 
@@ -241,6 +242,7 @@ class AnunciosController extends Controller
      */
     public function update(Request $request, anuncios $anuncios)
     {
+        $anuncios = anuncios::findOrFail($request->id_anuncio);
         $request->validate([
             'titulo' => ['required', 'string', 'max:90'],
             'descricao' => ['required', 'string', 'max:9000'],
@@ -279,7 +281,12 @@ class AnunciosController extends Controller
         ]);
 
         //$anuncios = anuncios::find
-        dd($anuncios);
+        
+        $val = explode("-", $request->id_modelo);
+        $modelo_id = (int) $val[1];
+        $anuncios->id_modelo = $modelo_id;
+        //dd($anuncios);
+        
         if ($request->hasFile('fotos')) {
             $files = Storage::allFiles('anunciosImg/' . $anuncios['id_utilizador'] . "/" . $anuncios['id_anuncio']);
             //dd($request);
@@ -295,7 +302,7 @@ class AnunciosController extends Controller
             $name = $files[2];
             $anuncios['foto_perfil'] = $name;
         }
-        $anuncios->update($request->only(['titulo', 'descricao', 'id_marca', 'id_modelo', 'preco', 'valor_fixo', 'data_registo', 'cor', 'estado', ' versao', 'combustivel', 'quilometragem', 'potencia', 'cilindrada', 'retoma', 'financiamento', 'segmento', 'metalizado', 'caixa', 'lotacao', 'portas', 'classe_veiculo', 'garantia_stand', 'nr_registos', 'tracao', 'livro_revisoes', 'seg_chave', 'jantes_liga_leve', 'estofos', 'medida_jantes', 'airbags', 'ar_condicionado', 'importado']));
+        $anuncios->update($request->only(['titulo', 'descricao', 'id_marca', 'preco', 'valor_fixo', 'data_registo', 'cor', 'estado', ' versao', 'combustivel', 'quilometragem', 'potencia', 'cilindrada', 'retoma', 'financiamento', 'segmento', 'metalizado', 'caixa', 'lotacao', 'portas', 'classe_veiculo', 'garantia_stand', 'nr_registos', 'tracao', 'livro_revisoes', 'seg_chave', 'jantes_liga_leve', 'estofos', 'medida_jantes', 'airbags', 'ar_condicionado', 'importado']));
         return redirect('/dashboard')->with('success', 'Anúncio alterado com sucesso!');;
     }
 

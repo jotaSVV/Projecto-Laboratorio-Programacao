@@ -18,6 +18,7 @@
 
         @csrf
 
+        <input type="hidden" name="id_anuncio" value="{{$anuncio->id_anuncio}}">
         <div class="row">
             <div class="col-12">
                 <h2>Editar anúncio </h2>
@@ -35,10 +36,10 @@
                 <div class="form-group mb-3">
                     <label for="id_marca">{{ __('Marca:') }}</label>
                     <div class="col-xs-6">
-                        <select class="form-control" name="id_marca" id="id_marca" >
-                        @foreach(App\Http\Controllers\AnunciosController::findMarcas() as $marca)
+                        <select class="form-control" name="id_marca" id="id_marca">
+                            @foreach(App\Http\Controllers\AnunciosController::findMarcas() as $marca)
                             <option value="{{ $marca->id_marca }}">{{ $marca->nome }}</option>
-                        @endforeach
+                            @endforeach
                         </select>
                     </div>
                 </div>
@@ -49,9 +50,9 @@
                     <label for="id_modelo">{{ __('Modelo:') }}</label>
                     <div class="col-xs-6">
                         <select class="form-control" name="id_modelo" id="id_modelo">
-                        @foreach(App\Http\Controllers\AnunciosController::findModelos() as $modelo)
+                            @foreach(App\Http\Controllers\AnunciosController::findModelos() as $modelo)
                             <option value="{{ $modelo->id_marca }}-{{ $modelo->id_modelo }}">{{ $modelo->nome }}</option>
-                        @endforeach
+                            @endforeach
                         </select>
                     </div>
                 </div>
