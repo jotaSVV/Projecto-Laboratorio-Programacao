@@ -311,6 +311,15 @@
                     <div class="car__item__pic__slider owl-carousel">
 
 
+                        @foreach(App\Http\Controllers\AnunciosController::getImgs("storage/app/anunciosImg/".$anuncio->id_utilizador."/".$anuncio->id_anuncio."/") as $files)
+                        @if(strcmp($files->getFilename(),$anuncio->foto_perfil)!=0)
+                        <div class="carousel-item">
+                            <img class="d-block w-100" src="/storage/app/anunciosImg/{{$anuncio->id_utilizador}}/{{$anuncio->id_anuncio}}/{{ $files->getFilename() }}">
+                        </div>
+                        @endif
+                        @endforeach
+
+
                         @if( $anuncio->fotos != "dfsdfsdfsd")
                         <img src="resources/theme/img/cars/noimage.jpg" alt="">
                         <img src="resources/theme/img/cars/car-1.jpg" alt="">
