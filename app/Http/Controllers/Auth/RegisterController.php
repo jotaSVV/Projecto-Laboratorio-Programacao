@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\utilizadores;
+use App\Models\concelhos;
+use App\Models\freguesias;
+use App\Models\distritos;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -60,7 +63,7 @@ class RegisterController extends Controller
             'sexo' => ['required', 'string', 'max:1'],
             'tipovendedor' => ['required', 'string', 'max:15'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'id_freguesia' => ['required', 'integer', 'max:3092'],
+            'id_freguesia' => ['required', 'string', 'max:150'],
             'foto_perfil' => ['required', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:10240'],
         ]);
     }
@@ -73,22 +76,73 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $request = request();
+        $request->foto_perfil;
+        //var_dump($request);
+
+        $a = new utilizadores;
+        $a->nome = $request->nome;
+        //var_dump($request->nome);
+        $a->apelido = $request->apelido;
+        $a->email = $request->email;
+        $a->telefone = $request->telefone;
+        $a->data_nascimento = $request->data_nascimento;
+        $a->sexo = $request->sexo;
+        $a->tipovendedor = $request->tipovendedor;
+        $a->password = Hash::make($request->password);
+
+        $val = explode("->", $request->id_freguesia);
+        $freguesia_id = (int) $val[1];
+        $a->id_freguesia = $freguesia_id;
+
+        $a->admin = 0;
+        $a->foto_perfil = "teste";
+        $a->save();
+
+        $dir = "utilizadoresImg";
+        //var_dump($a);
+        Storage::makeDirectory($dir . "/"  . $a['id']);
+        $name = Storage::putFile($dir . "/" . $a['id'], $request->foto_perfil);
+        $a->foto_perfil = $name;
+        //dd($a->foto_perfil);
+        $a->save();
+
+        return $a;
+
+    }
+
+    public static function findDistritos()
+    {
+
+        $distrito = distritos::orderBy('nome', 'asc')->get(); //get data from table
+        //dd($distrito);
+        //return view('findDistritos'); //sent data to view
+        //return view('register'); //sent data to view~
+        return ($distrito);
+    }
+    public static function  findConcelhos()
+    {
+
+        $concelhos = concelhos::orderBy('nome', 'asc')->get(); //get data from table
+        //dd($distrito);
+        //return view('findDistritos'); //sent data to view
+        //return view('register'); //sent data to view~
+        return ($concelhos);
+        //if our chosen id and products table prod_cat_id col match the get first 100 data 
+
+        //$request->id here is the id of our chosen option id
+        //$data = concelhos::select('nome')->where('distrito', $request->nome)->get();
+        // return response()->json($data); //then sent this data to ajax success
+    }
 
 
+    public static function findFreguesias()
+    {
 
-        return utilizadores::create([
-            'nome' => $data['nome'],
-            'apelido' => $data['apelido'],
-            'email' => $data['email'],
-            'telefone' => $data['telefone'],
-            'data_nascimento' => $data['data_nascimento'],
-            'sexo' => $data['sexo'],
-            'tipovendedor' => $data['tipovendedor'],
-            'admin' => 0,
-            'password' => Hash::make($data['password']),
-            'id_freguesia' => $data['id_freguesia'],
-            'foto_perfil' => "teste",
-        ]);
-
+        $freguesias = freguesias::all(); //get data from table
+        //dd($distrito);
+        //return view('findDistritos'); //sent data to view
+        //return view('register'); //sent data to view~
+        return ($freguesias);
     }
 }

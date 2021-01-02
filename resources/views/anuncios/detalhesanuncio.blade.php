@@ -26,20 +26,27 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-9">
-                <div class="car__details__pic">
-
-                    <div class="car__details__pic__large">
-                        <img class="car-big-img" src="/storage/app/anunciosImg/{{$anuncio->id_utilizador}}/{{$anuncio->id_anuncio}}/{{$anuncio->foto_perfil}}" alt="">
-                    </div>
-                    <div class="car-thumbs">
-                        <div class="car-thumbs-track car__thumb__slider owl-carousel">
-                            <div class="ct" data-imgbigurl="img/cars/details/cd-2.jpg"><img src="img/cars/details/sm-1.jpg" alt=""></div>
-                            <div class="ct" data-imgbigurl="img/cars/details/cd-3.jpg"><img src="img/cars/details/sm-2.jpg" alt=""></div>
-                            <div class="ct" data-imgbigurl="img/cars/details/cd-4.jpg"><img src="img/cars/details/sm-3.jpg" alt=""></div>
-                            <div class="ct" data-imgbigurl="img/cars/details/cd-5.jpg"><img src="img/cars/details/sm-4.jpg" alt=""></div>
-                            <div class="ct" data-imgbigurl="img/cars/details/cd-6.jpg"><img src="img/cars/details/sm-5.jpg" alt=""></div>
+                <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img class="d-block w-100" src="/storage/app/anunciosImg/{{$anuncio->id_utilizador}}/{{$anuncio->id_anuncio}}/{{$anuncio->foto_perfil}}" alt="First slide">
                         </div>
+                        @foreach(App\Http\Controllers\AnunciosController::getImgs("storage/app/anunciosImg/".$anuncio->id_utilizador."/".$anuncio->id_anuncio."/") as $files)
+                        @if(strcmp($files->getFilename(),$anuncio->foto_perfil)!=0)
+                        <div class="carousel-item">
+                            <img class="d-block w-100" src="/storage/app/anunciosImg/{{$anuncio->id_utilizador}}/{{$anuncio->id_anuncio}}/{{ $files->getFilename() }}">
+                        </div>
+                        @endif
+                        @endforeach
                     </div>
+                    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
                 </div>
                 <div class="car__details__tab">
                     <ul class="nav nav-tabs" role="tablist">

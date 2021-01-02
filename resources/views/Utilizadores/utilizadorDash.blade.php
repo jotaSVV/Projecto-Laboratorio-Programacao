@@ -36,7 +36,7 @@
   <div class="p-3 mb-2 bg-secondary text-white">
     <nav class="header__menu">
       <ul>
-        <li><a href="{{url('/')}}">Activos</a></li>
+        <li><a href="{{url('/dashboard')}}">Activos</a></li>
         <li><a href="{{url('/cars')}}">Arquivados</a></li>
       </ul>
     </nav>
@@ -73,10 +73,10 @@
 
                     </div>
                     <div class="col-sm-2 text-dark">
-                      Editar
+                      <a href="/anuncios/edit/{{$anuncio->id_anuncio}}" target="_blank" style="color:black;">Editar</a>
                     </div>
                     <div class="col-sm-2 text-dark">
-                      Remover
+                    <a href="/anuncios/delete?id={{$anuncio->id_anuncio}}" target="_blank" style="color:black;">Remover</a>
                     </div>
                   </div>
                 </div>

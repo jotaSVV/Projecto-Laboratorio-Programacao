@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\mensagens;
 use App\Models\anuncios;
 use Illuminate\Http\Request;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 
 
 class MensagensController extends Controller

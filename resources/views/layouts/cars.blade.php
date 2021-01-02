@@ -61,24 +61,22 @@
 
                         <form action="/cars" method="GET">
 
+                            <select class="form-select" name="marca" id="marca_id">
+                                <option value="">Marca</option>
+                                @foreach(App\Http\Controllers\AnunciosController::findMarcas() as $marca)
+                                <option value="{{ $marca->id_marca }}">{{ $marca->nome }}</option>
+                                @endforeach
+                            </select>
 
-                            <!--
 
+
+                        <!--
                             <select class="form-select" name="modelo" id="modelo_id" style="moverflow-x: hidden">
                                 <option value="">Modelo</option>
                                 @foreach(App\Http\Controllers\AnunciosController::findModelos() as $modelo)
                                 <option value=" {{ $modelo->id_marca }}-{{ $modelo->id_modelo }}">{{ $modelo->nome }} </option>
                                 @endforeach
                             </select>
-
-                            <input class="form-control" list="datalistOptions" id="exampleDataList" placeholder="Modelos">
-                            <datalist id="datalistOptions">
-                                <option value="">Modelo</option>
-                                @foreach(App\Http\Controllers\AnunciosController::findModelos() as $modelo)
-                                <option value="{{ $modelo->id_marca }}-{{ $modelo->id_modelo }}">{{ $modelo->nome }} </option>
-                                @endforeach
-                            </datalist>
-
 
                             <script>
                                 $(document).ready(function() {
@@ -99,7 +97,9 @@
 
                                         $.each(filters, function(index, value) {
                                             $options.find("option").each(function(optionIndex, option) { // a second loop that check if the option value starts with the filter value
-                                                if ($(option).val().startsWith(value))
+                                                var val = $(option).val().split("-");
+                                                console.log(val);
+                                                if (value.localeCompare(val[0]) == 0)
                                                     $(option).clone().appendTo($("#modelo_id"));
                                             });
 
@@ -108,9 +108,10 @@
                                     });
                                 });
                             </script>
+                        -->
 
 
-                            -->
+
 
 
                             <select name="estado">
@@ -238,15 +239,13 @@
                             <div class="car__item__pic__slider owl-carousel">
 
 
-                                @if( $anuncio->fotos != "dfsdfsdfsd")
-                                <img src="resources/theme/img/cars/noimage.jpg" alt="">
-                                <img src="resources/theme/img/cars/car-1.jpg" alt="">
-                                <img src="resources/theme/img/cars/car-8.jpg" alt="">
-                                <img src="resources/theme/img/cars/car-6.jpg" alt="">
-                                <img src="resources/theme/img/cars/car-3.jpg" alt="">
-                                @else
-                                <img src="resources/theme/img/cars/noimage.jpg" alt="">
+                                <img src="/storage/app/anunciosImg/{{$anuncio->id_utilizador}}/{{$anuncio->id_anuncio}}/{{$anuncio->foto_perfil}}" alt="">
+                                @foreach(App\Http\Controllers\AnunciosController::getImgs("storage/app/anunciosImg/".$anuncio->id_utilizador."/".$anuncio->id_anuncio."/") as $files)
+                                @if(strcmp($files->getFilename(),$anuncio->foto_perfil)!=0)
+                                <img src="/storage/app/anunciosImg/{{$anuncio->id_utilizador}}/{{$anuncio->id_anuncio}}/{{ $files->getFilename() }}" alt="">
                                 @endif
+                                @endforeach
+
 
                             </div>
                             <div class="car__item__text">
@@ -263,7 +262,7 @@
                                 </div>
                                 <div class="car__item__price">
                                     <span class="car-option sale">Para Venda</span>
-                                    <h6> &nbsp;&nbsp; {{$anuncio->preco}}&nbsp;paus(€)<span></span></h6>
+                                    <h6> &nbsp;&nbsp; {{$anuncio->preco}}&nbsp;€<span></span></h6>
                                 </div>
                             </div>
                         </div>

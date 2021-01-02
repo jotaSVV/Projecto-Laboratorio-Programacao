@@ -7,9 +7,9 @@
     <meta name="keywords" content="HVAC, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    
-<!-- CSRF Token -->
-<meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
 
@@ -24,7 +24,7 @@
     <link rel="stylesheet" href="/resources/theme/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="/resources/theme/css/style.css" type="text/css">
 
-    
+
 </head>
 
 <body>
@@ -62,9 +62,9 @@
     </div>
     <!-- Offcanvas Menu End -->
 
-   <!-- Header Section Begin -->
-   <header class="header">
-        
+    <!-- Header Section Begin -->
+    <header class="header">
+
         <div class="container">
             <div class="row">
                 <div class="col-lg-2">
@@ -87,50 +87,50 @@
                                 <a href="#"><i class="fa fa-cart-plus"></i></a>
                                 <a href="#" class="search-switch"><i class="fa fa-search"></i></a>
                             </div>
-                           
+
 
                         </div>
                         <div class="header__nav__widget">
-                        <div class="header__nav__widget__btn">
+                            <div class="header__nav__widget__btn">
                                 @guest
-                            @if (Route::has('login'))
-                                
-                                    <a class="primary-btn" href="{{ route('login') }}">{{ __('Login') }}</a>
-                                
-                            @endif
-                            
-                            @if (Route::has('register'))
-                                
-                                    <a class="primary-btn" href="{{ route('register') }}">{{ __('Registo') }}</a>
-                                
-                            @endif
-                        @else    
-                        
-                        
+                                @if (Route::has('login'))
 
-                        
-                        <a href="/dashboard"  class="search-switch"><i class="fa fa-user" aria-hidden="true"></i>
-                        {{ Auth::user()->nome  }}
-                        {{ Auth::user()->apelido  }}
-                        </a>
+                                <a class="primary-btn" href="{{ route('login') }}">{{ __('Login') }}</a>
 
-                        <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                 Logout
-                         </a>
+                                @endif
 
-                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                  {{ csrf_field() }}
-                </form>
+                                @if (Route::has('register'))
+
+                                <a class="primary-btn" href="{{ route('register') }}">{{ __('Registo') }}</a>
+
+                                @endif
+                                @else
 
 
-                                       
-                        
-                        
-                        
-                                    
-                        @endguest
 
-                           </div> 
+
+                                <a href="/dashboard" class="search-switch"><i class="fa fa-user" aria-hidden="true"></i>
+                                    {{ Auth::user()->nome  }}
+                                    {{ Auth::user()->apelido  }}
+                                </a>
+
+                                <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                    Logout
+                                </a>
+
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    {{ csrf_field() }}
+                                </form>
+
+
+
+
+
+
+
+                                @endguest
+
+                            </div>
                         </div>
 
                     </div>
@@ -143,9 +143,9 @@
     </header>
     <!-- Header Section End -->
 
-   
+
     <!-- Js Plugins -->
-    
+
 </body>
 
 </html>

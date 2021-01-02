@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
+
 
 use App\Http\Controllers\UtilizadoresController;
 use App\Http\Controllers\AnunciosController;
@@ -17,23 +19,14 @@ use App\Http\Controllers\MensagensController;
 |
 */
 
-
 Route::get('/', [AnunciosController::class, 'anuncios_home']);
-
 
 Route::get('/about', function () {
     return view('layouts.about');
 });
 
-
-/*
-Route::get('/cars', function () {
-    return view('layouts.cars');
-});
-*/
-
-
 Route::get('/cars', [AnunciosController::class, 'anuncios']);
+
 
 
 
@@ -45,6 +38,11 @@ Route::get('/cars', [AnunciosController::class, 'anuncios']);
 Route::get('/dashboard/definicoes', function () {
     return view('Utilizadores.utilizadorDashDef');
 });
+Route::get('/dashboard/mensagens', function () {
+    return view('Utilizadores.utilizadorDashMsg');
+});
+
+Route::get('/mensagens/show/{mensagem}', [MensagensController::class, 'show']);
 
 Route::get('/dashboard/edit/{utilizadores}', [UtilizadoresController::class, 'edit']);
 Route::post('/dashboard/definicoes/update/{utilizadores}', [UtilizadoresController::class, 'update']);
@@ -100,6 +98,9 @@ Route::post('/anuncios', [AnunciosController::class, 'store']);
 Route::post('/msg', [MensagensController::class, 'store']);
 
 Route::get('/anuncios/show/{anuncio}', [AnunciosController::class, 'show']);
+Route::get('/anuncios/edit/{anuncio}', [AnunciosController::class, 'edit']);
+Route::post('/anuncios/edit/{anuncio}', [AnunciosController::class, 'update']);
+Route::get('/anuncios/delete', [AnunciosController::class, 'delete']);
 
 
 Route::get('/dashboard', function () {

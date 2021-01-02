@@ -7,6 +7,7 @@ use App\Models\utilizadores;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class UtilizadoresController extends Controller
 {
@@ -81,11 +82,15 @@ class UtilizadoresController extends Controller
             'sexo' => ['required', 'string', 'max:1'],
             'tipovendedor' => ['required', 'string', 'max:15'],
 
-            'id_freguesia' => ['required', 'integer', 'max:10'],
-            'foto_perfil' => ['required', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:10240'],
+            'id_freguesia' => ['required', 'integer', 'max:3092'],
+            'foto_perfil' => ['image', 'mimes:jpeg,png,jpg,gif,svg', 'max:10240'],
         ]);
-
-        $utilizadores->update($request->all());
+        $files = Storage::allFiles('utilizadoresImg/'. $utilizadores['id']);
+        Storage::delete($files);
+        $name = Storage::putFile('utilizadoresImg/'. $utilizadores['id'] , $request['foto_perfil']);
+        
+        $utilizadores['foto_perfil'] = $name;
+        $utilizadores->update($request->only(['nome', 'apelido', 'data_nascimento', 'sexo', 'tipovendedor', 'id_freguesia']));
 
         return redirect('/dashboard')->with('success', 'Dados alterados com sucesso!');;
     }
