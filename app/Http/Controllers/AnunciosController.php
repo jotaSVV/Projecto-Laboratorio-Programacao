@@ -267,6 +267,14 @@ class AnunciosController extends Controller
         ]);
     }
 
+    public function anuncios_home(Request $request)
+    {
+
+        $anuncios = anuncios::inRandomOrder()->limit(6)->get();
+        return view('layouts.frontpage', [
+            'anuncios' => $anuncios,
+        ]);
+    }
 
 
 

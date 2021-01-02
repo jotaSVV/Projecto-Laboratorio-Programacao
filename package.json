@@ -635,6 +635,7 @@
     "vary": "^1.1.2",
     "vendors": "^1.0.4",
     "vm-browserify": "^1.1.2",
+    "vue-axios": "^3.2.0",
     "vue-hot-reload-api": "^2.3.4",
     "vue-loader": "^15.9.6",
     "vue-style-loader": "^4.1.2",
@@ -661,7 +662,6 @@
     "yargs": "^15.4.1",
     "yargs-parser": "^13.1.2"
   },
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

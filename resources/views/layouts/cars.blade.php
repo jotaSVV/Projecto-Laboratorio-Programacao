@@ -62,24 +62,6 @@
                         <form action="/cars" method="GET">
 
 
-                            <div class="form-group">
-                                {!! Form::label('parent', 'Parent Category:')!!}
-                                {!! Form::select('parent', $categories, null, ['placeholder' => 'Choose Category'])!!}
-                            </div>
-
-                            <div class="form-group">
-                                {!! Form::label('children', 'Child category:')!!}
-                                {!! Form::select('children', [], null, ['placeholder' => 'Choose child category'])!!}
-                            </div>
-
-
-                            <select class="form-select" name="marca" id="marca_id">
-                                <option value="">Marca</option>
-                                @foreach(App\Http\Controllers\AnunciosController::findMarcas() as $marca)
-                                <option value="{{ $marca->id_marca }}">{{ $marca->nome }}</option>
-                                @endforeach
-                            </select>
-
                             <!--
 
                             <select class="form-select" name="modelo" id="modelo_id" style="moverflow-x: hidden">

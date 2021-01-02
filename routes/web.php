@@ -17,9 +17,9 @@ use App\Http\Controllers\MensagensController;
 |
 */
 
-Route::get('/', function () {
-    return view('layouts.frontpage');
-});
+
+Route::get('/', [AnunciosController::class, 'anuncios_home']);
+
 
 Route::get('/about', function () {
     return view('layouts.about');
