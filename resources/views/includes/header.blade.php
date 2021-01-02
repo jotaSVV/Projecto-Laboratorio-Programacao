@@ -109,7 +109,7 @@
 
 
 
-                                <a href="/dashboard" class="search-switch"><i class="fa fa-user" aria-hidden="true"></i>
+                                <a href="/dashboard" ><i class="fa fa-user" aria-hidden="true"></i>
                                     {{ Auth::user()->nome  }}
                                     {{ Auth::user()->apelido  }}
                                 </a>

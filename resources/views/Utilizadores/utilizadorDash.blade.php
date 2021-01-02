@@ -52,7 +52,7 @@
           <div class="card">
             <div class="card-horizontal" style="display: flex; flex: 1 1 auto;">
               <div class="img-square-wrapper">
-                <img class="" src="/storage/app/anunciosImg/{{$anuncio->id_utilizador}}/{{$anuncio->id_anuncio}}/{{$anuncio->foto_perfil}}" alt="Card image cap">
+                <img class="" src="/storage/app/anunciosImg/{{$anuncio->id_utilizador}}/{{$anuncio->id_anuncio}}/{{$anuncio->foto_perfil}}" style="width:500px;height:345px;" alt="Card image cap">
               </div>
               <div class="card-body">
                 <div class="row">
@@ -60,7 +60,7 @@
                     <h4 class="card-title text-dark">{{ $anuncio->titulo }}</h4>
                   </div>
                   <div class="col-sm-2 text-dark">
-                    Preço: {{ $anuncio->preco }} €
+                    Preço: {{ $anuncio->preco }}€
                   </div>
                 </div>
 
@@ -116,7 +116,6 @@
     </div>
     @empty
     <h5 class="text-center">Ainda não possui anuncios!</h5>
-    <a class="btn btn-primary" href="{{ url('/product') }}" role="button">Criar Anuncio</a>
     @endforelse
   </div>
 </div>
