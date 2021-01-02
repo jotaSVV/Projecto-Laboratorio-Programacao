@@ -514,13 +514,11 @@ trait HasAttributes
      * Merge new casts with existing casts on the model.
      *
      * @param  array  $casts
-     * @return $this
+     * @return void
      */
     public function mergeCasts($casts)
     {
         $this->casts = array_merge($this->casts, $casts);
-
-        return $this;
     }
 
     /**

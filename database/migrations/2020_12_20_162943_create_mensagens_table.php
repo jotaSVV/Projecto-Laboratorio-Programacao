@@ -18,8 +18,6 @@ class CreateMensagensTable extends Migration
             $table->integer('id_emissor')->unsigned();
             $table->integer('id_recetor')->unsigned();
             $table->integer('id_anuncio')->unsigned();
-            $table->integer('id_conversa')->unsigned();
-            $table->foreign('id_conversa')->references('id_conversa')->on('conversas')->onDelete('cascade');
             $table->foreign('id_anuncio')->references('id_anuncio')->on('anuncios')->onDelete('cascade');
             $table->foreign('id_emissor')->references('id')->on('utilizadores')->onDelete('cascade');
             $table->foreign('id_recetor')->references('id')->on('utilizadores')->onDelete('cascade');

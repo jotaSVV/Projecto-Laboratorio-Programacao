@@ -14,7 +14,6 @@ class mensagens extends Model
         'id_recetor',
         'id_emissor',
         'id_anuncio',
-        'id_conversa',
         'data',
         'fotos',
         'visto',

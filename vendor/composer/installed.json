@@ -441,17 +441,17 @@
     },
     {
         "name": "egulias/email-validator",
-        "version": "2.1.25",
-        "version_normalized": "2.1.25.0",
+        "version": "2.1.24",
+        "version_normalized": "2.1.24.0",
         "source": {
             "type": "git",
             "url": "https://github.com/egulias/EmailValidator.git",
-            "reference": "0dbf5d78455d4d6a41d186da50adc1122ec066f4"
+            "reference": "ca90a3291eee1538cd48ff25163240695bd95448"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/egulias/EmailValidator/zipball/0dbf5d78455d4d6a41d186da50adc1122ec066f4",
-            "reference": "0dbf5d78455d4d6a41d186da50adc1122ec066f4",
+            "url": "https://api.github.com/repos/egulias/EmailValidator/zipball/ca90a3291eee1538cd48ff25163240695bd95448",
+            "reference": "ca90a3291eee1538cd48ff25163240695bd95448",
             "shasum": ""
         },
         "require": {
@@ -467,7 +467,7 @@
         "suggest": {
             "ext-intl": "PHP Internationalization Libraries are required to use the SpoofChecking validation"
         },
-        "time": "2020-12-29T14:50:06+00:00",
+        "time": "2020-11-14T15:56:27+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -570,17 +570,17 @@
     },
     {
         "name": "facade/ignition",
-        "version": "2.5.8",
-        "version_normalized": "2.5.8.0",
+        "version": "2.5.3",
+        "version_normalized": "2.5.3.0",
         "source": {
             "type": "git",
             "url": "https://github.com/facade/ignition.git",
-            "reference": "8e907d81244649c5ea746e2ec30c32c5f59df472"
+            "reference": "d8dc4f90ed469f9f9313b976fb078c20585d5c99"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/facade/ignition/zipball/8e907d81244649c5ea746e2ec30c32c5f59df472",
-            "reference": "8e907d81244649c5ea746e2ec30c32c5f59df472",
+            "url": "https://api.github.com/repos/facade/ignition/zipball/d8dc4f90ed469f9f9313b976fb078c20585d5c99",
+            "reference": "d8dc4f90ed469f9f9313b976fb078c20585d5c99",
             "shasum": ""
         },
         "require": {
@@ -604,7 +604,7 @@
         "suggest": {
             "laravel/telescope": "^3.1"
         },
-        "time": "2020-12-29T09:12:55+00:00",
+        "time": "2020-12-09T20:25:45+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -1277,17 +1277,17 @@
     },
     {
         "name": "laravel/framework",
-        "version": "v8.20.1",
-        "version_normalized": "8.20.1.0",
+        "version": "v8.19.0",
+        "version_normalized": "8.19.0.0",
         "source": {
             "type": "git",
             "url": "https://github.com/laravel/framework.git",
-            "reference": "b5d8573ab16027867eaa1ac148893833434f9b02"
+            "reference": "f5f331cee60f1bbe672503b7eb9ba5b22b2ceacb"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/laravel/framework/zipball/b5d8573ab16027867eaa1ac148893833434f9b02",
-            "reference": "b5d8573ab16027867eaa1ac148893833434f9b02",
+            "url": "https://api.github.com/repos/laravel/framework/zipball/f5f331cee60f1bbe672503b7eb9ba5b22b2ceacb",
+            "reference": "f5f331cee60f1bbe672503b7eb9ba5b22b2ceacb",
             "shasum": ""
         },
         "require": {
@@ -1400,7 +1400,7 @@
             "symfony/psr-http-message-bridge": "Required to use PSR-7 bridging features (^2.0).",
             "wildbit/swiftmailer-postmark": "Required to use Postmark mail driver (^3.0)."
         },
-        "time": "2020-12-22T21:21:19+00:00",
+        "time": "2020-12-15T16:16:31+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -2175,17 +2175,17 @@
     },
     {
         "name": "nikic/php-parser",
-        "version": "v4.10.4",
-        "version_normalized": "4.10.4.0",
+        "version": "v4.10.3",
+        "version_normalized": "4.10.3.0",
         "source": {
             "type": "git",
             "url": "https://github.com/nikic/PHP-Parser.git",
-            "reference": "c6d052fc58cb876152f89f532b95a8d7907e7f0e"
+            "reference": "dbe56d23de8fcb157bbc0cfb3ad7c7de0cfb0984"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/c6d052fc58cb876152f89f532b95a8d7907e7f0e",
-            "reference": "c6d052fc58cb876152f89f532b95a8d7907e7f0e",
+            "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/dbe56d23de8fcb157bbc0cfb3ad7c7de0cfb0984",
+            "reference": "dbe56d23de8fcb157bbc0cfb3ad7c7de0cfb0984",
             "shasum": ""
         },
         "require": {
@@ -2196,7 +2196,7 @@
             "ircmaxell/php-yacc": "^0.0.7",
             "phpunit/phpunit": "^6.5 || ^7.0 || ^8.0 || ^9.0"
         },
-        "time": "2020-12-20T10:01:03+00:00",
+        "time": "2020-12-03T17:45:45+00:00",
         "bin": [
             "bin/php-parse"
         ],
@@ -2374,137 +2374,6 @@
             "serializable",
             "serialization",
             "serialize"
-        ]
-    },
-    {
-        "name": "paragonie/random_compat",
-        "version": "v9.99.100",
-        "version_normalized": "9.99.100.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/paragonie/random_compat.git",
-            "reference": "996434e5492cb4c3edcb9168db6fbb1359ef965a"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/paragonie/random_compat/zipball/996434e5492cb4c3edcb9168db6fbb1359ef965a",
-            "reference": "996434e5492cb4c3edcb9168db6fbb1359ef965a",
-            "shasum": ""
-        },
-        "require": {
-            "php": ">= 7"
-        },
-        "require-dev": {
-            "phpunit/phpunit": "4.*|5.*",
-            "vimeo/psalm": "^1"
-        },
-        "suggest": {
-            "ext-libsodium": "Provides a modern crypto API that can be used to generate random bytes."
-        },
-        "time": "2020-10-15T08:29:30+00:00",
-        "type": "library",
-        "installation-source": "dist",
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Paragon Initiative Enterprises",
-                "email": "security@paragonie.com",
-                "homepage": "https://paragonie.com"
-            }
-        ],
-        "description": "PHP 5.x polyfill for random_bytes() and random_int() from PHP 7",
-        "keywords": [
-            "csprng",
-            "polyfill",
-            "pseudorandom",
-            "random"
-        ]
-    },
-    {
-        "name": "paragonie/sodium_compat",
-        "version": "v1.14.0",
-        "version_normalized": "1.14.0.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/paragonie/sodium_compat.git",
-            "reference": "a1cfe0b21faf9c0b61ac0c6188c4af7fd6fd0db3"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/paragonie/sodium_compat/zipball/a1cfe0b21faf9c0b61ac0c6188c4af7fd6fd0db3",
-            "reference": "a1cfe0b21faf9c0b61ac0c6188c4af7fd6fd0db3",
-            "shasum": ""
-        },
-        "require": {
-            "paragonie/random_compat": ">=1",
-            "php": "^5.2.4|^5.3|^5.4|^5.5|^5.6|^7|^8"
-        },
-        "require-dev": {
-            "phpunit/phpunit": "^3|^4|^5|^6|^7|^8|^9"
-        },
-        "suggest": {
-            "ext-libsodium": "PHP < 7.0: Better performance, password hashing (Argon2i), secure memory management (memzero), and better security.",
-            "ext-sodium": "PHP >= 7.0: Better performance, password hashing (Argon2i), secure memory management (memzero), and better security."
-        },
-        "time": "2020-12-03T16:26:19+00:00",
-        "type": "library",
-        "installation-source": "dist",
-        "autoload": {
-            "files": [
-                "autoload.php"
-            ]
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "ISC"
-        ],
-        "authors": [
-            {
-                "name": "Paragon Initiative Enterprises",
-                "email": "security@paragonie.com"
-            },
-            {
-                "name": "Frank Denis",
-                "email": "jedisct1@pureftpd.org"
-            }
-        ],
-        "description": "Pure PHP implementation of libsodium; uses the PHP extension if it exists",
-        "keywords": [
-            "Authentication",
-            "BLAKE2b",
-            "ChaCha20",
-            "ChaCha20-Poly1305",
-            "Chapoly",
-            "Curve25519",
-            "Ed25519",
-            "EdDSA",
-            "Edwards-curve Digital Signature Algorithm",
-            "Elliptic Curve Diffie-Hellman",
-            "Poly1305",
-            "Pure-PHP cryptography",
-            "RFC 7748",
-            "RFC 8032",
-            "Salpoly",
-            "Salsa20",
-            "X25519",
-            "XChaCha20-Poly1305",
-            "XSalsa20-Poly1305",
-            "Xchacha20",
-            "Xsalsa20",
-            "aead",
-            "cryptography",
-            "ecdh",
-            "elliptic curve",
-            "elliptic curve cryptography",
-            "encryption",
-            "libsodium",
-            "php",
-            "public-key cryptography",
-            "secret-key cryptography",
-            "side-channel resistant"
         ]
     },
     {
@@ -3680,62 +3549,6 @@
             "console",
             "interactive",
             "shell"
-        ]
-    },
-    {
-        "name": "pusher/pusher-php-server",
-        "version": "v4.1.5",
-        "version_normalized": "4.1.5.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/pusher/pusher-http-php.git",
-            "reference": "251f22602320c1b1aff84798fe74f3f7ee0504a9"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/pusher/pusher-http-php/zipball/251f22602320c1b1aff84798fe74f3f7ee0504a9",
-            "reference": "251f22602320c1b1aff84798fe74f3f7ee0504a9",
-            "shasum": ""
-        },
-        "require": {
-            "ext-curl": "*",
-            "paragonie/sodium_compat": "^1.6",
-            "php": "^7.1|^8.0",
-            "psr/log": "^1.0"
-        },
-        "require-dev": {
-            "phpunit/phpunit": "^7.2|^8.5|^9.3"
-        },
-        "time": "2020-12-09T09:38:19+00:00",
-        "type": "library",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "3.4-dev"
-            }
-        },
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "Pusher\\": "src/"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "description": "Library for interacting with the Pusher REST API",
-        "keywords": [
-            "events",
-            "messaging",
-            "php-pusher-server",
-            "publish",
-            "push",
-            "pusher",
-            "real time",
-            "real-time",
-            "realtime",
-            "rest",
-            "trigger"
         ]
     },
     {
