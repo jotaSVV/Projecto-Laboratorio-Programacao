@@ -64,7 +64,7 @@
   
   <tbody>
     @foreach(App\Http\Controllers\MensagensController::findMensagensConversa($mensagem->id_conversa) as $conversa)
-    
+
     <tr>
     @if($conversa->id_emissor != Auth::user()->id)
       <td>{{$conversa->texto}}</td>

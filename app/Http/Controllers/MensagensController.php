@@ -248,7 +248,7 @@ class MensagensController extends Controller
 
             $conversa = DB::table('mensagens')
            
-            ->where('id_conversa','=',$id)
+            ->where('id_conversa','=',[$mensagem->id_conversa])
             
             ->get();
 
