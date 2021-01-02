@@ -44,10 +44,10 @@
                     </div>
                     <div class="hero__text__price">
                         <div class="car-model">Model 2019</div>
-                        <h2>$399<span>/Month</span></h2>
+                        <a href="#" class="primary-btn"><img src="resources/theme/img/wheel.png" alt=""> Test Drive</a>
+
                     </div>
-                    <a href="#" class="primary-btn"><img src="resources/theme/img/wheel.png" alt=""> Test Drive</a>
-                    <a href="#" class="primary-btn more-btn">Learn More</a>
+
                 </div>
             </div>
             <div class="col-lg-5">
@@ -272,7 +272,7 @@
                     <img src="resources/theme/img/services/services-1.png" alt="">
                     <h5>Aluguer de Carros</h5>
                     <p>Encontra o carro que desea alugar ao melhor preço.</p>
-                    <a href="#"><i class="fa fa-long-arrow-right"></i></a>
+                    <a href="/cars"><i class="fa fa-long-arrow-right"></i></a>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6 col-sm-6">
@@ -280,7 +280,7 @@
                     <img src="resources/theme/img/services/services-2.png" alt="">
                     <h5>Venda de Carros</h5>
                     <p>Compra o carro teu carro de sonho ao preço que nunca sonhaste pagar </p>
-                    <a href="#"><i class="fa fa-long-arrow-right"></i></a>
+                    <a href="/cars"><i class="fa fa-long-arrow-right"></i></a>
                 </div>
             </div>
 
@@ -370,8 +370,7 @@
         </div>
     </div>
     <div class="chooseus__video set-bg">
-        <img src="public/img/logo.png" alt="">
-        <a href="https://www.youtube.com/watch?v=Xd0Ok-MkqoE" class="play-btn video-popup"><i class="fa fa-play"></i></a>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/Xd0Ok-MkqoE" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
 </section>
 <!-- Chooseus Section End -->
