@@ -38,8 +38,6 @@
     <div class="offcanvas-menu-wrapper">
         <div class="offcanvas__widget">
             <a href="#"><i class="fa fa-cart-plus"></i></a>
-            <a href="#" class="search-switch"><i class="fa fa-search"></i></a>
-            <a href="#" class="primary-btn">Add Car</a>
         </div>
         <div class="offcanvas__logo">
             <a href="./index.html"><img src="public/img/logo.png" alt=""></a>
@@ -84,14 +82,6 @@
                         </nav>
                         <div class="header__nav__widget">
                             <div class="header__nav__widget__btn">
-                                <a href="#"><i class="fa fa-cart-plus"></i></a>
-                                <a href="#" class="search-switch"><i class="fa fa-search"></i></a>
-                            </div>
-
-
-                        </div>
-                        <div class="header__nav__widget">
-                            <div class="header__nav__widget__btn">
                                 @guest
                                 @if (Route::has('login'))
 
@@ -109,7 +99,7 @@
 
 
 
-                                <a href="/dashboard" class="search-switch"><i class="fa fa-user" aria-hidden="true"></i>
+                                <a href="/dashboard"><i class="fa fa-user" aria-hidden="true"></i>
                                     {{ Auth::user()->nome  }}
                                     {{ Auth::user()->apelido  }}
                                 </a>
