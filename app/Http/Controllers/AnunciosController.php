@@ -76,7 +76,7 @@ class AnunciosController extends Controller
             'airbags' => ['integer', 'max:1'],
             'ar_condicionado' => ['integer', 'max:1'],
             'importado' => ['integer', 'max:1'],
-            'fotos.*' => ['image', 'mimes:jpeg,png,jpg,gif,svg', 'max:10240']
+            'fotos.*' => ['required','image', 'mimes:jpeg,png,jpg,gif,svg', 'max:10240']
         ]);
 
         list($lixo, $id_modelo) = explode("-", $request['id_modelo']);
@@ -306,15 +306,30 @@ class AnunciosController extends Controller
         return redirect('/dashboard')->with('success', 'Anúncio alterado com sucesso!');;
     }
 
+
     /**
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\anuncios  $anuncios
      * @return \Illuminate\Http\Response
      */
-    public function destroy(anuncios $anuncios)
+    public function delete(request $anuncios)
     {
-        //
+        //$data = anuncios::where('id_anuncio', $anuncios->id_anuncio);
+        $data = anuncios::findOrFail($anuncios);
+
+        //dd($data[0]->disponivel);
+        
+        if($data[0]->disponivel == "1") {
+            $data[0]->disponivel = "0";
+            $data[0]->save();
+            return redirect('/dashboard')->with('Anuncio arquivado');
+        }
+        else{
+            Storage::deleteDirectory($data[0]->fotos);
+            $data[0]->delete();
+            return redirect('/dashboard')->with('Anuncio apagado');
+        }
     }
 
 
@@ -487,5 +502,14 @@ class AnunciosController extends Controller
         $marcas = marcas::where('id_marca', '=', $id)->get();
         foreach ($marcas as $marca)
             return $marca->nome;
+    }
+
+    public function anuncios_home(Request $request)
+    {
+
+        $anuncios = anuncios::inRandomOrder()->limit(6)->get();
+        return view('layouts.frontpage', [
+            'anuncios' => $anuncios,
+        ]);
     }
 }

@@ -19,9 +19,7 @@ use App\Http\Controllers\MensagensController;
 |
 */
 
-Route::get('/', function () {
-    return view('layouts.frontpage');
-});
+Route::get('/', [AnunciosController::class, 'anuncios_home']);
 
 Route::get('/about', function () {
     return view('layouts.about');
@@ -102,6 +100,7 @@ Route::post('/msg', [MensagensController::class, 'store']);
 Route::get('/anuncios/show/{anuncio}', [AnunciosController::class, 'show']);
 Route::get('/anuncios/edit/{anuncio}', [AnunciosController::class, 'edit']);
 Route::post('/anuncios/edit/{anuncio}', [AnunciosController::class, 'update']);
+Route::get('/anuncios/delete', [AnunciosController::class, 'delete']);
 
 
 Route::get('/dashboard', function () {

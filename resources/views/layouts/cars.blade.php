@@ -70,6 +70,7 @@
 
 
 
+                        <!--
                             <select class="form-select" name="modelo" id="modelo_id" style="moverflow-x: hidden">
                                 <option value="">Modelo</option>
                                 @foreach(App\Http\Controllers\AnunciosController::findModelos() as $modelo)
@@ -107,6 +108,7 @@
                                     });
                                 });
                             </script>
+                        -->
 
 
 
@@ -237,15 +239,13 @@
                             <div class="car__item__pic__slider owl-carousel">
 
 
-                                @if( $anuncio->fotos != "dfsdfsdfsd")
-                                <img src="resources/theme/img/cars/noimage.jpg" alt="">
-                                <img src="resources/theme/img/cars/car-1.jpg" alt="">
-                                <img src="resources/theme/img/cars/car-8.jpg" alt="">
-                                <img src="resources/theme/img/cars/car-6.jpg" alt="">
-                                <img src="resources/theme/img/cars/car-3.jpg" alt="">
-                                @else
-                                <img src="resources/theme/img/cars/noimage.jpg" alt="">
+                                <img src="/storage/app/anunciosImg/{{$anuncio->id_utilizador}}/{{$anuncio->id_anuncio}}/{{$anuncio->foto_perfil}}" alt="">
+                                @foreach(App\Http\Controllers\AnunciosController::getImgs("storage/app/anunciosImg/".$anuncio->id_utilizador."/".$anuncio->id_anuncio."/") as $files)
+                                @if(strcmp($files->getFilename(),$anuncio->foto_perfil)!=0)
+                                <img src="/storage/app/anunciosImg/{{$anuncio->id_utilizador}}/{{$anuncio->id_anuncio}}/{{ $files->getFilename() }}" alt="">
                                 @endif
+                                @endforeach
+
 
                             </div>
                             <div class="car__item__text">
@@ -262,7 +262,7 @@
                                 </div>
                                 <div class="car__item__price">
                                     <span class="car-option sale">Para Venda</span>
-                                    <h6> &nbsp;&nbsp; {{$anuncio->preco}}&nbsp;paus(€)<span></span></h6>
+                                    <h6> &nbsp;&nbsp; {{$anuncio->preco}}&nbsp;€<span></span></h6>
                                 </div>
                             </div>
                         </div>

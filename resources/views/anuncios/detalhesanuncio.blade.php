@@ -26,28 +26,28 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-9">
-    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img class="d-block w-100" src="/storage/app/anunciosImg/{{$anuncio->id_utilizador}}/{{$anuncio->id_anuncio}}/{{$anuncio->foto_perfil}}" alt="First slide">
-    </div>
-    @foreach(App\Http\Controllers\AnunciosController::getImgs("storage/app/anunciosImg/".$anuncio->id_utilizador."/".$anuncio->id_anuncio."/") as $files)
-    @if(strcmp($files->getFilename(),$anuncio->foto_perfil)!=0)
-<div class="carousel-item">
-      <img class="d-block w-100" src="/storage/app/anunciosImg/{{$anuncio->id_utilizador}}/{{$anuncio->id_anuncio}}/{{ $files->getFilename() }}">
-    </div>
-    @endif
-        @endforeach
-  </div>
-  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
-  </a>
-  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
-  </a>
-</div>
+                <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img class="d-block w-100" src="/storage/app/anunciosImg/{{$anuncio->id_utilizador}}/{{$anuncio->id_anuncio}}/{{$anuncio->foto_perfil}}" alt="First slide">
+                        </div>
+                        @foreach(App\Http\Controllers\AnunciosController::getImgs("storage/app/anunciosImg/".$anuncio->id_utilizador."/".$anuncio->id_anuncio."/") as $files)
+                        @if(strcmp($files->getFilename(),$anuncio->foto_perfil)!=0)
+                        <div class="carousel-item">
+                            <img class="d-block w-100" src="/storage/app/anunciosImg/{{$anuncio->id_utilizador}}/{{$anuncio->id_anuncio}}/{{ $files->getFilename() }}">
+                        </div>
+                        @endif
+                        @endforeach
+                    </div>
+                    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
                 <div class="car__details__tab">
                     <ul class="nav nav-tabs" role="tablist">
                         <li class="nav-item">
@@ -442,16 +442,20 @@
 
 
 
-<script>
-function myFunction() {
-  var x = document.getElementById("myDIV");
-  if (x.innerHTML === "Mostrar") {
-    x.innerHTML = {{$utilizador->telefone}};
-  } else {
-    x.innerHTML = "Mostrar";
-  }
-}
-</script>
+                        <script>
+                            function myFunction() {
+                                var x = document.getElementById("myDIV");
+                                if (x.innerHTML === "Mostrar") {
+                                    x.innerHTML = {
+                                        {
+                                            $utilizador - > telefone
+                                        }
+                                    };
+                                } else {
+                                    x.innerHTML = "Mostrar";
+                                }
+                            }
+                        </script>
 
                         <a href="#" class="primary-btn"><i class="fa fa-credit-card"></i> Express Purchase</a>
                         <a href="#" class="primary-btn sidebar-btn"><i class="fa fa-sliders"></i> Build Payment</a>
