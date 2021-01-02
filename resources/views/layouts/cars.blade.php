@@ -52,16 +52,6 @@
         <div class="row">
             <div class="col-lg-3">
                 <div class="car__sidebar">
-                    <div class="car__search">
-                        <h5>Pesquisa de carro:</h5>
-
-
-
-                        <form action="/cars" method="GET">
-                            <input type="text" placeholder="Pesquisar por nome..." name="titulo">
-                            <button type="submit"><i class="fa fa-search"></i></button>
-                        </form>
-                    </div>
 
 
 
@@ -78,7 +68,7 @@
                                 @endforeach
                             </select>
 
-                            <!--
+
 
                             <select class="form-select" name="modelo" id="modelo_id" style="moverflow-x: hidden">
                                 <option value="">Modelo</option>
@@ -86,15 +76,6 @@
                                 <option value=" {{ $modelo->id_marca }}-{{ $modelo->id_modelo }}">{{ $modelo->nome }} </option>
                                 @endforeach
                             </select>
-
-                            <input class="form-control" list="datalistOptions" id="exampleDataList" placeholder="Modelos">
-                            <datalist id="datalistOptions">
-                                <option value="">Modelo</option>
-                                @foreach(App\Http\Controllers\AnunciosController::findModelos() as $modelo)
-                                <option value="{{ $modelo->id_marca }}-{{ $modelo->id_modelo }}">{{ $modelo->nome }} </option>
-                                @endforeach
-                            </datalist>
-
 
                             <script>
                                 $(document).ready(function() {
@@ -115,7 +96,9 @@
 
                                         $.each(filters, function(index, value) {
                                             $options.find("option").each(function(optionIndex, option) { // a second loop that check if the option value starts with the filter value
-                                                if ($(option).val().startsWith(value))
+                                                var val = $(option).val().split("-");
+                                                console.log(val);
+                                                if (value.localeCompare(val[0]) == 0)
                                                     $(option).clone().appendTo($("#modelo_id"));
                                             });
 
@@ -126,7 +109,7 @@
                             </script>
 
 
-                            -->
+
 
 
                             <select name="estado">
@@ -198,8 +181,6 @@
                                 </div>
                             </div>
 
-
-                        </form>
                     </div>
                 </div>
             </div>
@@ -209,36 +190,62 @@
                         <div class="col-lg-6 col-md-6">
                             <div class="car__filter__option__item">
                                 <h6>Mostrar na página:</h6>
-                                <select>
-                                    <option value="">9 Carros</option>
-                                    <option value="">15 Carros</option>
-                                    <option value="">20 Carros</option>
+                                <select name="num">
+                                    <option value="9">9 Carros</option>
+                                    <option value="15">15 Carros</option>
+                                    <option value="20">20 Carros</option>
                                 </select>
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6">
                             <div class="car__filter__option__item car__filter__option__item--right">
                                 <h6>Preço</h6>
-                                <select>
-                                    <option value="">Mais caros primeiro</option>
-                                    <option value="">Mais baratos primeiro</option>
+                                <select name="expensive">
+                                    <option value="more">Mais caros primeiro</option>
+                                    <option value="less">Mais baratos primeiro</option>
                                 </select>
                             </div>
                         </div>
                     </div>
                 </div>
+                </form>
 
-                @if(empty(request()->filtrar=="filtrar")||request()->remover=="remover")
-                @foreach(App\Http\Controllers\AnunciosController::findAllAnuncios() as $anuncio)
+
+                <!--DEBUG DE RESULTASDOS-->
+                <div class="ShowDataHere">
+                    /**</br>
+                    *Debug:</br>
+                    @if(!empty(request()->all()))
+                    #marca id: {{ request()->marca }} </br>
+                    #modelo id: {{ request()->modelo }} </br>
+                    #estado bool:{{ request()->estado }} </br>
+                    #quilometragem:{{ request()->quilometragem }} </br>
+                    #combustivel: {{ request()->combustivel }} </br>
+                    #Cor: {{ request()->cor }} </br>
+                    #preco: {{ request()->preco }} </br>
+                    #Numero de encontrados (por pagina): {{ $count ?? '' }} </br>
+                    */
+                    @endif
+                </div>
+
+
+
                 <div class="row">
+                    @foreach($anuncios as $anuncio)
                     <div class="col-lg-4 col-md-4">
                         <div class="car__item">
                             <div class="car__item__pic__slider owl-carousel">
 
+
+                                @if( $anuncio->fotos != "dfsdfsdfsd")
+                                <img src="resources/theme/img/cars/noimage.jpg" alt="">
                                 <img src="resources/theme/img/cars/car-1.jpg" alt="">
                                 <img src="resources/theme/img/cars/car-8.jpg" alt="">
                                 <img src="resources/theme/img/cars/car-6.jpg" alt="">
                                 <img src="resources/theme/img/cars/car-3.jpg" alt="">
+                                @else
+                                <img src="resources/theme/img/cars/noimage.jpg" alt="">
+                                @endif
 
                             </div>
                             <div class="car__item__text">
@@ -246,7 +253,9 @@
                                     <div class="label-date">Ano: {{ App\Http\Controllers\AnunciosController::getYear($anuncio->data_registo) }}</div>
                                     <h5><a href="/anuncios/show/{{$anuncio->id_anuncio}}">{{$anuncio->titulo}}</a></h5>
                                     <ul>
-                                        <li><span>Cor:</span> {{$anuncio->cor}}</li>
+                                        @foreach(App\Http\Controllers\MarcasController::findMarcasById($anuncio->id_marca) as $marca)
+                                        <li><span>Marca:</span> {{$marca->nome}}</li>
+                                        @endforeach
                                         <li>Segmento: {{$anuncio->segmento}}</li>
                                         <li><span>{{$anuncio->quilometragem }}</span> Quilometragem(KMs)</li>
                                     </ul>
@@ -259,71 +268,23 @@
                         </div>
                     </div>
                     @endforeach
-                    @else
-                    @if($anuncios_filtrados ?? ''!=null)
-                    @foreach($anuncios_filtrados as $anuncio)
-                    <div class="row">
-                        <div class="col-lg-4 col-md-4">
-                            <div class="car__item">
-                                <div class="car__item__pic__slider owl-carousel">
-
-                                    <img src="resources/theme/img/cars/car-1.jpg" alt="">
-                                    <img src="resources/theme/img/cars/car-8.jpg" alt="">
-                                    <img src="resources/theme/img/cars/car-6.jpg" alt="">
-                                    <img src="resources/theme/img/cars/car-3.jpg" alt="">
-
-                                </div>
-                                <div class="car__item__text">
-                                    <div class="car__item__text__inner">
-                                        <div class="label-date">Ano: {{ App\Http\Controllers\AnunciosController::getYear($anuncio->data_registo) }}</div>
-                                        <h5><a href="/anuncios/show/{{$anuncio->id_anuncio}}">{{$anuncio->titulo}}</a></h5>
-                                        <ul>
-                                            <li><span>Cor:</span> {{$anuncio->cor}}</li>
-                                            <li>Segmento: {{$anuncio->segmento}}</li>
-                                            <li><span>{{$anuncio->quilometragem }}</span> Quilometragem(KMs)</li>
-                                        </ul>
-                                    </div>
-                                    <div class="car__item__price">
-                                        <span class="car-option sale">Para Venda</span>
-                                        <h6> &nbsp;&nbsp; {{$anuncio->preco}}&nbsp;paus(€)<span></span></h6>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        @endforeach
-                        @endif
-
-                        <div class="ShowDataHere">
-                            Debug:</br>
-                            @if(!empty(request()->all()))
-                            marca: {{ request()->marca }} </br>
-                            modelo: {{ request()->modelo }} </br>
-                            estado:{{ request()->estado }} </br>
-                            quilometragem:{{ request()->quilometragem }} </br>
-                            combustivel: {{ request()->combustivel }} </br>
-                            Cor: {{ request()->cor }} </br>
-                            preco: {{ request()->preco }} </br>
-
-                            @endif
-                        </div>
-                        @endif
-
-
-
-
-
-
-                        <div class="pagination__option">
-                            <a href="#" class="active">1</a>
-                            <a href="#">2</a>
-                            <a href="#">3</a>
-                            <a href="#"><span class="arrow_carrot-2right"></span></a>
-                        </div>
-
-
-                    </div>
                 </div>
+
+                {!! $anuncios->links('pagination::bootstrap-4') !!}
+
+                <!--- 
+                 <div class="pagination__option">
+                    <a href="#" class="active">1</a>
+                    <a href="#">2</a>
+                    <a href="#">3</a>
+                    <a href="#"><span class="arrow_carrot-2right"></span></a>
+                </div>  -->
+
+
+
             </div>
+        </div>
+    </div>
 </section>
 <!-- Car Section End -->
 <!-- Js Plugins -->

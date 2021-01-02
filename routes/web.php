@@ -27,7 +27,7 @@ Route::get('/about', function () {
     return view('layouts.about');
 });
 
-Route::get('/cars', [AnunciosController::class, 'filter']);
+Route::get('/cars', [AnunciosController::class, 'anuncios']);
 
 
 

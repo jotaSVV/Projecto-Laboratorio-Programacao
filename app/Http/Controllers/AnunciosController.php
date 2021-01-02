@@ -278,19 +278,23 @@ class AnunciosController extends Controller
             'fotos.*' => ['image', 'mimes:jpeg,png,jpg,gif,svg', 'max:10240']
         ]);
 
-        $files = Storage::allFiles('anunciosImg/' . $anuncios['id_utilizador'] . "/" . $anuncios['id_anuncio']);
-        dd($files);
-        Storage::delete($files);
-        $save = $request['fotos'];
-        foreach ($save as $pics) {
-            Storage::putFile('anunciosImg/' . $anuncios['id_utilizador'] . "/" . $anuncios['id_anuncio'], $pics);
+        //$anuncios = anuncios::find
+        dd($anuncios);
+        if ($request->hasFile('fotos')) {
+            $files = Storage::allFiles('anunciosImg/' . $anuncios['id_utilizador'] . "/" . $anuncios['id_anuncio']);
+            //dd($request);
+            Storage::delete($files);
+            $save = $request['fotos'];
+            foreach ($save as $pics) {
+                Storage::putFile('anunciosImg/' . $anuncios['id_utilizador'] . "/" . $anuncios['id_anuncio'], $pics);
+            }
+
+
+            $anuncios['fotos'] = 'anunciosImg/' . $anuncios['id_utilizador'] . "/" . $anuncios['id_anuncio'];
+            $files = scandir("storage/app/anunciosImg" . "/"  . $anuncios['id_utilizador'] . "/" . $anuncios['id_anuncio']);
+            $name = $files[2];
+            $anuncios['foto_perfil'] = $name;
         }
-
-        $anuncios['fotos'] = 'anunciosImg/' . $anuncios['id_utilizador'] . "/" . $anuncios['id_anuncio'];
-        $files = scandir("storage/app/anunciosImg" . "/"  . $anuncios['id_utilizador'] . "/" . $anuncios['id_anuncio']);
-        $name = $files[2];
-        $anuncios['foto_perfil'] = $name;
-
         $anuncios->update($request->only(['titulo', 'descricao', 'id_marca', 'id_modelo', 'preco', 'valor_fixo', 'data_registo', 'cor', 'estado', ' versao', 'combustivel', 'quilometragem', 'potencia', 'cilindrada', 'retoma', 'financiamento', 'segmento', 'metalizado', 'caixa', 'lotacao', 'portas', 'classe_veiculo', 'garantia_stand', 'nr_registos', 'tracao', 'livro_revisoes', 'seg_chave', 'jantes_liga_leve', 'estofos', 'medida_jantes', 'airbags', 'ar_condicionado', 'importado']));
         return redirect('/dashboard')->with('success', 'Anúncio alterado com sucesso!');;
     }
@@ -366,10 +370,28 @@ class AnunciosController extends Controller
     }
 
 
+
+    public function todos_anuncios(Request $request)
+    {
+
+        /** Vai mandar todos os anúncios existentes quando é carregada a pagina */
+
+        $anuncios = anuncios::paginate($request->num); //get data from table
+
+        $count = $anuncios->count();
+        return view('layouts.cars', [
+            'anuncios' => $anuncios,
+            'count' => $count,
+        ]);
+    }
+
+
+
+
     public function filter(Request $request)
     {
 
-        $filter = array();  //  $filter = ['marca' => $request->marca, 'cor' => $request->cor, 'quilometragem' => $request->quilometragem];
+        $filter = array();    //  $filter = ['marca' => $request->marca, 'cor' => $request->cor, 'quilometragem' => $request->quilometragem];
         $count = 0;
         if ($request->marca != null) {
             $filter['id_marca'] = $request->marca;
@@ -396,40 +418,67 @@ class AnunciosController extends Controller
         if ($request->preco != null && $request->quilometragem != null) { //preco + quilometragem
             $count += 2;
             if ($count > 2)
-                $anuncios = anuncios::where($filter)->whereRaw('preco <=' . $request->preco)->whereRaw('quilometragem <=' . $request->quilometragem)->get();
+                $anuncios = anuncios::where($filter)->whereRaw('preco <=' . $request->preco)->whereRaw('quilometragem <=' . $request->quilometragem)->paginate($request->num);
             else
-                $anuncios = anuncios::whereRaw('preco <=' . $request->preco)->whereRaw('quilometragem <=' . $request->quilometragem)->get();
+                $anuncios = anuncios::whereRaw('preco <=' . $request->preco)->whereRaw('quilometragem <=' . $request->quilometragem)->paginate($request->num);
         }
 
         if ($request->preco != null && $request->quilometragem == null) {  //preco 
             $count++;
             if ($count > 1)
-                $anuncios = anuncios::where($filter)->whereRaw('preco <=' . $request->preco)->get();
+                $anuncios = anuncios::where($filter)->whereRaw('preco <=' . $request->preco)->paginate($request->num);
             else
-                $anuncios = anuncios::whereRaw('preco <=' . $request->preco)->get();
+                $anuncios = anuncios::whereRaw('preco <=' . $request->preco)->paginate($request->num);
         }
 
         if ($request->preco == null && $request->quilometragem != null) { // quilometragem
             $count++;
             if ($count > 1)
-                $anuncios = anuncios::where($filter)->whereRaw('quilometragem <=' . $request->quilometragem)->get();
+                $anuncios = anuncios::where($filter)->whereRaw('quilometragem <=' . $request->quilometragem)->paginate($request->num);
             else
-                $anuncios = anuncios::whereRaw('quilometragem <=' . $request->quilometragem)->get();
+                $anuncios = anuncios::whereRaw('quilometragem <=' . $request->quilometragem)->paginate($request->num);
         }
 
         if ($request->preco == null && $request->quilometragem == null)
-            $anuncios = anuncios::where($filter)->get();
-
-
+            $anuncios = anuncios::where($filter)->paginate($request->num);
 
 
 
         if ($request->filled('filtrar') && $count > 0) {
 
+            $nr_encontrados = $anuncios->count();
+            return view('layouts.cars', [
+                'anuncios' => $anuncios,
+                'count' => $nr_encontrados,
+            ]);
+        } else {
+            return $this->todos_anuncios($request);
+            /*
+            $anuncios = anuncios::paginate(9);
+            $nr_encontrados = $anuncios->count();
             return view('layouts.cars', [
                 'anuncios_filtrados' => $anuncios,
+                'count' => $nr_encontrados,
             ]);
+            */
         }
-        return view('layouts.cars');
+    }
+
+    public function anuncios(Request $request)
+    {
+        if ($request->filled('filtrar'))
+            return $this->filter($request);
+        else
+            return $this->todos_anuncios($request);
+    }
+
+
+
+
+    public static function findMarcasById($id)
+    {
+        $marcas = marcas::where('id_marca', '=', $id)->get();
+        foreach ($marcas as $marca)
+            return $marca->nome;
     }
 }

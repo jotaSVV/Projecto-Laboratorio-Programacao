@@ -154,20 +154,107 @@
                             </div>
                         </div>
 
-
-                        <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Freguesia') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="id_freguesia" type="text" class="form-control @error('name') is-invalid @enderror" name="id_freguesia" value="{{ old('name') }}" required autocomplete="name" autofocus>
-
-                                @error('name')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
-                            </div>
+                        <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Distrito') }}</label>
+                        <div class="col-xs-6">
+                            <select class="form-control" name="distrito" id="distrito">
+                                @foreach(App\Http\Controllers\Auth\RegisterController::findDistritos() as $distrito)
+                                <option value="{{ $distrito->nome }}">{{ $distrito->nome }}</option>
+                                @endforeach
+                            </select>
                         </div>
+
+
+                        <div class="col-xs-6">
+                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Concelho') }}</label>
+                            <select class="form-control" name="concelho" id="concelho">
+                                @foreach(App\Http\Controllers\Auth\RegisterController::findConcelhos() as $concelho)
+                                <option value="{{$concelho->distrito}}->{{$concelho->nome}}">{{ $concelho->nome }}</option>
+                                @endforeach
+                                <option>
+                            </select>
+                        </div>
+
+
+                        <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Freguesia') }}</label>
+                        <div class="col-xs-6">
+
+                            <select class="form-control" name="id_freguesia" id="freguesia">
+                                @foreach(App\Http\Controllers\Auth\RegisterController::findFreguesias() as $freguesias)
+                                <option value="{{$freguesias->concelho}}->{{$freguesias->id_freguesia}}">{{ $freguesias->nome }}</option>
+                                @endforeach
+                                <option>
+                            </select>
+                        </div>
+                        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+                        <script>
+                            src = "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"
+                        </script>
+
+
+                        <script>
+                            $(document).ready(function() {
+                                var $options = $("#concelho").clone(); // this will save all initial options in the second dropdown
+
+                                $("#distrito").change(function() {
+                                    var filters = [];
+                                    if ($(this).val() == "") {
+                                        $(this).find("option").each(function(index, option) {
+                                            if ($(option).val() != "")
+                                                filters.push($(option).val());
+                                        });
+                                    } else {
+                                        filters.push($(this).val())
+                                    }
+
+                                    $("#concelho").html("");
+
+                                    $.each(filters, function(index, value) {
+                                        $options.find("option").each(function(optionIndex, option) { // a second loop that check if the option value starts with the filter value
+                                            var val = $(option).val().split("->");
+                                            //console.log(val);
+                                            if (value.localeCompare(val[0]) == 0)
+                                                $(option).clone().appendTo($("#concelho"));
+                                        });
+
+                                    });
+
+                                });
+                            });
+                        </script>
+
+                        <script>
+                            $(document).ready(function() {
+                                var $options = $("#freguesia").clone(); // this will save all initial options in the second dropdown
+
+                                $("#concelho").change(function() {
+                                    var filters = [];
+                                    if ($(this).val() == "") {
+                                        $(this).find("option").each(function(index, option) {
+                                            if ($(option).val() != "")
+                                                filters.push($(option).val());
+                                        });
+                                    } else {
+                                        filters.push($(this).val())
+                                    }
+
+                                    $("#freguesia").html("");
+
+                                    $.each(filters, function(index, value) {
+                                        $options.find("option").each(function(optionIndex, option) { // a second loop that check if the option value starts with the filter value
+                                            var val2 = value.split("->");
+                                            var val = $(option).val().split("->");
+                                            console.log(val2);
+                                            if (val2[1].localeCompare(val[0]) == 0)
+                                                $(option).clone().appendTo($("#freguesia"));
+                                        });
+
+                                    });
+
+                                });
+                            });
+                        </script>
+
+
 
                         <div class="form-group row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Foto Perfil') }}</label>

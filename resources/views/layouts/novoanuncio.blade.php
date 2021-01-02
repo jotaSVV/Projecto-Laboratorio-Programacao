@@ -270,7 +270,7 @@
 
         <div class="row row-col-cols-4" style="margin-bottom: 16px;">
             <div class="form-check mb-3 col" style="padding-left: 38px;">
-                <input name="airbags" class="form-check-input" type="checkbox" value="0" id="flexCheckChecked_jantes_airbags">
+                <input name="airbags" class="form-check-input" type="checkbox" value="1" id="flexCheckChecked_jantes_airbags">
                 <label class="form-check-label" for="flexCheckChecked_jantes_airbags">
                     Airbags
                 </label>
@@ -370,7 +370,8 @@
 
             $.each(filters, function(index, value) {
                 $options.find("option").each(function(optionIndex, option) { // a second loop that check if the option value starts with the filter value
-                    if ($(option).val().startsWith(value))
+                    var val = $(option).val().split("-");
+                    if (value.localeCompare(val[0]) == 0)
                         $(option).clone().appendTo($("#id_modelo"));
                 });
 

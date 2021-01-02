@@ -14,10 +14,9 @@
 </div>
 @endif
 <div class="container-fluid">
-    <form class="tm-edit-product-form" action="{{ url('/anuncios/edit/{anuncio}') }}" method="POST" enctype="multipart/form-data">
+    <form class="tm-edit-product-form" action="{{$anuncio->id_anuncio}}" method="POST" enctype="multipart/form-data">
 
         @csrf
-        @method('POST')
 
         <div class="row">
             <div class="col-12">
@@ -37,9 +36,9 @@
                     <label for="id_marca">{{ __('Marca:') }}</label>
                     <div class="col-xs-6">
                         <select class="form-control" name="id_marca" id="id_marca" >
-                            @foreach(App\Http\Controllers\MarcasController::findMarcasById($anuncio->id_marca) as $marca)
+                        @foreach(App\Http\Controllers\AnunciosController::findMarcas() as $marca)
                             <option value="{{ $marca->id_marca }}">{{ $marca->nome }}</option>
-                            @endforeach
+                        @endforeach
                         </select>
                     </div>
                 </div>
@@ -50,9 +49,9 @@
                     <label for="id_modelo">{{ __('Modelo:') }}</label>
                     <div class="col-xs-6">
                         <select class="form-control" name="id_modelo" id="id_modelo">
-                        @foreach(App\Http\Controllers\ModelosController::findModeloById($anuncio->id_modelo) as $modelo)
+                        @foreach(App\Http\Controllers\AnunciosController::findModelos() as $modelo)
                             <option value="{{ $modelo->id_marca }}-{{ $modelo->id_modelo }}">{{ $modelo->nome }}</option>
-                            @endforeach
+                        @endforeach
                         </select>
                     </div>
                 </div>
@@ -370,7 +369,8 @@
 
             $.each(filters, function(index, value) {
                 $options.find("option").each(function(optionIndex, option) { // a second loop that check if the option value starts with the filter value
-                    if ($(option).val().startsWith(value))
+                    var val = $(option).val().split("-");
+                    if (value.localeCompare(val[0]) == 0)
                         $(option).clone().appendTo($("#id_modelo"));
                 });
 
