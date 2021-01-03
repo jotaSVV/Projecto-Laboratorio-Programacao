@@ -1,14 +1,7 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Auth;
-
-use Pusher\Laravel\Facades\Pusher;
-use App\Events;
 use App\Http\Controllers\UtilizadoresController;
-use App\Http\Controllers\AnunciosController;
-use App\Http\Controllers\MensagensController;
-
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,57 +14,21 @@ use App\Http\Controllers\MensagensController;
 |
 */
 
-Route::get('/', [AnunciosController::class, 'anuncios_home']);
-
-Route::get('/about', function () {
-    return view('layouts.about');
+Route::get('/', function () {
+    return view('layouts.frontpage');
 });
-
-Route::get('/cars', [AnunciosController::class, 'anuncios']);
-
-
-
-
-////Rotas Relativas aos Utilizadores
-
-
-
-
-Route::get('/dashboard/definicoes', function () {
-    return view('Utilizadores.utilizadorDashDef');
-});
-Route::get('/dashboard/mensagens', function () {
-    return view('Utilizadores.utilizadorDashMsg');
-});
-
-Route::get('/mensagens/show/{mensagem}', [MensagensController::class, 'show']);
-
-Route::get('/dashboard/edit/{utilizadores}', [UtilizadoresController::class, 'edit']);
-Route::post('/dashboard/definicoes/update/{utilizadores}', [UtilizadoresController::class, 'update']);
-Route::post('/dashboard/definicoes/updateemail/{utilizadores}', [UtilizadoresController::class, 'updateemail']);
-Route::post('/dashboard/definicoes/updatepassword/{utilizadores}', [UtilizadoresController::class, 'updatepassword']);
-
 
 
 Route::get('/header', function () {
     return view('includes.header');
 });
 
-
 Route::get('/footer', function () {
     return view('includes.footer');
 });
 
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Route::get('/admin', function () {
-    return view('admin.index');
-});
-
-Route::get('/admin/login', function () {
-    return view('admin.login');
+Route::get('/register', function () {
+    return view('users.register');
 });
 
 Route::get('/admin/layout-static', function () {
@@ -142,3 +99,6 @@ $pusher->trigger( 'my-channel', 'my-event', $data);
 return 'ok';
 });
 
+Route::get('/index', function () {
+    return view('users.index');
+});
