@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Illuminate\Support\Facades\DB;
 use App\Models\mensagens;
 use App\Models\anuncios;
@@ -44,43 +45,43 @@ class MensagensController extends Controller
             'id_recetor' => ['required', 'int', 'max:255'],
             'id_anuncio' => ['required', 'int', 'max:255'],
         ]);
-        
-        $data = $request ->all();
+
+        $data = $request->all();
         $data['id_emissor'] = Auth::user()->id;
         $data['id_recetor'] = $data['id_recetor'];
         $data['id_anuncio'] = $data['id_anuncio'];
         $data['data'] = "2020/10/10";
         $data['fotos'] = "tste";
         $data['visto'] = 1;
-        
-        
+
+
         $checkconversa = DB::table('conversas')
-        ->whereIn('id_recetor',[$data['id_recetor'],$data['id_emissor']])
-        ->whereIn('id_emissor',[$data['id_recetor'],$data['id_emissor']])
-        ->where('id_anuncio','=',$data['id_anuncio'])
-        ->first();
-       
-      
-        
-        
+            ->whereIn('id_recetor', [$data['id_recetor'], $data['id_emissor']])
+            ->whereIn('id_emissor', [$data['id_recetor'], $data['id_emissor']])
+            ->where('id_anuncio', '=', $data['id_anuncio'])
+            ->first();
+
+
+
+
         ///Senao existir conversa criamos, se existir adicionamos a mensagem nas mensagens
-        if(empty($checkconversa)){
-            
-            $dados=array();
-            
+        if (empty($checkconversa)) {
+
+            $dados = array();
+
             $dados['id_emissor'] = Auth::user()->id;
             $dados['id_recetor'] = $data['id_recetor'];
             $dados['id_anuncio'] = $data['id_anuncio'];
-            $conversa= conversas::create($dados);
+            $conversa = conversas::create($dados);
             //apos a conversa criada , temos que atualizar o id_conversa nas mensagens
             $getconversa = DB::table('conversas')
-            ->whereIn('id_recetor',[$data['id_recetor'],$data['id_emissor']])
-            ->whereIn('id_emissor',[$data['id_recetor'],$data['id_emissor']])
-            ->where('id_anuncio','=',$data['id_anuncio'])
-            ->first();
-            
+                ->whereIn('id_recetor', [$data['id_recetor'], $data['id_emissor']])
+                ->whereIn('id_emissor', [$data['id_recetor'], $data['id_emissor']])
+                ->where('id_anuncio', '=', $data['id_anuncio'])
+                ->first();
+
             $data['id_conversa'] = $conversa->id_conversa;
-            $t= mensagens::create($data);
+            $t = mensagens::create($data);
             $pusher = new \Pusher(
                 config('broadcasting.connections.pusher.key'),
                 config('broadcasting.connections.pusher.secret'),
@@ -89,20 +90,20 @@ class MensagensController extends Controller
             );
             // Your data that you would like to send to Pusher
             // Sending the data to channel: "test_channel" with "my_event" event
-            $pusher->trigger( 'my-channel', 'my-event', $t);
-            return redirect('/mensagens/show/'.$t->id_conversa);
-        }else {
+            $pusher->trigger('my-channel', 'my-event', $t);
+            return redirect('/mensagens/show/' . $t->id_conversa);
+        } else {
 
             ///Caso a conversa já exista , só atualizamos o campo do id_conversa na mensagem
             $getconversa = DB::table('conversas')
-            ->whereIn('id_recetor',[$data['id_recetor'],$data['id_emissor']])
-            ->whereIn('id_emissor',[$data['id_recetor'],$data['id_emissor']])
-            ->where('id_anuncio','=',$data['id_anuncio'])
-        ->first();
-        
+                ->whereIn('id_recetor', [$data['id_recetor'], $data['id_emissor']])
+                ->whereIn('id_emissor', [$data['id_recetor'], $data['id_emissor']])
+                ->where('id_anuncio', '=', $data['id_anuncio'])
+                ->first();
+
             $data['id_conversa'] = $getconversa->id_conversa;
-            
-            $t= mensagens::create($data);
+
+            $t = mensagens::create($data);
             $pusher = new \Pusher(
                 config('broadcasting.connections.pusher.key'),
                 config('broadcasting.connections.pusher.secret'),
@@ -111,17 +112,9 @@ class MensagensController extends Controller
             );
             // Your data that you would like to send to Pusher
             // Sending the data to channel: "test_channel" with "my_event" event
-            $pusher->trigger( 'my-channel', 'my-event', $t);
-            return redirect('/mensagens/show/'.$t->id_conversa);
+            $pusher->trigger('my-channel', 'my-event', $t);
+            return redirect('/mensagens/show/' . $t->id_conversa);
         }
-
-
-        
-        
-
-        
-            
-       
     }
 
     /**
@@ -173,14 +166,14 @@ class MensagensController extends Controller
     }
 
     public static function findMensagemId()
-    {   
-       // $mensagem = mensagens::findOrFail(Auth::user()->id);
+    {
+        // $mensagem = mensagens::findOrFail(Auth::user()->id);
         ///o id que recebe como argumento é o id que é para excluir.
 
         $getconversa = DB::table('conversas')
-        ->where('id_recetor','=',Auth::user()->id)
-        ->orWhere('id_emissor','=',Auth::user()->id)
-        ->get();
+            ->where('id_recetor', '=', Auth::user()->id)
+            ->orWhere('id_emissor', '=', Auth::user()->id)
+            ->get();
         return ($getconversa);
 
         // $mensagem = mensagens::max('id_anuncio');
@@ -210,23 +203,23 @@ class MensagensController extends Controller
         //     ->get();
         //mensagens::inRandomOrder()->where('id_anuncio', '!=', $id)->limit(3)->get();
         //$anuncios = anuncios::orderBy('id_utilizador', 'asc')->get();
-        
+
     }
 
     public static function countConversas($id)
-    {   
-       // $mensagem = mensagens::findOrFail(Auth::user()->id);
+    {
+        // $mensagem = mensagens::findOrFail(Auth::user()->id);
         ///o id que recebe como argumento é o id que é para excluir.
-        
-        
+
+
         $mensagens = DB::table('conversas')
             ->select()
-            ->where('id_anuncio','=',$id)
+            ->where('id_anuncio', '=', $id)
             ->count();
-            
-  
-        
-        
+
+
+
+
         //$mensagens = collect($arr);
         // $mensagens = DB::table('mensagens')
         //     ->where('id_recetor','=',Auth::user()->id)
@@ -240,23 +233,21 @@ class MensagensController extends Controller
     }
 
     public static function findMensagensConversa($id)
-    {   
+    {
         //vai buscar a 1º mensagem
         $mensagem = mensagens::findOrFail($id);
         //carrega todas as mensagens da conversa com base na 1º mensagem
-        
 
-            $conversa = DB::table('mensagens')
-           
-            ->where('id_conversa','=',[$mensagem->id_conversa])
-            
+
+        $conversa = DB::table('mensagens')
+
+            ->where('id_conversa', '=', [$mensagem->id_conversa])
+
             ->get();
 
-            
-            
+
+
 
         return ($conversa);
     }
-
-   
 }

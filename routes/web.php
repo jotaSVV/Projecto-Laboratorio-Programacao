@@ -103,10 +103,15 @@ Route::get('/anuncios/show/{anuncio}', [AnunciosController::class, 'show']);
 Route::get('/anuncios/edit/{anuncio}', [AnunciosController::class, 'edit']);
 Route::post('/anuncios/edit/{anuncio}', [AnunciosController::class, 'update']);
 Route::get('/anuncios/delete', [AnunciosController::class, 'delete']);
+Route::get('/anuncios/activate/{anuncio}', [AnunciosController::class, 'activate']);
 
 
 Route::get('/dashboard', function () {
     return view('Utilizadores.utilizadorDash');
+});
+
+Route::get('/arquivos', function () {
+    return view('Utilizadores.utilizadorDashArquivos');
 });
 
 
@@ -119,7 +124,7 @@ Route::get('/chat', function () {
 
 Route::get('/test', function () {
    // New Pusher instance with our config data
-   $pusher = new \Pusher(
+    $pusher = new \Pusher(
     config('broadcasting.connections.pusher.key'),
     config('broadcasting.connections.pusher.secret'),
     config('broadcasting.connections.pusher.app_id'),
