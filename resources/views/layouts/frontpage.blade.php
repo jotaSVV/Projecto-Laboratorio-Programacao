@@ -42,12 +42,6 @@
                         <span> ENCONTRE O SEU CARRO DE SONHO</span>
                         <h2>Porsche Cayenne S</h2>
                     </div>
-                    <div class="hero__text__price">
-                        <div class="car-model">Model 2019</div>
-                        <a href="#" class="primary-btn"><img src="resources/theme/img/wheel.png" alt=""> Test Drive</a>
-
-                    </div>
-
                 </div>
             </div>
             <div class="col-lg-5">
@@ -66,7 +60,7 @@
                                         <div class="select-list-item">
                                             <p>Ano:</p>
                                             <select>
-                                                <option value=" ">Select Year</option>
+                                                <option value=" ">Selecione o ano</option>
                                                 <option value="">2021</option>
                                                 <option value="">2020</option>
                                                 <option value="">2019</option>
@@ -79,7 +73,7 @@
                                         <div class="select-list-item">
                                             <p>Marca:</p>
                                             <select name="marca">
-                                                <option value="">Select Brand</option>
+                                                <option value="">Selecione a marca</option>
                                                 @foreach(App\Http\Controllers\AnunciosController::findMarcas() as $marca)
                                                 <option value="{{ $marca->id_marca }}"><a href="/car?marca=$marca->id_marca&filter=filter">{{ $marca->nome }}</a></option>
                                                 @endforeach
@@ -88,7 +82,7 @@
                                         <div class="select-list-item">
                                             <p>Modelo:</p>
                                             <select>
-                                                <option value="">Select Model</option>
+                                                <option value="">Selecione o modelo</option>
                                                 <option value="">Q3</option>
                                                 <option value="">A4 </option>
                                                 <option value="">AVENTADOR</option>
