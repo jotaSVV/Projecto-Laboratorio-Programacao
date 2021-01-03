@@ -123,11 +123,16 @@ class MensagensController extends Controller
      * @param  \App\Models\mensagens  $mensagens
      * @return \Illuminate\Http\Response
      */
-    public function show(mensagens $mensagem)
+    public function show($mensagens)
     {
-        $mensagem = mensagens::findOrFail($mensagem->id_conversa);
+
+        //dd($mensagem->id_conversa);
+        $msg = DB::table('mensagens')
+            ->where('id_conversa', '=', $mensagens)
+            ->first();
+
         return view('Utilizadores.utilizadorConversa', [
-            'mensagem' => $mensagem,
+            'mensagem' => $msg,
         ]);
     }
 
@@ -235,13 +240,12 @@ class MensagensController extends Controller
     public static function findMensagensConversa($id)
     {
         //vai buscar a 1º mensagem
-        $mensagem = mensagens::findOrFail($id);
+        //$mensagem = mensagens::findOrFail($id);
         //carrega todas as mensagens da conversa com base na 1º mensagem
-
 
         $conversa = DB::table('mensagens')
 
-            ->where('id_conversa', '=', [$mensagem->id_conversa])
+            ->where('id_conversa', '=', $id)
 
             ->get();
 

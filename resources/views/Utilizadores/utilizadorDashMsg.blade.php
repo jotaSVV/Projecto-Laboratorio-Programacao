@@ -35,10 +35,7 @@
 <div class="container-fluid">
   <div class="p-3 mb-2 bg-secondary text-white">
     <nav class="header__menu">
-      <ul>
-        <li><a href="{{url('/')}}">Activos</a></li>
-        <li><a href="{{url('/cars')}}">Arquivados</a></li>
-      </ul>
+
     </nav>
 
     <div class="container-fluid">
@@ -91,7 +88,6 @@
         @endforelse
       </div>
     </div>
-
 
 
 

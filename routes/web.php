@@ -1,7 +1,14 @@
 <?php
 
-use App\Http\Controllers\UtilizadoresController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
+
+use Pusher\Laravel\Facades\Pusher;
+use App\Events;
+use App\Http\Controllers\UtilizadoresController;
+use App\Http\Controllers\AnunciosController;
+use App\Http\Controllers\MensagensController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -14,21 +21,57 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('layouts.frontpage');
+Route::get('/', [AnunciosController::class, 'anuncios_home']);
+
+Route::get('/about', function () {
+    return view('layouts.about');
 });
+
+Route::get('/cars', [AnunciosController::class, 'anuncios']);
+
+
+
+
+////Rotas Relativas aos Utilizadores
+
+
+
+
+Route::get('/dashboard/definicoes', function () {
+    return view('Utilizadores.utilizadorDashDef');
+});
+Route::get('/dashboard/mensagens', function () {
+    return view('Utilizadores.utilizadorDashMsg');
+});
+
+Route::get('/mensagens/show/{mensagens}', [MensagensController::class, 'show']);
+
+Route::get('/dashboard/edit/{utilizadores}', [UtilizadoresController::class, 'edit']);
+Route::post('/dashboard/definicoes/update/{utilizadores}', [UtilizadoresController::class, 'update']);
+Route::post('/dashboard/definicoes/updateemail/{utilizadores}', [UtilizadoresController::class, 'updateemail']);
+Route::post('/dashboard/definicoes/updatepassword/{utilizadores}', [UtilizadoresController::class, 'updatepassword']);
+
 
 
 Route::get('/header', function () {
     return view('includes.header');
 });
 
+
 Route::get('/footer', function () {
     return view('includes.footer');
 });
 
-Route::get('/register', function () {
-    return view('users.register');
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/admin', function () {
+    return view('admin.index');
+});
+
+Route::get('/admin/login', function () {
+    return view('admin.login');
 });
 
 Route::get('/admin/layout-static', function () {
@@ -80,25 +123,21 @@ Route::get('/chat', function () {
 });
 
 Route::get('/test', function () {
-   // New Pusher instance with our config data
+    // New Pusher instance with our config data
     $pusher = new \Pusher(
-    config('broadcasting.connections.pusher.key'),
-    config('broadcasting.connections.pusher.secret'),
-    config('broadcasting.connections.pusher.app_id'),
-    config('broadcasting.connections.pusher.options')
-);
-    
+        config('broadcasting.connections.pusher.key'),
+        config('broadcasting.connections.pusher.secret'),
+        config('broadcasting.connections.pusher.app_id'),
+        config('broadcasting.connections.pusher.options')
+    );
 
-    
-// Your data that you would like to send to Pusher
-$data = ['text' => 'hello world from Laravel 5.3'];
-    
-// Sending the data to channel: "test_channel" with "my_event" event
-$pusher->trigger( 'my-channel', 'my-event', $data);
-    
-return 'ok';
-});
 
-Route::get('/index', function () {
-    return view('users.index');
+
+    // Your data that you would like to send to Pusher
+    $data = ['text' => 'hello world from Laravel 5.3'];
+
+    // Sending the data to channel: "test_channel" with "my_event" event
+    $pusher->trigger('my-channel', 'my-event', $data);
+
+    return 'ok';
 });
