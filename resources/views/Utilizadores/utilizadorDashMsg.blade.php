@@ -65,7 +65,7 @@
   <tbody>
     <tr>
       <th scope="row"> <a href="/mensagens/show/{{$mensagens->id_conversa}}">Abrir Conversa</a> </th>
-
+      
       <td>
       @foreach(App\Http\Controllers\UtilizadoresController::findUserById($mensagens->id_emissor) as $utilizador)
         {{$utilizador->nome}}

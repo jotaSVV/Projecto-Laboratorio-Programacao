@@ -44,7 +44,7 @@ Route::get('/dashboard/mensagens', function () {
     return view('Utilizadores.utilizadorDashMsg');
 });
 
-Route::get('/mensagens/show/{mensagem}', [MensagensController::class, 'show']);
+Route::get('/mensagens/show/{mensagens}', [MensagensController::class, 'show']);
 
 Route::get('/dashboard/edit/{utilizadores}', [UtilizadoresController::class, 'edit']);
 Route::post('/dashboard/definicoes/update/{utilizadores}', [UtilizadoresController::class, 'update']);
