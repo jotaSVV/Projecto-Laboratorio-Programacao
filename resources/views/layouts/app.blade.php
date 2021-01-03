@@ -1,4 +1,4 @@
- <html>  
+<html>
  
  <body>
 
@@ -8,8 +8,8 @@
    @yield('title')
 
    @yield('content')
-  
-  
+
+
 @include('includes.footer')
 
 
