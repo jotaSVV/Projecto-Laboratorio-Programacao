@@ -48,7 +48,13 @@
        <table class="table">
   <thead>
     <tr>
-      <th scope="col">Interessado</th>
+      <th scope="col">Interessado
+      @foreach(App\Http\Controllers\UtilizadoresController::findUserById($mensagem->id_emissor) as $utilizador)
+        {{$utilizador->nome}}
+        {{$utilizador->apelido}}
+     @endforeach
+      
+      </th>
       <th scope="col">Suas Mensagens</th>
       <th scope="col">Eu</th>
       <th scope="col">Suas Mensagens</th>
@@ -57,17 +63,11 @@
   </thead>
   
   <tbody>
-    @foreach(App\Http\Controllers\MensagensController::findMensagensConversa($mensagem->id_mensagem) as $conversa)
-
+    @foreach(App\Http\Controllers\MensagensController::findMensagensConversa($mensagem->id_conversa) as $conversa)
+    
     <tr>
     @if($conversa->id_emissor != Auth::user()->id)
-    @foreach(App\Http\Controllers\UtilizadoresController::findUserById($conversa->id_emissor) as $utilizador)
-      <td>  {{$utilizador->nome}}
-        {{$utilizador->apelido}}</td>
-     @endforeach
       <td>{{$conversa->texto}}</td>
-      <td></td>
-      <td></td>
       <td>{{$conversa->created_at}}</td>
       @else
       <td></td>
@@ -80,6 +80,73 @@
     @endforeach
   </tbody>
 </table>
+
+
+    
+        
+    
+
+ <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
+ 
+  <script>
+        // Enable pusher logging - don't include this in production
+    Pusher.logToConsole = true;
+
+    var pusher = new Pusher('75f818b071a2ca8da95a', {
+      cluster: 'eu'
+    });
+
+    var channel = pusher.subscribe('my-channel');
+    channel.bind('my-event', function(data) {
+     //document.write();
+     
+            var str = JSON.stringify(data);
+            var parsedJSON = JSON.parse(JSON.stringify(data));
+
+             let tableRef = document.getElementById("my-table");
+
+  // Insert a row at the end of the table
+  let newRow = tableRef.insertRow(-1);
+
+  // Insert a cell in the row at index 0
+  let newCell = newRow.insertCell(0);
+  let newCel = newRow.insertCell(1);
+  
+
+  // Append a text node to the cell
+
+  
+let newText = document.createTextNode(parsedJSON.texto);
+  newCell.appendChild(newText);
+  
+   let newTex = document.createTextNode(parsedJSON.created_at);
+  newCel.appendChild(newTex);
+ 
+  
+            // document.getElementById('td1').innerHTML = parsedJSON.text;
+      
+                
+            
+     // alert(JSON.stringify(data));
+    });
+            
+        </script>
+      
+
+
+<table id="my-table">
+  
+</table>
+   
+      
+      
+      
+      
+
+
+
+
+
 <form  action="{{ ('/msg') }}" method="POST">
 @csrf
   <div class="form-group">
@@ -87,8 +154,13 @@
     <textarea class="form-control" name="texto" id="exampleFormControlTextarea1" rows="3"></textarea>
     
   </div>
+  @if($conversa->id_emissor != Auth::user()->id)
   <input type="hidden" id="id_recetor" name="id_recetor" value="{{$conversa->id_emissor}}">
   <input type="hidden" id="id_anuncio" name="id_anuncio" value="{{$conversa->id_anuncio}}">
+  @else
+  <input type="hidden" id="id_recetor" name="id_recetor" value="{{$conversa->id_recetor}}">
+  <input type="hidden" id="id_anuncio" name="id_anuncio" value="{{$conversa->id_anuncio}}">
+  @endif
   <button type="submit" class="btn btn-primary mb-2">Enviar</button>
 </form>
  

@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit0379b968195609633f5f4fb22862f57b
+class ComposerStaticInit850d3cb43c9369f1705af4a68fb58e2a
 {
     public static $files = array (
         'ec07570ca5a812141189b1fa81503674' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Assert/Functions.php',
@@ -34,6 +34,7 @@ class ComposerStaticInit0379b968195609633f5f4fb22862f57b
         '8825ede83f2f289127722d4e842cf7e8' => __DIR__ . '/..' . '/symfony/polyfill-intl-grapheme/bootstrap.php',
         '9cdd7b9056abc3081735233ba9dd9c7f' => __DIR__ . '/..' . '/facade/flare-client-php/src/helpers.php',
         '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
+        '3109cb1a231dcd04bee1f9f620d46975' => __DIR__ . '/..' . '/paragonie/sodium_compat/autoload.php',
         'b6b991a57620e2fb6b2f66f03fe9ddc2' => __DIR__ . '/..' . '/symfony/string/Resources/functions.php',
         'ed962a97bd972bc82007176b647d4e36' => __DIR__ . '/..' . '/facade/ignition/src/helpers.php',
     );
@@ -97,6 +98,7 @@ class ComposerStaticInit0379b968195609633f5f4fb22862f57b
         ),
         'P' => 
         array (
+            'Pusher\\' => 7,
             'Psy\\' => 4,
             'Psr\\SimpleCache\\' => 16,
             'Psr\\Log\\' => 8,
@@ -324,6 +326,10 @@ class ComposerStaticInit0379b968195609633f5f4fb22862f57b
         array (
             0 => __DIR__ . '/..' . '/ramsey/collection/src',
         ),
+        'Pusher\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/pusher/pusher-php-server/src',
+        ),
         'Psy\\' => 
         array (
             0 => __DIR__ . '/..' . '/psy/psysh/src',
@@ -529,6 +535,7 @@ class ComposerStaticInit0379b968195609633f5f4fb22862f57b
         'App\\Http\\Controllers\\Auth\\VerificationController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/VerificationController.php',
         'App\\Http\\Controllers\\ConcelhosController' => __DIR__ . '/../..' . '/app/Http/Controllers/ConcelhosController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
+        'App\\Http\\Controllers\\ConversasController' => __DIR__ . '/../..' . '/app/Http/Controllers/ConversasController.php',
         'App\\Http\\Controllers\\DistritosController' => __DIR__ . '/../..' . '/app/Http/Controllers/DistritosController.php',
         'App\\Http\\Controllers\\FrequesiasController' => __DIR__ . '/../..' . '/app/Http/Controllers/FrequesiasController.php',
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
@@ -548,8 +555,9 @@ class ComposerStaticInit0379b968195609633f5f4fb22862f57b
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
         'App\\Models\\anuncios' => __DIR__ . '/../..' . '/app/Models/anuncios.php',
         'App\\Models\\concelhos' => __DIR__ . '/../..' . '/app/Models/concelhos.php',
+        'App\\Models\\conversas' => __DIR__ . '/../..' . '/app/Models/conversas.php',
         'App\\Models\\distritos' => __DIR__ . '/../..' . '/app/Models/distritos.php',
-        'App\\Models\\frequesias' => __DIR__ . '/../..' . '/app/Models/frequesias.php',
+        'App\\Models\\freguesias' => __DIR__ . '/../..' . '/app/Models/freguesias.php',
         'App\\Models\\marcas' => __DIR__ . '/../..' . '/app/Models/marcas.php',
         'App\\Models\\mensagens' => __DIR__ . '/../..' . '/app/Models/mensagens.php',
         'App\\Models\\modelos' => __DIR__ . '/../..' . '/app/Models/modelos.php',
@@ -1880,6 +1888,7 @@ class ComposerStaticInit0379b968195609633f5f4fb22862f57b
         'Illuminate\\Database\\Console\\Seeds\\SeedCommand' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Database/Console/Seeds/SeedCommand.php',
         'Illuminate\\Database\\Console\\Seeds\\SeederMakeCommand' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Database/Console/Seeds/SeederMakeCommand.php',
         'Illuminate\\Database\\Console\\WipeCommand' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Database/Console/WipeCommand.php',
+        'Illuminate\\Database\\DBAL\\TimestampType' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Database/DBAL/TimestampType.php',
         'Illuminate\\Database\\DatabaseManager' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Database/DatabaseManager.php',
         'Illuminate\\Database\\DatabaseServiceProvider' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Database/DatabaseServiceProvider.php',
         'Illuminate\\Database\\DatabaseTransactionRecord' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Database/DatabaseTransactionRecord.php',
@@ -3982,6 +3991,11 @@ class ComposerStaticInit0379b968195609633f5f4fb22862f57b
         'Psy\\VersionUpdater\\GitHubChecker' => __DIR__ . '/..' . '/psy/psysh/src/VersionUpdater/GitHubChecker.php',
         'Psy\\VersionUpdater\\IntervalChecker' => __DIR__ . '/..' . '/psy/psysh/src/VersionUpdater/IntervalChecker.php',
         'Psy\\VersionUpdater\\NoopChecker' => __DIR__ . '/..' . '/psy/psysh/src/VersionUpdater/NoopChecker.php',
+        'Pusher\\Pusher' => __DIR__ . '/..' . '/pusher/pusher-php-server/src/Pusher.php',
+        'Pusher\\PusherCrypto' => __DIR__ . '/..' . '/pusher/pusher-php-server/src/PusherCrypto.php',
+        'Pusher\\PusherException' => __DIR__ . '/..' . '/pusher/pusher-php-server/src/PusherException.php',
+        'Pusher\\PusherInstance' => __DIR__ . '/..' . '/pusher/pusher-php-server/src/PusherInstance.php',
+        'Pusher\\Webhook' => __DIR__ . '/..' . '/pusher/pusher-php-server/src/Webhook.php',
         'Ramsey\\Collection\\AbstractArray' => __DIR__ . '/..' . '/ramsey/collection/src/AbstractArray.php',
         'Ramsey\\Collection\\AbstractCollection' => __DIR__ . '/..' . '/ramsey/collection/src/AbstractCollection.php',
         'Ramsey\\Collection\\AbstractSet' => __DIR__ . '/..' . '/ramsey/collection/src/AbstractSet.php',
@@ -5181,10 +5195,10 @@ class ComposerStaticInit0379b968195609633f5f4fb22862f57b
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit0379b968195609633f5f4fb22862f57b::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit0379b968195609633f5f4fb22862f57b::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInit0379b968195609633f5f4fb22862f57b::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInit0379b968195609633f5f4fb22862f57b::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit850d3cb43c9369f1705af4a68fb58e2a::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit850d3cb43c9369f1705af4a68fb58e2a::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit850d3cb43c9369f1705af4a68fb58e2a::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInit850d3cb43c9369f1705af4a68fb58e2a::$classMap;
 
         }, null, ClassLoader::class);
     }

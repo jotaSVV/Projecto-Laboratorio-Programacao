@@ -333,6 +333,8 @@ class AnunciosController extends Controller
     }
 
 
+    
+
     public static function findMarcas()
     {
 
@@ -358,10 +360,26 @@ class AnunciosController extends Controller
 
     public static function findAnunciosById($id)
     {
-        $anuncios = anuncios::orderBy('created_at', 'desc')->where('id_utilizador', '=', $id)->get();
+        $anuncios = anuncios::orderBy('created_at', 'desc')->where('id_utilizador', '=', $id)->where('disponivel', '=', 1)->get();
         //$anuncios = anuncios::orderBy('id_utilizador', 'asc')->get();
         return ($anuncios);
     }
+
+    public static function findAnunciosArquivados($id)
+    {
+        $anuncios = anuncios::orderBy('created_at', 'desc')->where('id_utilizador', '=', $id)->where('disponivel', '=', 0)->get();
+        //$anuncios = anuncios::orderBy('id_utilizador', 'asc')->get();
+        return ($anuncios);
+    }
+
+    public static function activate(anuncios $anuncio)
+    {
+        $anuncios = anuncios::findOrFail($anuncio->id_anuncio);
+        $anuncios['disponivel'] = 1;
+        $anuncios->save();
+        return redirect('/dashboard');
+    }
+
 
     public static function randomAdds($id)
     {

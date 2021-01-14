@@ -37,7 +37,7 @@
     <nav class="header__menu">
       <ul>
         <li><a href="{{url('/dashboard')}}">Activos</a></li>
-        <li><a href="{{url('/cars')}}">Arquivados</a></li>
+        <li><a href="{{url('/arquivos')}}">Arquivados</a></li>
       </ul>
     </nav>
 
@@ -52,7 +52,7 @@
           <div class="card">
             <div class="card-horizontal" style="display: flex; flex: 1 1 auto;">
               <div class="img-square-wrapper">
-                <img class="" src="/storage/app/anunciosImg/{{$anuncio->id_utilizador}}/{{$anuncio->id_anuncio}}/{{$anuncio->foto_perfil}}" alt="Card image cap">
+                <img class="" src="/storage/app/anunciosImg/{{$anuncio->id_utilizador}}/{{$anuncio->id_anuncio}}/{{$anuncio->foto_perfil}}" style="width:500px;height:345px;" alt="Card image cap">
               </div>
               <div class="card-body">
                 <div class="row">
@@ -60,23 +60,23 @@
                     <h4 class="card-title text-dark">{{ $anuncio->titulo }}</h4>
                   </div>
                   <div class="col-sm-2 text-dark">
-                    Preço: {{ $anuncio->preco }} €
+                    Preço: {{ $anuncio->preco }}€
                   </div>
                 </div>
 
                 <p class="card-text text-dark small">Ativo desde: {{ $anuncio->created_at }} </p>
                 <div class="container">
                   <div class="row">
-                    <div class="col-sm-3 text-dark">
+                    <div class="col-sm-2 text-dark">
 
-                      <a href="/anuncios/show/{{$anuncio->id_anuncio}}" target="_blank" style="color:black;">Visualizar</a>
+                      <a href="/anuncios/show/{{$anuncio->id_anuncio}}" style="color:black;">Visualizar</a>
 
                     </div>
                     <div class="col-sm-2 text-dark">
-                      <a href="/anuncios/edit/{{$anuncio->id_anuncio}}" target="_blank" style="color:black;">Editar</a>
+                      <a href="/anuncios/edit/{{$anuncio->id_anuncio}}" style="color:black;">Editar</a>
                     </div>
                     <div class="col-sm-2 text-dark">
-                    <a href="/anuncios/delete?id={{$anuncio->id_anuncio}}" target="_blank" style="color:black;">Remover</a>
+                    <a href="/anuncios/delete?id={{$anuncio->id_anuncio}}" style="color:black;">Arquivar</a>
                     </div>
                   </div>
                 </div>
@@ -110,24 +110,13 @@
               </div>
             </div>
           </div>
-        </div>
       </div>
-
     </div>
     @empty
     <h5 class="text-center">Ainda não possui anuncios!</h5>
-    <a class="btn btn-primary" href="{{ url('/product') }}" role="button">Criar Anuncio</a>
     @endforelse
   </div>
 </div>
-
-
-
-
-
-
-
-
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
 

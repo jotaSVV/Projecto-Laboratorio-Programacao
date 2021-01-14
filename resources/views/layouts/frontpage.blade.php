@@ -42,34 +42,26 @@
                         <span> ENCONTRE O SEU CARRO DE SONHO</span>
                         <h2>Porsche Cayenne S</h2>
                     </div>
-                    <div class="hero__text__price">
-                        <div class="car-model">Model 2019</div>
-                        <a href="#" class="primary-btn"><img src="resources/theme/img/wheel.png" alt=""> Test Drive</a>
-
-                    </div>
-
                 </div>
             </div>
             <div class="col-lg-5">
                 <div class="hero__tab">
                     <ul class="nav nav-tabs" role="tablist">
                         <li class="nav-item">
-                            <a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab">Alugar Carro</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" data-toggle="tab" href="#tabs-2" role="tab">Comprar Carro</a>
+                            <a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab">Procurar carro</a>
                         </li>
                     </ul>
                     <div class="tab-content">
                         <div class="tab-pane active" id="tabs-1" role="tabpanel">
                             <div class="hero__tab__form">
                                 <h2>O que procura?</h2>
-                                <form>
+                                <form action="/cars?filtrar=filtrar">
                                     <div class="select-list">
                                         <div class="select-list-item">
                                             <p>Ano:</p>
                                             <select>
-                                                <option data-display=" ">Select Year</option>
+                                                <option value=" ">Selecione o ano</option>
+                                                <option value="">2021</option>
                                                 <option value="">2020</option>
                                                 <option value="">2019</option>
                                                 <option value="">2018</option>
@@ -80,19 +72,17 @@
                                         </div>
                                         <div class="select-list-item">
                                             <p>Marca:</p>
-                                            <select>
-                                                <option data-display=" ">Select Brand</option>
-                                                <option value="">Acura</option>
-                                                <option value="">Audi</option>
-                                                <option value="">Bentley</option>
-                                                <option value="">BMW</option>
-                                                <option value="">Bugatti</option>
+                                            <select name="marca">
+                                                <option value="">Selecione a marca</option>
+                                                @foreach(App\Http\Controllers\AnunciosController::findMarcas() as $marca)
+                                                <option value="{{ $marca->id_marca }}"><a href="/car?marca=$marca->id_marca&filter=filter">{{ $marca->nome }}</a></option>
+                                                @endforeach
                                             </select>
                                         </div>
                                         <div class="select-list-item">
                                             <p>Modelo:</p>
                                             <select>
-                                                <option data-display=" ">Select Model</option>
+                                                <option value="">Selecione o modelo</option>
                                                 <option value="">Q3</option>
                                                 <option value="">A4 </option>
                                                 <option value="">AVENTADOR</option>
@@ -100,93 +90,37 @@
                                         </div>
                                         <div class="select-list-item">
                                             <p>Quilómetros</p>
-                                            <select>
-                                                <option data-display=" ">Select Mileage</option>
-                                                <option value="">27</option>
-                                                <option value="">25</option>
-                                                <option value="">15</option>
-                                                <option value="">10</option>
+                                            <select name="quilometragem">
+                                                <option value="">Quilometragem (KM)</option>
+                                                <option value="5000">Até 5.000 KM</option>
+                                                <option value="10000">Até 10.000 KM</option>
+                                                <option value="50000">Até 50.000 KM</option>
+                                                <option value="100000">Até 100.000 KM</option>
+                                                <option value="200000">Até 200.000 KM</option>
+                                                <option value="500000">Até 500.000 KM</option>
+                                                <option value="">Sem limite</option>
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="car-price">
-                                        <p>Intervalo de Preço:</p>
-                                        <div class="price-range-wrap">
-                                            <div class="price-range"></div>
-                                            <div class="range-slider">
-                                                <div class="price-input">
-                                                    <input type="text" id="amount">
-                                                </div>
-                                            </div>
-                                        </div>
+                                    <div>
+                                        <select name="preco">
+                                            <option value="">Preço Máximo</option>
+                                            <option value="2000">Até 2.000€</option>
+                                            <option value="5000">Até 5.000€</option>
+                                            <option value="10000">Até 10.000€</option>
+                                            <option value="20000">Até 20.000€</option>
+                                            <option value="50000">Até 50.000€</option>
+                                            <option value="100000">Até 100.000€</option>
+                                            <option value="200000">Até 200.000€</option>
+                                        </select>
                                     </div>
-                                    <button type="submit" class="site-btn">Searching</button>
+
+
+                                    <button name="filtrar" value="filtrar" type="submit" class="site-btn" style="margin-left: 3.8rem;">Pesquisar</button>
                                 </form>
                             </div>
                         </div>
-                        <div class="tab-pane" id="tabs-2" role="tabpanel">
-                            <div class="hero__tab__form">
-                                <h2>Buy Your Dream Car</h2>
-                                <form>
-                                    <div class="select-list">
-                                        <div class="select-list-item">
-                                            <p>Select Year</p>
-                                            <select>
-                                                <option data-display=" ">Select Year</option>
-                                                <option value="">2020</option>
-                                                <option value="">2019</option>
-                                                <option value="">2018</option>
-                                                <option value="">2017</option>
-                                                <option value="">2016</option>
-                                                <option value="">2015</option>
-                                            </select>
-                                        </div>
-                                        <div class="select-list-item">
-                                            <p>Select Brand</p>
-                                            <select>
-                                                <option data-display=" ">Select Brand</option>
-                                                <option value="">Acura</option>
-                                                <option value="">Audi</option>
-                                                <option value="">Bentley</option>
-                                                <<option value="">BMW</option>
-                                                    <option value="">Bugatti</option>
-                                            </select>
-                                        </div>
-                                        <div class="select-list-item">
-                                            <p>Select Model</p>
-                                            <select>
-                                                <option data-display=" ">Select Model</option>
-                                                <option value="">Q3</option>
-                                                <option value="">A4 </option>
-                                                <option value="">AVENTADOR</option>
-                                            </select>
-                                        </div>
-                                        <div class="select-list-item">
-                                            <p>Select Mileage</p>
-                                            <select>
-                                                <option data-display=" ">Select Mileage</option>
-                                                <option value="">27</option>
-                                                <option value="">25</option>
-                                                <option value="">15</option>
-                                                <option value="">10</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="car-price">
-                                        <p>Price Range:</p>
-                                        <div class="price-range-wrap">
-                                            <div class="price-range"></div>
-                                            <div class="range-slider">
-                                                <div class="price-input">
-                                                    <input type="text" id="amount">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <button type="submit" class="site-btn">Searching</button>
-                                </form>
-                            </div>
-                        </div>
+
                     </div>
                 </div>
             </div>
@@ -214,12 +148,12 @@
                     <div class="car__item__pic__slider owl-carousel">
 
 
-                    <img src="/storage/app/anunciosImg/{{$anuncio->id_utilizador}}/{{$anuncio->id_anuncio}}/{{$anuncio->foto_perfil}}" alt="">
-                    @foreach(App\Http\Controllers\AnunciosController::getImgs("storage/app/anunciosImg/".$anuncio->id_utilizador."/".$anuncio->id_anuncio."/") as $files)
-                    @if(strcmp($files->getFilename(),$anuncio->foto_perfil)!=0)
+                        <img src="/storage/app/anunciosImg/{{$anuncio->id_utilizador}}/{{$anuncio->id_anuncio}}/{{$anuncio->foto_perfil}}" alt="">
+                        @foreach(App\Http\Controllers\AnunciosController::getImgs("storage/app/anunciosImg/".$anuncio->id_utilizador."/".$anuncio->id_anuncio."/") as $files)
+                        @if(strcmp($files->getFilename(),$anuncio->foto_perfil)!=0)
                         <img src="/storage/app/anunciosImg/{{$anuncio->id_utilizador}}/{{$anuncio->id_anuncio}}/{{ $files->getFilename() }}" alt="">
-                    @endif
-                    @endforeach
+                        @endif
+                        @endforeach
 
                     </div>
                     <div class="car__item__text">
@@ -307,12 +241,12 @@
                 <div class="car__item">
                     <div class="car__item__pic__slider owl-carousel">
 
-                    <img src="/storage/app/anunciosImg/{{$anuncio->id_utilizador}}/{{$anuncio->id_anuncio}}/{{$anuncio->foto_perfil}}" alt="">
-                    @foreach(App\Http\Controllers\AnunciosController::getImgs("storage/app/anunciosImg/".$anuncio->id_utilizador."/".$anuncio->id_anuncio."/") as $files)
-                    @if(strcmp($files->getFilename(),$anuncio->foto_perfil)!=0)
+                        <img src="/storage/app/anunciosImg/{{$anuncio->id_utilizador}}/{{$anuncio->id_anuncio}}/{{$anuncio->foto_perfil}}" alt="">
+                        @foreach(App\Http\Controllers\AnunciosController::getImgs("storage/app/anunciosImg/".$anuncio->id_utilizador."/".$anuncio->id_anuncio."/") as $files)
+                        @if(strcmp($files->getFilename(),$anuncio->foto_perfil)!=0)
                         <img src="/storage/app/anunciosImg/{{$anuncio->id_utilizador}}/{{$anuncio->id_anuncio}}/{{ $files->getFilename() }}" alt="">
-                    @endif
-                    @endforeach
+                        @endif
+                        @endforeach
 
                     </div>
                     <div class="car__item__text">

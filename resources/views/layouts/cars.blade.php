@@ -175,11 +175,11 @@
 
                             <div>
                                 <div class="car__filter__btn">
-                                    <button type="submit" class="site-btn" name="remover" value="remover">Remover Filtros</button>
+                                    <button type="submit" class="site-btn" name="remover" value="remover" style="margin-top: 10px;padding-left: 25px;padding-right: 30px;">Remover Filtros</button>
                                 </div>
 
                                 <div class="car__filter__btn">
-                                    <button type="submit" class="site-btn" name="filtrar" value="filtrar"> Filtrar </button>
+                                    <button type="submit" class="site-btn" name="filtrar" value="filtrar" style="margin-top: 10px;padding-left: 60px;padding-right: 60px;"> Filtrar </button>
                                 </div>
                             </div>
 

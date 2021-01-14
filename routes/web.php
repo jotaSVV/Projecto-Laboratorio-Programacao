@@ -3,10 +3,12 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
-
+use Pusher\Laravel\Facades\Pusher;
+use App\Events;
 use App\Http\Controllers\UtilizadoresController;
 use App\Http\Controllers\AnunciosController;
 use App\Http\Controllers\MensagensController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -42,7 +44,7 @@ Route::get('/dashboard/mensagens', function () {
     return view('Utilizadores.utilizadorDashMsg');
 });
 
-Route::get('/mensagens/show/{mensagem}', [MensagensController::class, 'show']);
+Route::get('/mensagens/show/{mensagens}', [MensagensController::class, 'show']);
 
 Route::get('/dashboard/edit/{utilizadores}', [UtilizadoresController::class, 'edit']);
 Route::post('/dashboard/definicoes/update/{utilizadores}', [UtilizadoresController::class, 'update']);
@@ -101,8 +103,41 @@ Route::get('/anuncios/show/{anuncio}', [AnunciosController::class, 'show']);
 Route::get('/anuncios/edit/{anuncio}', [AnunciosController::class, 'edit']);
 Route::post('/anuncios/edit/{anuncio}', [AnunciosController::class, 'update']);
 Route::get('/anuncios/delete', [AnunciosController::class, 'delete']);
+Route::get('/anuncios/activate/{anuncio}', [AnunciosController::class, 'activate']);
 
 
 Route::get('/dashboard', function () {
     return view('Utilizadores.utilizadorDash');
+});
+
+Route::get('/arquivos', function () {
+    return view('Utilizadores.utilizadorDashArquivos');
+});
+
+
+
+
+//// chat
+Route::get('/chat', function () {
+    return view('chat.index');
+});
+
+Route::get('/test', function () {
+    // New Pusher instance with our config data
+    $pusher = new \Pusher(
+        config('broadcasting.connections.pusher.key'),
+        config('broadcasting.connections.pusher.secret'),
+        config('broadcasting.connections.pusher.app_id'),
+        config('broadcasting.connections.pusher.options')
+    );
+
+
+
+    // Your data that you would like to send to Pusher
+    $data = ['text' => 'hello world from Laravel 5.3'];
+
+    // Sending the data to channel: "test_channel" with "my_event" event
+    $pusher->trigger('my-channel', 'my-event', $data);
+
+    return 'ok';
 });
