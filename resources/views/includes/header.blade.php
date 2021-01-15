@@ -77,7 +77,7 @@
                                 <li><a href="{{url('/')}}">Home</a></li>
                                 <li><a href="{{url('/cars')}}">Carros</a></li>
                                 <li><a href="{{url('/about')}}">Sobre nós</a></li>
-                                <li><a href="./contact.html">Contactos</a></li>
+                                
                             </ul>
                         </nav>
                         <div class="header__nav__widget">

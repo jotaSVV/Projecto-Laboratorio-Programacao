@@ -192,7 +192,7 @@
                 <div class="section-title">
                     <span>Os Nossos Serviços</span>
                     <h2>O que oferecemos?</h2>
-                    <p>Uma grande disponiveilidade de oferta preços mais competitivos do mercado</p>
+                    <p>Os preços mais competitivos no mercado online</p>
                 </div>
             </div>
         </div>
@@ -200,9 +200,9 @@
 
             <div class="col-lg-3 col-md-6 col-sm-6">
                 <div class="services__item">
-                    <img src="resources/theme/img/services/services-1.png" alt="">
-                    <h5>Aluguer de Carros</h5>
-                    <p>Encontra o carro que desea alugar ao melhor preço.</p>
+                    <img src="resources/theme/img/services/services-3.png" alt="">
+                    <h5>Confiança</h5>
+                    <p>Compre com confiança!</p>
                     <a href="/cars"><i class="fa fa-long-arrow-right"></i></a>
                 </div>
             </div>
@@ -210,7 +210,7 @@
                 <div class="services__item">
                     <img src="resources/theme/img/services/services-2.png" alt="">
                     <h5>Venda de Carros</h5>
-                    <p>Compra o carro teu carro de sonho ao preço que nunca sonhaste pagar </p>
+                    <p>Compre o seu carro teu carro de sonho ao preço que nunca sonhou pagar </p>
                     <a href="/cars"><i class="fa fa-long-arrow-right"></i></a>
                 </div>
             </div>
