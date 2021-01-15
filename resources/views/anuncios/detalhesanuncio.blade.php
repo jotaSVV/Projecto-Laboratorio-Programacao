@@ -3,6 +3,7 @@
 @section('content')
 
 <!-- Car Details Section Begin -->
+
 <section class="car-details spad">
     <div class="container">
         <div class="row">
@@ -48,7 +49,7 @@
                                             <label style="padding-left: 15px;"> {{$anuncio->descricao}} </label>
                                         </div>
                                     </div>
-
+                                    @if( Auth::user()->id != $anuncio->id_utilizador)
                                     <form action="{{ ('/msg') }}" method="POST">
                                         @csrf
                                         <div class="form-group">
@@ -60,6 +61,15 @@
                                         <input type="hidden" id="id_anuncio" name="id_anuncio" value="{{$anuncio->id_anuncio}}">
                                         <button type="submit" class="btn btn-primary mb-2" style="margin-left: 15px;">Enviar</button>
                                     </form>
+                                    @endif
+                                     @if( Auth::user()->id != $anuncio->id_utilizador)
+                                    <form action="{{ ('/fav') }}" method="POST">
+                                        @csrf
+                                        <input type="hidden" id="id_utilizador" name="id_utilizador" value="{{ Auth::user()->id}}">
+                                        <input type="hidden" id="id_anuncio" name="id_anuncio" value="{{$anuncio->id_anuncio}}">
+                                        <button type="submit" class="btn btn-primary mb-2" style="margin-left: 15px;">Adicionar Favorito</button>
+                                    </form>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -174,6 +184,7 @@
                                 Localização: </h6>
                             @foreach(App\Http\Controllers\FrequesiasController::findFregById($utilizador->id_freguesia) as $freguesia)
                             <li>{{$freguesia->nome}}, concelho de {{$freguesia->concelho}} </li>
+                            
                             @endforeach
 
                         </div>
@@ -208,6 +219,147 @@
 
     </div>
 
+
+
+ <div class="container" style="padding-bottom: 50px;">
+<h3> Medidor de Preço </h3>
+
+@foreach(App\Http\Controllers\AnunciosController::grafico_preco($anuncio) as $media)
+    @foreach(App\Http\Controllers\AnunciosController::max_preco($anuncio) as $max)
+        @foreach(App\Http\Controllers\AnunciosController::min_preco($anuncio) as $min)
+            @foreach(App\Http\Controllers\AnunciosController::total_preco($anuncio) as $total)
+  
+    <canvas id="myCanvas2" width="1140" height="100"
+style="border:0px solid #d3d3d3 ">
+
+</canvas>
+
+
+<script>
+
+var canvas = document.getElementById("myCanvas2");
+var ctx = canvas.getContext("2d");
+ var media = {!! json_encode($media, JSON_HEX_TAG) !!};
+ var preco = {!! json_encode($anuncio->preco, JSON_HEX_TAG) !!};
+ var max = {!! json_encode($max, JSON_HEX_TAG) !!};
+ var min = {!! json_encode($min, JSON_HEX_TAG) !!};
+ var total = {!! json_encode($total, JSON_HEX_TAG) !!};
+ var calc = (preco*100)/total ;
+var medida = 1141 * (calc*0.01);
+console.log(medida);
+ if(preco == max || medida > 990){
+    ctx.fillStyle = "white";
+    
+ctx.fillRect(0, 0, canvas.width, canvas.height);
+ctx.moveTo(100,0);
+ctx.beginPath();
+ctx.rect(990, 50, 150, 50);
+ctx.stroke();
+    if(preco > media){
+ctx.font = "10px Arial";
+ctx.strokeText("O veiculo está acima da", 990, 60); 
+ctx.strokeText("média de preços", 990, 70); 
+ctx.strokeText(Number(media).toFixed(2) + "€", 990, 80); 
+    }
+  
+
+
+ }else if(preco == min || medida < 150){
+      ctx.fillStyle = "white";
+ctx.fillRect(0, 0, canvas.width, canvas.height);
+ctx.moveTo(100,0);
+ctx.beginPath();
+ctx.rect(0, 50, 150, 50);
+ctx.stroke();
+if(preco < media){
+ctx.font = "10px Arial";
+ctx.strokeText("O veiculo está abaixo da", 0, 60); 
+ctx.strokeText("média de preços", 0, 70); 
+ctx.strokeText(Number(media).toFixed(2) + "€", 0, 80); 
+    }
+     
+ }else  {
+ctx.fillStyle = "white";
+ctx.fillRect(0, 0, canvas.width, canvas.height);
+ctx.moveTo(100,0);
+ctx.beginPath();
+ctx.rect(medida, 50, 150, 50);
+ctx.stroke();
+
+ctx.font = "10px Arial";
+ctx.strokeText("O veiculo está dentro da", medida, 60); 
+ctx.strokeText("média de preços", medida, 70); 
+ctx.strokeText(Number(media).toFixed(2) + "€", medida, 80); 
+    
+ }
+
+</script>
+
+<canvas id="myCanvas" width="1140" height="100"
+style="border:0px solid #d3d3d3 ">
+
+</canvas>
+
+
+<script>
+
+var canvas = document.getElementById("myCanvas");
+var ctx = canvas.getContext("2d");
+
+ var media = {!! json_encode($media, JSON_HEX_TAG) !!};
+ var preco = {!! json_encode($anuncio->preco, JSON_HEX_TAG) !!};
+ var max = {!! json_encode($max, JSON_HEX_TAG) !!};
+ var min = {!! json_encode($min, JSON_HEX_TAG) !!};
+ var total = {!! json_encode($total, JSON_HEX_TAG) !!};
+ 
+ if(preco == max){
+     ctx.fillStyle = "white";
+ctx.fillRect(0, 0, canvas.width, canvas.height);
+ctx.moveTo(1140,0);
+ctx.lineTo(1140,1140);
+ctx.stroke();
+ }else if(preco == min){
+     
+     ctx.fillStyle = "white";
+ctx.fillRect(0, 0, canvas.width, canvas.height);
+ctx.moveTo(0,0);
+ctx.lineTo(0,100);
+ctx.stroke();
+ }else {
+var calc = (preco*100)/total ;
+var medida = 1141 * (calc*0.01);
+ctx.fillStyle = "white";
+ctx.fillRect(0, 0, canvas.width, canvas.height);
+ctx.moveTo(medida,0);
+ctx.lineTo(medida,medida);
+ctx.stroke();
+ }
+
+
+</script>
+
+
+<div class="progress ">
+  <div class="progress-bar bg-success"  role="progressbar" style="width: 34%" aria-valuenow="33" aria-valuemin="0" aria-valuemax="100"></div>
+  <div class="progress-bar bg-warning" role="progressbar" style="width: 33%" aria-valuenow="33" aria-valuemin="0" aria-valuemax="100"></div>
+  <div class="progress-bar bg-danger" role="progressbar" style="width: 33%" aria-valuenow="33" aria-valuemin="0" aria-valuemax="100"></div>
+</div>
+
+
+
+
+
+@endforeach
+@endforeach
+@endforeach
+@endforeach
+</div>
+
+
+
+
+
+
     <div class="container-fluid">
         <div class="row" style="padding-left: 47px;">
             @foreach(App\Http\Controllers\AnunciosController::randomAdds($anuncio->id_anuncio) as $anuncio)
@@ -239,6 +391,7 @@
     </div>
 
 
+   
 
 
 </section>

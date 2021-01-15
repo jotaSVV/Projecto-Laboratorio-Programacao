@@ -13,6 +13,7 @@ class CreateMensagensTable extends Migration
      */
     public function up()
     {
+        if ( !Schema::hasTable('mensagens') ) {
         Schema::create('mensagens', function (Blueprint $table) {
             $table->increments('id_mensagem')->primary;
             $table->integer('id_emissor')->unsigned();
@@ -29,6 +30,7 @@ class CreateMensagensTable extends Migration
             $table->tinyinteger('visto')->nullable(false);
             $table->timestamps();
         });
+    }
     }
 
     /**

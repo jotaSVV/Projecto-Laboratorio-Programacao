@@ -8,6 +8,7 @@ use App\Events;
 use App\Http\Controllers\UtilizadoresController;
 use App\Http\Controllers\AnunciosController;
 use App\Http\Controllers\MensagensController;
+use App\Http\Controllers\FavoritosController;
 
 
 /*
@@ -98,6 +99,7 @@ Route::get('/product', function () {
 Route::post('/anuncios', [AnunciosController::class, 'store']);
 
 Route::post('/msg', [MensagensController::class, 'store']);
+Route::post('/fav', [FavoritosController::class, 'store']);
 
 Route::get('/anuncios/show/{anuncio}', [AnunciosController::class, 'show']);
 Route::get('/anuncios/edit/{anuncio}', [AnunciosController::class, 'edit']);
@@ -105,9 +107,13 @@ Route::post('/anuncios/edit/{anuncio}', [AnunciosController::class, 'update']);
 Route::get('/anuncios/delete', [AnunciosController::class, 'delete']);
 Route::get('/anuncios/activate/{anuncio}', [AnunciosController::class, 'activate']);
 
+Route::get('/favoritos/remover', [FavoritosController::class, 'remove']);
 
 Route::get('/dashboard', function () {
     return view('Utilizadores.utilizadorDash');
+});
+Route::get('/dashboard/favoritos', function () {
+    return view('Utilizadores.utilizadorFavoritos');
 });
 
 Route::get('/arquivos', function () {

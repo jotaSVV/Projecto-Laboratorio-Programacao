@@ -16,6 +16,7 @@
         <nav class="header__menu">
           <ul>
             <li><a href="{{url('/dashboard')}}">Anúncios</a></li>
+            <li><a href="{{url('/dashboard/favoritos')}}">Favoritos</a></li>
             <li><a href="{{url('/dashboard/mensagens')}}">Mensagens</a></li>
             <li><a href="{{url('/about')}}">Pagamentos</a></li>
             <li><a href="{{url('/dashboard/definicoes')}}">Definições</a></li>
@@ -90,10 +91,6 @@
 
                   </div>
                   <div class="col-sm-2 text-dark">
-                    <i class="fa fa-eye" aria-hidden="true"></i>
-                    Views
-                  </div>
-                  <div class="col-sm-2 text-dark">
                     <i class="fa fa-envelope" aria-hidden="true"></i>
                     @if(App\Http\Controllers\MensagensController::countConversas($anuncio->id_anuncio) > 0 )
                     {{App\Http\Controllers\MensagensController::countConversas($anuncio->id_anuncio)}} Mensagens
@@ -104,7 +101,12 @@
                   </div>
                   <div class="col-sm-2 text-dark">
                     <i class="fa fa-heart" aria-hidden="true"></i>
-                    Favs
+                    @if(App\Http\Controllers\FavoritosController::countFavoritos($anuncio->id_anuncio) > 0 )
+                    {{App\Http\Controllers\FavoritosController::countFavoritos($anuncio->id_anuncio)}} Favoritos
+                    @else
+                    {{'0 Favoritos'}}
+                    @endif
+                    
                   </div>
                 </div>
               </div>
