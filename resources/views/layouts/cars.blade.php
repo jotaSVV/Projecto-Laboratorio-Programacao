@@ -70,7 +70,7 @@
 
 
 
-                        <!--
+                            <!--
                             <select class="form-select" name="modelo" id="modelo_id" style="moverflow-x: hidden">
                                 <option value="">Modelo</option>
                                 @foreach(App\Http\Controllers\AnunciosController::findModelos() as $modelo)
@@ -234,6 +234,7 @@
 
                 <div class="row">
                     @foreach($anuncios as $anuncio)
+                    @if($anuncio->disponivel == 1)
                     <div class="col-lg-4 col-md-4">
                         <div class="car__item">
                             <div class="car__item__pic__slider owl-carousel">
@@ -267,6 +268,7 @@
                             </div>
                         </div>
                     </div>
+                    @endif
                     @endforeach
                 </div>
 

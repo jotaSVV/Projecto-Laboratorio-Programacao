@@ -11,12 +11,12 @@
                 <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
                     <div class="carousel-inner">
                         <div class="carousel-item active">
-                            <img class="d-block w-100" src="/storage/app/anunciosImg/{{$anuncio->id_utilizador}}/{{$anuncio->id_anuncio}}/{{$anuncio->foto_perfil}}" alt="First slide">
+                            <img class="d-block w-100" src="/storage/app/anunciosImg/{{$anuncio->id_utilizador}}/{{$anuncio->id_anuncio}}/{{$anuncio->foto_perfil}}" alt="First slide" style="width:847px;height:535px;">
                         </div>
                         @foreach(App\Http\Controllers\AnunciosController::getImgs("storage/app/anunciosImg/".$anuncio->id_utilizador."/".$anuncio->id_anuncio."/") as $files)
                         @if(strcmp($files->getFilename(),$anuncio->foto_perfil)!=0)
                         <div class="carousel-item">
-                            <img class="d-block w-100" src="/storage/app/anunciosImg/{{$anuncio->id_utilizador}}/{{$anuncio->id_anuncio}}/{{ $files->getFilename() }}">
+                            <img class="d-block w-100" src="/storage/app/anunciosImg/{{$anuncio->id_utilizador}}/{{$anuncio->id_anuncio}}/{{ $files->getFilename() }}" style="width:847px;height:535px;">
                         </div>
                         @endif
                         @endforeach
@@ -61,7 +61,10 @@
                                         <input type="hidden" id="id_anuncio" name="id_anuncio" value="{{$anuncio->id_anuncio}}">
                                         <button type="submit" class="btn btn-primary mb-2" style="margin-left: 15px;">Enviar</button>
                                     </form>
+                                    @else
+                                    
                                     @endif
+                                    
                                      @if( Auth::user()->id != $anuncio->id_utilizador)
                                     <form action="{{ ('/fav') }}" method="POST">
                                         @csrf
@@ -239,33 +242,32 @@ style="border:0px solid #d3d3d3 ">
 
 var canvas = document.getElementById("myCanvas2");
 var ctx = canvas.getContext("2d");
- var media = {!! json_encode($media, JSON_HEX_TAG) !!};
- var preco = {!! json_encode($anuncio->preco, JSON_HEX_TAG) !!};
- var max = {!! json_encode($max, JSON_HEX_TAG) !!};
- var min = {!! json_encode($min, JSON_HEX_TAG) !!};
- var total = {!! json_encode($total, JSON_HEX_TAG) !!};
- var calc = (preco*100)/total ;
+var media = {!! json_encode($media, JSON_HEX_TAG) !!};
+var preco = {!! json_encode($anuncio->preco, JSON_HEX_TAG) !!};
+var max = {!! json_encode($max, JSON_HEX_TAG) !!};
+var min = {!! json_encode($min, JSON_HEX_TAG) !!};
+var total = {!! json_encode($total, JSON_HEX_TAG) !!};
+var calc = (preco*100)/total ;
 var medida = 1141 * (calc*0.01);
 console.log(medida);
- if(preco == max || medida > 990){
+if(preco == max || medida > 990){
     ctx.fillStyle = "white";
-    
-ctx.fillRect(0, 0, canvas.width, canvas.height);
-ctx.moveTo(100,0);
-ctx.beginPath();
-ctx.rect(990, 50, 150, 50);
-ctx.stroke();
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.moveTo(100,0);
+    ctx.beginPath();
+    ctx.rect(990, 50, 150, 50);
+    ctx.stroke();
     if(preco > media){
-ctx.font = "10px Arial";
-ctx.strokeText("O veiculo está acima da", 990, 60); 
-ctx.strokeText("média de preços", 990, 70); 
-ctx.strokeText(Number(media).toFixed(2) + "€", 990, 80); 
+        ctx.font = "10px Arial";
+        ctx.strokeText("O veiculo está acima da", 990, 60); 
+        ctx.strokeText("média de preços", 990, 70); 
+        ctx.strokeText(Number(media).toFixed(2) + "€", 990, 80); 
     }
-  
 
 
- }else if(preco == min || medida < 150){
-      ctx.fillStyle = "white";
+
+}else if(preco == min || medida < 150){
+ctx.fillStyle = "white";
 ctx.fillRect(0, 0, canvas.width, canvas.height);
 ctx.moveTo(100,0);
 ctx.beginPath();
@@ -277,8 +279,8 @@ ctx.strokeText("O veiculo está abaixo da", 0, 60);
 ctx.strokeText("média de preços", 0, 70); 
 ctx.strokeText(Number(media).toFixed(2) + "€", 0, 80); 
     }
-     
- }else  {
+
+}else  {
 ctx.fillStyle = "white";
 ctx.fillRect(0, 0, canvas.width, canvas.height);
 ctx.moveTo(100,0);
@@ -291,7 +293,7 @@ ctx.strokeText("O veiculo está dentro da", medida, 60);
 ctx.strokeText("média de preços", medida, 70); 
 ctx.strokeText(Number(media).toFixed(2) + "€", medida, 80); 
     
- }
+}
 
 </script>
 
@@ -306,43 +308,43 @@ style="border:0px solid #d3d3d3 ">
 var canvas = document.getElementById("myCanvas");
 var ctx = canvas.getContext("2d");
 
- var media = {!! json_encode($media, JSON_HEX_TAG) !!};
- var preco = {!! json_encode($anuncio->preco, JSON_HEX_TAG) !!};
- var max = {!! json_encode($max, JSON_HEX_TAG) !!};
- var min = {!! json_encode($min, JSON_HEX_TAG) !!};
- var total = {!! json_encode($total, JSON_HEX_TAG) !!};
- 
- if(preco == max){
-     ctx.fillStyle = "white";
-ctx.fillRect(0, 0, canvas.width, canvas.height);
-ctx.moveTo(1140,0);
-ctx.lineTo(1140,1140);
-ctx.stroke();
- }else if(preco == min){
-     
-     ctx.fillStyle = "white";
-ctx.fillRect(0, 0, canvas.width, canvas.height);
-ctx.moveTo(0,0);
-ctx.lineTo(0,100);
-ctx.stroke();
- }else {
-var calc = (preco*100)/total ;
-var medida = 1141 * (calc*0.01);
-ctx.fillStyle = "white";
-ctx.fillRect(0, 0, canvas.width, canvas.height);
-ctx.moveTo(medida,0);
-ctx.lineTo(medida,medida);
-ctx.stroke();
- }
+var media = {!! json_encode($media, JSON_HEX_TAG) !!};
+var preco = {!! json_encode($anuncio->preco, JSON_HEX_TAG) !!};
+var max = {!! json_encode($max, JSON_HEX_TAG) !!};
+var min = {!! json_encode($min, JSON_HEX_TAG) !!};
+var total = {!! json_encode($total, JSON_HEX_TAG) !!};
+
+if(preco == max){
+    ctx.fillStyle = "white";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.moveTo(1140,0);
+    ctx.lineTo(1140,1140);
+    ctx.stroke();
+}else if(preco == min){
+
+    ctx.fillStyle = "white";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.moveTo(0,0);
+    ctx.lineTo(0,100);
+    ctx.stroke();
+}else {
+    var calc = (preco*100)/total ;
+    var medida = 1141 * (calc*0.01);
+    ctx.fillStyle = "white";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.moveTo(medida,0);
+    ctx.lineTo(medida,medida);
+    ctx.stroke();
+}
 
 
 </script>
 
 
 <div class="progress ">
-  <div class="progress-bar bg-success"  role="progressbar" style="width: 34%" aria-valuenow="33" aria-valuemin="0" aria-valuemax="100"></div>
-  <div class="progress-bar bg-warning" role="progressbar" style="width: 33%" aria-valuenow="33" aria-valuemin="0" aria-valuemax="100"></div>
-  <div class="progress-bar bg-danger" role="progressbar" style="width: 33%" aria-valuenow="33" aria-valuemin="0" aria-valuemax="100"></div>
+<div class="progress-bar bg-success"  role="progressbar" style="width: 34%" aria-valuenow="33" aria-valuemin="0" aria-valuemax="100"></div>
+<div class="progress-bar bg-warning" role="progressbar" style="width: 33%" aria-valuenow="33" aria-valuemin="0" aria-valuemax="100"></div>
+<div class="progress-bar bg-danger" role="progressbar" style="width: 33%" aria-valuenow="33" aria-valuemin="0" aria-valuemax="100"></div>
 </div>
 
 
@@ -389,11 +391,6 @@ ctx.stroke();
 
         </div>
     </div>
-
-
-   
-
-
 </section>
 <!-- Car Details Section End -->
 

@@ -58,8 +58,13 @@
                                         <i class="fas fa-chart-pie mr-1"></i>
                                         Pie Chart Example
                                     </div>
+                                    @foreach(App\Http\Controllers\AnunciosController::returnMarcaId() as $id)
+                                        @foreach(App\Http\Controllers\AnunciosController::countMarcas($id[0][0]) as $marcas)
+                                        @endforeach
+                                    @endforeach
                                     <div class="card-body"><canvas id="myPieChart" width="100%" height="50"></canvas></div>
                                     <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+                                    
                                 </div>
                             </div>
                         </div>
@@ -85,6 +90,23 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
         <script src="/resources/admintheme/assets/demo/chart-area-demo.js"></script>
         <script src="/resources/admintheme/assets/demo/chart-bar-demo.js"></script>
-        <script src="/resources/admintheme/assets/demo/chart-pie-demo.js"></script>
+        <script>
+                                        // Set new default font family and font color to mimic Bootstrap's default styling
+                                        Chart.defaults.global.defaultFontFamily = '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
+                                        Chart.defaults.global.defaultFontColor = '#292b2c';
+
+                                        // Pie Chart Example
+                                        var ctx = document.getElementById("myPieChart");
+                                        var myPieChart = new Chart(ctx, {
+                                            type: 'pie',
+                                            data: {
+                                                    labels: ["Blue", "Red", "Yellow", "Green"],
+                                                    datasets: [{
+                                                                    data: [12.21, 15.58, 11.25, 8.32],
+                                                                    backgroundColor: ['#007bff', '#dc3545', '#ffc107', '#28a745'],
+                                                    }],
+                                            },
+                                        });
+        </script>
     </body>
 </html>

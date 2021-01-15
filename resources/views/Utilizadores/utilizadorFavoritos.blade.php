@@ -70,7 +70,6 @@
                       <a href="/favoritos/remover?id_anuncio={{$anuncio->id_anuncio}}" style="color:black;">Remover Favorito</a>
 
                     </div>
-                   
                   </div>
                 </div>
 
@@ -90,9 +89,9 @@
             @endforeach
           </div>
       </div>
+      <h5 class="text-center">Não possui favoritos!</h5>
     </div>
     @empty
-    <h5 class="text-center">Não possui favoritos!</h5>
     @endforelse
   </div>
 </div>

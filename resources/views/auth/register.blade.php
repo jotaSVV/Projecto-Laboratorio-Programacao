@@ -15,7 +15,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
+            <div class="card" style="margin-bottom: 16px;">
                 <div class="card-header">{{ __('Register') }}</div>
 
                 <div class="card-body">
@@ -116,27 +116,26 @@
                                 @enderror
                             </div>
                         </div>
-                         <div class="form-group row">
+                        <div class="form-group row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Tipo de Vendedor') }}</label>
 
-                    <div class="col-md-6">
+                            <div class="col-md-6">
 
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input " type="radio" name="tipovendedor" id="inlineRadi1" value="Particular">
+                                    <input class="form-check-input " type="radio" name="tipovendedor" id="inlineRadi1" value="particular">
                                     <label class="form-check-label" for="inlineRadi1">Particular</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="tipovendedor" id="inlineRadi2" value="Profissional">
+                                    <input class="form-check-input" type="radio" name="tipovendedor" id="inlineRadi2" value="profissional">
                                     <label class="form-check-label" for="inlineRadi2">Profissional</label>
                                 </div>
-                                
+
                                 @error('tipovendedor')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
                                 @enderror
                             </div>
-                        </div>
                         </div>
 
 
@@ -162,37 +161,45 @@
                             </div>
                         </div>
 
-                        <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Distrito') }}</label>
-                        <div class="col-xs-6">
-                            <select class="form-control" name="distrito" id="distrito">
-                                @foreach(App\Http\Controllers\Auth\RegisterController::findDistritos() as $distrito)
-                                <option value="{{ $distrito->nome }}">{{ $distrito->nome }}</option>
-                                @endforeach
-                            </select>
+                        <div class="form-group row">
+                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Distrito') }}</label>
+                            <div class="col-md-6">
+                                <select class="form-control" name="distrito" id="distrito">
+                                    @foreach(App\Http\Controllers\Auth\RegisterController::findDistritos() as $distrito)
+                                    <option value="{{ $distrito->nome }}">{{ $distrito->nome }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
                         </div>
 
 
-                        <div class="col-xs-6">
+
+                        <div class="form-group row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Concelho') }}</label>
-                            <select class="form-control" name="concelho" id="concelho">
-                                @foreach(App\Http\Controllers\Auth\RegisterController::findConcelhos() as $concelho)
-                                <option value="{{$concelho->distrito}}->{{$concelho->nome}}">{{ $concelho->nome }}</option>
-                                @endforeach
-                                <option>
-                            </select>
+
+                            <div class="col-md-6">
+                                <select class="form-control" name="concelho" id="concelho">
+                                    @foreach(App\Http\Controllers\Auth\RegisterController::findConcelhos() as $concelho)
+                                    <option value="{{$concelho->distrito}}->{{$concelho->nome}}">{{ $concelho->nome }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
                         </div>
 
 
-                        <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Freguesia') }}</label>
-                        <div class="col-xs-6">
 
-                            <select class="form-control" name="id_freguesia" id="freguesia">
-                                @foreach(App\Http\Controllers\Auth\RegisterController::findFreguesias() as $freguesias)
-                                <option value="{{$freguesias->concelho}}->{{$freguesias->id_freguesia}}">{{ $freguesias->nome }}</option>
-                                @endforeach
-                                <option>
-                            </select>
+                        <div class="form-group row">
+
+                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Freguesia') }}</label>
+                            <div class="col-md-6">
+                                <select class="form-control" name="id_freguesia" id="freguesia">
+                                    @foreach(App\Http\Controllers\Auth\RegisterController::findFreguesias() as $freguesias)
+                                    <option value="{{$freguesias->concelho}}->{{$freguesias->id_freguesia}}">{{ $freguesias->nome }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
                         </div>
+
                         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
                         <script>
                             src = "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"
@@ -285,8 +292,8 @@
                                 </button>
                             </div>
                         </div>
-                    </form>
                 </div>
+                </form>
             </div>
         </div>
     </div>

@@ -101,11 +101,14 @@ class UtilizadoresController extends Controller
             'id_freguesia' => ['required', 'integer', 'max:3092'],
             'foto_perfil' => ['image', 'mimes:jpeg,png,jpg,gif,svg', 'max:10240'],
         ]);
+        if($request->hasFile('foto_perfil')) {
+
         $files = Storage::allFiles('utilizadoresImg/'. $utilizadores['id']);
         Storage::delete($files);
         $name = Storage::putFile('utilizadoresImg/'. $utilizadores['id'] , $request['foto_perfil']);
         
         $utilizadores['foto_perfil'] = $name;
+        }
         $utilizadores->update($request->only(['nome', 'apelido', 'data_nascimento', 'sexo', 'tipovendedor', 'id_freguesia']));
 
         return redirect('/dashboard')->with('success', 'Dados alterados com sucesso!');;
@@ -196,5 +199,11 @@ class UtilizadoresController extends Controller
         $utilizador = DB::table('utilizadores')->where('id', '=', $id)->get();
         //$anuncios = anuncios::orderBy('id_utilizador', 'asc')->get();
         return ($utilizador);
+    }
+
+
+    public static function listUtilizadores() {
+        $users = utilizadores::all();
+        return ($users);
     }
 }

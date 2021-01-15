@@ -22,6 +22,60 @@ use App\Http\Controllers\FavoritosController;
 |
 */
 
+Route::group(['middleware' => 'auth'], function () {
+    // User needs to be authenticated to enter here.
+    Route::get('/dashboard/definicoes', function () {
+        return view('Utilizadores.utilizadorDashDef');
+    });
+
+    Route::get('/dashboard/mensagens', function () {
+        return view('Utilizadores.utilizadorDashMsg');
+    });
+
+    Route::get('/mensagens/show/{mensagens}', [MensagensController::class, 'show']);
+
+    Route::get('/dashboard/edit/{utilizadores}', [UtilizadoresController::class, 'edit']);
+
+    Route::get('/product', function () {
+        return view('layouts.novoanuncio');
+    });
+
+    Route::get('/anuncios/edit/{anuncio}', [AnunciosController::class, 'edit']);
+
+    Route::get('/anuncios/delete', [AnunciosController::class, 'delete']);
+
+    Route::get('/anuncios/activate/{anuncio}', [AnunciosController::class, 'activate']);
+
+    Route::post('/fav', [FavoritosController::class, 'store']);
+
+    Route::get('/favoritos/remover', [FavoritosController::class, 'remove']);
+
+    Route::get('/dashboard', function () {
+        return view('Utilizadores.utilizadorDash');
+    });
+
+    Route::get('/dashboard/favoritos', function () {
+        return view('Utilizadores.utilizadorFavoritos');
+    });
+
+    Route::get('/arquivos', function () {
+        return view('Utilizadores.utilizadorDashArquivos');
+    });
+
+    Route::post('/dashboard/definicoes/update/{utilizadores}', [UtilizadoresController::class, 'update']);
+    Route::post('/dashboard/definicoes/updateemail/{utilizadores}', [UtilizadoresController::class, 'updateemail']);
+    Route::post('/dashboard/definicoes/updatepassword/{utilizadores}', [UtilizadoresController::class, 'updatepassword']);
+    Route::post('/msg', [MensagensController::class, 'store']);
+    Route::post('/anuncios/edit/{anuncio}', [AnunciosController::class, 'update']);
+    Route::get('/chat', function () {
+        return view('chat.index');
+    });
+    
+    Route::get('/anuncios/show/{anuncio}', [AnunciosController::class, 'show']);
+
+
+});
+
 Route::get('/', [AnunciosController::class, 'anuncios_home']);
 
 Route::get('/about', function () {
@@ -38,30 +92,15 @@ Route::get('/cars', [AnunciosController::class, 'anuncios']);
 
 
 
-Route::get('/dashboard/definicoes', function () {
-    return view('Utilizadores.utilizadorDashDef');
-});
-Route::get('/dashboard/mensagens', function () {
-    return view('Utilizadores.utilizadorDashMsg');
-});
-
-Route::get('/mensagens/show/{mensagens}', [MensagensController::class, 'show']);
-
-Route::get('/dashboard/edit/{utilizadores}', [UtilizadoresController::class, 'edit']);
-Route::post('/dashboard/definicoes/update/{utilizadores}', [UtilizadoresController::class, 'update']);
-Route::post('/dashboard/definicoes/updateemail/{utilizadores}', [UtilizadoresController::class, 'updateemail']);
-Route::post('/dashboard/definicoes/updatepassword/{utilizadores}', [UtilizadoresController::class, 'updatepassword']);
 
 
 
-Route::get('/header', function () {
-    return view('includes.header');
-});
 
 
-Route::get('/footer', function () {
-    return view('includes.footer');
-});
+
+
+
+
 
 Auth::routes();
 
@@ -75,14 +114,6 @@ Route::get('/admin/login', function () {
     return view('admin.login');
 });
 
-Route::get('/admin/layout-static', function () {
-    return view('admin.layout-static');
-});
-
-Route::get('/admin/layout-sidenav-light', function () {
-    return view('admin.layout-sidenav-light');
-});
-
 Route::get('/admin/charts', function () {
     return view('admin.charts');
 });
@@ -92,41 +123,19 @@ Route::get('/admin/tables', function () {
 });
 
 
-Route::get('/product', function () {
-    return view('layouts.novoanuncio');
-});
+
 
 Route::post('/anuncios', [AnunciosController::class, 'store']);
 
-Route::post('/msg', [MensagensController::class, 'store']);
-Route::post('/fav', [FavoritosController::class, 'store']);
 
-Route::get('/anuncios/show/{anuncio}', [AnunciosController::class, 'show']);
-Route::get('/anuncios/edit/{anuncio}', [AnunciosController::class, 'edit']);
-Route::post('/anuncios/edit/{anuncio}', [AnunciosController::class, 'update']);
-Route::get('/anuncios/delete', [AnunciosController::class, 'delete']);
-Route::get('/anuncios/activate/{anuncio}', [AnunciosController::class, 'activate']);
 
-Route::get('/favoritos/remover', [FavoritosController::class, 'remove']);
 
-Route::get('/dashboard', function () {
-    return view('Utilizadores.utilizadorDash');
-});
-Route::get('/dashboard/favoritos', function () {
-    return view('Utilizadores.utilizadorFavoritos');
-});
 
-Route::get('/arquivos', function () {
-    return view('Utilizadores.utilizadorDashArquivos');
-});
 
 
 
 
 //// chat
-Route::get('/chat', function () {
-    return view('chat.index');
-});
 
 Route::get('/test', function () {
     // New Pusher instance with our config data

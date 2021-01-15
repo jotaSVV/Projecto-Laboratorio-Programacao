@@ -648,4 +648,26 @@ class AnunciosController extends Controller
             
             return $array;
     }
+
+    public static function returnMarcaId()
+    {
+
+        $marcas = DB::table('anuncios')->groupBy('id_marca')->having(DB::raw('count(id_marca)'), '>', 0)->get('id_marca', 'count');
+        $array = array($marcas);
+        //dd($array[0][0]);
+        return ($array);
+        //dd($array);
+    }
+
+    public static function countMarcas($id)
+    {
+        //dd($id[0][0]['id_marca']);
+        $count= DB::table('anuncios')->select()->where('id_marca','=',$id)->count();
+        return ($count);
+    }
+
+    public static function listAnuncios(){
+        $anuncios=anuncios::all();
+        return($anuncios);
+    }
 }

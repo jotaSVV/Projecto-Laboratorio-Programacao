@@ -36,7 +36,7 @@
 <div class="container-fluid">
   <div class="p-3 mb-2 bg-secondary text-white">
     <nav class="header__menu">
-      <ul>
+      <ul style="padding-left: 15px;padding-bottom: 10px;">
         <li><a href="{{url('/dashboard')}}">Activos</a></li>
         <li><a href="{{url('/arquivos')}}">Arquivados</a></li>
       </ul>
@@ -44,8 +44,8 @@
 
     <div class="container-fluid">
       <a class="btn btn-primary" href="{{ url('/product') }}" role="button">Criar Anuncio</a>
+      @forelse(App\Http\Controllers\AnunciosController::findAnunciosById(Auth::user()->id) as $anuncio)
       <div class="row">
-        @forelse(App\Http\Controllers\AnunciosController::findAnunciosById(Auth::user()->id) as $anuncio)
         <div class="col-12 mt-3">
 
 
@@ -119,6 +119,8 @@
     @endforelse
   </div>
 </div>
+</div>
+
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
 

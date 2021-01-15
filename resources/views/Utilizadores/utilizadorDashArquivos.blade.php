@@ -14,7 +14,7 @@
         <div class="col-lg-10">
             <div class="header__nav">
                 <nav class="header__menu">
-                    <ul>
+                <ul>
                         <li><a href="{{url('/dashboard')}}">Anúncios</a></li>
             <li><a href="{{url('/dashboard/favoritos')}}">Favoritos</a></li>
             <li><a href="{{url('/dashboard/mensagens')}}">Mensagens</a></li>
@@ -36,7 +36,7 @@
 <div class="container-fluid">
     <div class="p-3 mb-2 bg-secondary text-white">
         <nav class="header__menu">
-            <ul>
+            <ul style="padding-left: 15px;padding-bottom: 10px;">
                 <li><a href="{{url('/dashboard')}}">Activos</a></li>
                 <li><a href="{{url('/arquivos')}}">Arquivados</a></li>
             </ul>
@@ -44,8 +44,8 @@
 
         <div class="container-fluid">
             <a class="btn btn-primary" href="{{ url('/product') }}" role="button">Criar Anuncio</a>
+            @forelse(App\Http\Controllers\AnunciosController::findAnunciosArquivados(Auth::user()->id) as $anuncio)
             <div class="row">
-                @forelse(App\Http\Controllers\AnunciosController::findAnunciosArquivados(Auth::user()->id) as $anuncio)
                 <div class="col-12 mt-3">
 
 
@@ -69,24 +69,21 @@
                                 <div class="container">
                                     <div class="row">
                                         <div class="col-sm-2 text-dark">
-
                                             <a href="/anuncios/show/{{$anuncio->id_anuncio}}" style="color:black;">Visualizar</a>
-
                                         </div>
-
+                                        
                                         <div class="col-sm-2 text-dark">
                                             <a href="/anuncios/edit/{{$anuncio->id_anuncio}}" style="color:black;">Editar</a>
+                                        </div>
+                                        
+                                        <div class="col-sm-2 text-dark">
+                                            <a href="/anuncios/activate/{{$anuncio->id_anuncio}}" style="color:black;">Ativar</a>
                                         </div>
 
                                         <div class="col-sm-2 text-dark">
                                             <a href="/anuncios/delete?id={{$anuncio->id_anuncio}}" style="color:black;">Remover</a>
                                         </div>
 
-                                        <div class="col-sm-2 text-dark">
-
-                                            <a href="/anuncios/activate/{{$anuncio->id_anuncio}}" style="color:black;">Ativar</a>
-
-                                        </div>
                                     </div>
                                 </div>
 
@@ -127,6 +124,7 @@
         <h5 class="text-center">Não possui anuncios arquivados!</h5>
         @endforelse
     </div>
+</div>
 </div>
 
 
