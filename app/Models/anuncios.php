@@ -16,6 +16,7 @@ class anuncios extends Model
         'foto_perfil',
         'descricao',
         'id_marca',
+        'destacado',
         'id_modelo',
         'preco',
         'valor_fixo',

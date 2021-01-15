@@ -39,6 +39,7 @@ class CreateAnunciosTable extends Migration
             $table->tinyinteger('metalizado')->nullable(false);
             $table->tinyinteger('caixa')->nullable(false);
             $table->tinyinteger('lotacao')->nullable(false);
+            $table->tinyinteger('destacado')->nullable(false);
             $table->tinyinteger('portas')->nullable(false);
             $table->string('classe_veiculo', 10)->nullable(false);
             $table->string('tracao', 10)->nullable(false);

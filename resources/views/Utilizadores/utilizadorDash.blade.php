@@ -16,7 +16,6 @@
         <nav class="header__menu">
           <ul>
             <li><a href="{{url('/dashboard')}}">Anúncios</a></li>
-            <li><a href="{{url('/dashboard/favoritos')}}">Favoritos</a></li>
             <li><a href="{{url('/dashboard/mensagens')}}">Mensagens</a></li>
             <li><a href="{{url('/about')}}">Pagamentos</a></li>
             <li><a href="{{url('/dashboard/definicoes')}}">Definições</a></li>
@@ -36,7 +35,7 @@
 <div class="container-fluid">
   <div class="p-3 mb-2 bg-secondary text-white">
     <nav class="header__menu">
-      <ul style="padding-left: 15px;padding-bottom: 10px;">
+      <ul>
         <li><a href="{{url('/dashboard')}}">Activos</a></li>
         <li><a href="{{url('/arquivos')}}">Arquivados</a></li>
       </ul>
@@ -44,8 +43,8 @@
 
     <div class="container-fluid">
       <a class="btn btn-primary" href="{{ url('/product') }}" role="button">Criar Anuncio</a>
-      @forelse(App\Http\Controllers\AnunciosController::findAnunciosById(Auth::user()->id) as $anuncio)
       <div class="row">
+        @forelse(App\Http\Controllers\AnunciosController::findAnunciosById(Auth::user()->id) as $anuncio)
         <div class="col-12 mt-3">
 
 
@@ -77,8 +76,15 @@
                       <a href="/anuncios/edit/{{$anuncio->id_anuncio}}" style="color:black;">Editar</a>
                     </div>
                     <div class="col-sm-2 text-dark">
-                    <a href="/anuncios/delete?id={{$anuncio->id_anuncio}}" style="color:black;">Arquivar</a>
+                      <a href="/anuncios/delete?id={{$anuncio->id_anuncio}}" style="color:black;">Arquivar</a>
                     </div>
+                    @if($anuncio->destacado==0)
+                    <div class="col-sm-2 text-dark">
+                      <a href="/stripe-payment?id_anuncio={{$anuncio->id_anuncio}}" style="color:green;">Destacar</a>
+                    </div>
+                    @endif
+
+
                   </div>
                 </div>
 
@@ -91,6 +97,10 @@
 
                   </div>
                   <div class="col-sm-2 text-dark">
+                    <i class="fa fa-eye" aria-hidden="true"></i>
+                    Views
+                  </div>
+                  <div class="col-sm-2 text-dark">
                     <i class="fa fa-envelope" aria-hidden="true"></i>
                     @if(App\Http\Controllers\MensagensController::countConversas($anuncio->id_anuncio) > 0 )
                     {{App\Http\Controllers\MensagensController::countConversas($anuncio->id_anuncio)}} Mensagens
@@ -101,28 +111,49 @@
                   </div>
                   <div class="col-sm-2 text-dark">
                     <i class="fa fa-heart" aria-hidden="true"></i>
-                    @if(App\Http\Controllers\FavoritosController::countFavoritos($anuncio->id_anuncio) > 0 )
-                    {{App\Http\Controllers\FavoritosController::countFavoritos($anuncio->id_anuncio)}} Favoritos
-                    @else
-                    {{'0 Favoritos'}}
-                    @endif
-                    
+                    Favs
                   </div>
+
+                  <div>
+                    @if($anuncio->destacado==1)
+                    <span class="label success">Anúncio em Destaque</span>
+                    @else
+                    <span class="label danger">Anúncio Não Destacado</span>
+                    @endif
+                  </div>
+
+
+
                 </div>
               </div>
             </div>
           </div>
+        </div>
       </div>
+      @empty
+      <h5 class="text-center">Ainda não possui anuncios!</h5>
+      @endforelse
     </div>
-    @empty
-    <h5 class="text-center">Ainda não possui anuncios!</h5>
-    @endforelse
   </div>
-</div>
-</div>
 
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+  <style>
+    .label {
+      color: white;
+      padding: 8px;
+      font-family: Arial;
+    }
 
+    .success {
+      background-color: #4CAF50;
+    }
 
-@endsection
+    /* Green */
+    .danger {
+      background-color: #f44336;
+    }
+
+    /* Red */
+  </style>
+  @endsection

@@ -9,6 +9,7 @@ use App\Http\Controllers\UtilizadoresController;
 use App\Http\Controllers\AnunciosController;
 use App\Http\Controllers\MensagensController;
 use App\Http\Controllers\FavoritosController;
+use App\Http\Controllers\StripeController;
 
 
 /*
@@ -75,6 +76,10 @@ Route::group(['middleware' => 'auth'], function () {
 
 
     Route::get('/admin', [UtilizadoresController::class, 'admin']);
+
+
+    Route::get('/stripe-payment', [StripeController::class, 'handleGet']);
+    Route::post('/stripe-payment', [StripeController::class, 'handlePost'])->name('stripe.payment');
 });
 
 Route::get('/', [AnunciosController::class, 'anuncios_home']);

@@ -13,16 +13,18 @@ class CreateConversasTable extends Migration
      */
     public function up()
     {
-        Schema::create('conversas', function (Blueprint $table) {
-            $table->increments('id_conversa')->primary;
-            $table->integer('id_emissor')->unsigned();
-            $table->integer('id_recetor')->unsigned();
-            $table->integer('id_anuncio')->unsigned();
-            $table->foreign('id_anuncio')->references('id_anuncio')->on('anuncios')->onDelete('cascade');
-            $table->foreign('id_emissor')->references('id')->on('utilizadores')->onDelete('cascade');
-            $table->foreign('id_recetor')->references('id')->on('utilizadores')->onDelete('cascade');
-            $table->timestamps();
-        });
+        if (!Schema::hasTable('conversas')) {
+            Schema::create('conversas', function (Blueprint $table) {
+                $table->increments('id_conversa')->primary;
+                $table->integer('id_emissor')->unsigned();
+                $table->integer('id_recetor')->unsigned();
+                $table->integer('id_anuncio')->unsigned();
+                $table->foreign('id_anuncio')->references('id_anuncio')->on('anuncios')->onDelete('cascade');
+                $table->foreign('id_emissor')->references('id')->on('utilizadores')->onDelete('cascade');
+                $table->foreign('id_recetor')->references('id')->on('utilizadores')->onDelete('cascade');
+                $table->timestamps();
+            });
+        }
     }
 
     /**

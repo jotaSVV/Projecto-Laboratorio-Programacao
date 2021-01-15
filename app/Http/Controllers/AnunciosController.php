@@ -170,6 +170,7 @@ class AnunciosController extends Controller
             $a->ar_condicionado = $request->ar_condicionado;
             $a->importado = $request->importado;
             $a->fotos = "teste";
+            $a->destacado = 0;
             //var_dump($a);
             $a->save();
 
@@ -315,7 +316,10 @@ class AnunciosController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function delete(request $anuncios)
+
     {
+        //dd($anuncios);
+
         //$data = anuncios::where('id_anuncio', $anuncios->id_anuncio);
         $data = anuncios::findOrFail($anuncios);
 
@@ -337,6 +341,22 @@ class AnunciosController extends Controller
     }
 
 
+    public function anuncios_home(Request $request)
+    {
+
+        $anuncios = anuncios::where('destacado', '=', 1)->inRandomOrder()->limit(6)->get();
+        $anuncios_naodestacados = anuncios::where('destacado', '=', 0)->inRandomOrder()->limit(6)->get();
+        return view('layouts.frontpage', [
+            'anuncios' => $anuncios,
+            'anuncios_naodestacados' => $anuncios_naodestacados,
+        ]);
+    }
+
+
+    public function destacar(Request $request)
+    {
+        return view('layouts.pagamento');
+    }
 
 
     public static function findMarcas()
@@ -533,14 +553,6 @@ class AnunciosController extends Controller
             return $marca->nome;
     }
 
-    public function anuncios_home(Request $request)
-    {
-
-        $anuncios = anuncios::inRandomOrder()->limit(6)->get();
-        return view('layouts.frontpage', [
-            'anuncios' => $anuncios,
-        ]);
-    }
 
     public static function grafico_preco(anuncios $anuncio)
     {

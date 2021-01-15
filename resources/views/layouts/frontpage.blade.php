@@ -232,7 +232,7 @@
             </div>
         </div>
         <div class="row">
-            @foreach($anuncios as $anuncio)
+            @foreach($anuncios_naodestacados as $anuncio)
             <div class="col-lg-4 col-md-4">
                 <div class="car__item">
                     <div class="car__item__pic__slider owl-carousel">
