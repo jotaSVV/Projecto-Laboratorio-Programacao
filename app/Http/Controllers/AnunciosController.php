@@ -77,7 +77,7 @@ class AnunciosController extends Controller
             'airbags' => ['integer', 'max:1'],
             'ar_condicionado' => ['integer', 'max:1'],
             'importado' => ['integer', 'max:1'],
-            'fotos.*' => ['required','image', 'mimes:jpeg,png,jpg,gif,svg', 'max:10240']
+            'fotos.*' => ['required', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:10240']
         ]);
 
         list($lixo, $id_modelo) = explode("-", $request['id_modelo']);
@@ -282,12 +282,12 @@ class AnunciosController extends Controller
         ]);
 
         //$anuncios = anuncios::find
-        
+
         $val = explode("-", $request->id_modelo);
         $modelo_id = (int) $val[1];
         $anuncios->id_modelo = $modelo_id;
         //dd($anuncios);
-        
+
         if ($request->hasFile('fotos')) {
             $files = Storage::allFiles('anunciosImg/' . $anuncios['id_utilizador'] . "/" . $anuncios['id_anuncio']);
             //dd($request);
@@ -320,17 +320,16 @@ class AnunciosController extends Controller
         $data = anuncios::findOrFail($anuncios);
 
         //dd($data[0]->disponivel);
-        
-        if($data[0]->disponivel == "1") {
+
+        if ($data[0]->disponivel == "1") {
             $data[0]->disponivel = "0";
             $data[0]->save();
-            if(favoritos::find($data[0]->id_anuncio)){
-            $RetirarFavoritos = favoritos::where('id_anuncio', $data[0]->id_anuncio)->delete();
-            return redirect('/dashboard')->with('Anuncio arquivado');
+            if (favoritos::find($data[0]->id_anuncio)) {
+                $RetirarFavoritos = favoritos::where('id_anuncio', $data[0]->id_anuncio)->delete();
+                return redirect('/dashboard')->with('Anuncio arquivado');
             }
             return redirect('/dashboard')->with('Anuncio arquivado');
-        }
-        else{
+        } else {
             Storage::deleteDirectory($data[0]->fotos);
             $data[0]->delete();
             return redirect('/dashboard')->with('Anuncio apagado');
@@ -338,7 +337,7 @@ class AnunciosController extends Controller
     }
 
 
-    
+
 
     public static function findMarcas()
     {
@@ -368,7 +367,6 @@ class AnunciosController extends Controller
         $anuncios = anuncios::orderBy('created_at', 'desc')->where('id_utilizador', '=', $id)->where('disponivel', '=', 1)->get();
         //$anuncios = anuncios::orderBy('id_utilizador', 'asc')->get();
         return ($anuncios);
-
     }
 
     public static function findInfoAboutAnuncio($id)
@@ -376,7 +374,6 @@ class AnunciosController extends Controller
         $anuncios = anuncios::orderBy('created_at', 'desc')->where('id_anuncio', '=', $id)->where('disponivel', '=', 1)->get();
         //$anuncios = anuncios::orderBy('id_utilizador', 'asc')->get();
         return ($anuncios);
-        
     }
 
     public static function findAnunciosArquivados($id)
@@ -545,129 +542,128 @@ class AnunciosController extends Controller
         ]);
     }
 
-    public static function grafico_preco(anuncios $anuncio )
+    public static function grafico_preco(anuncios $anuncio)
     {
         //dd($$anuncio->id_marca);
 
-            $msg = DB::table('anuncios')
-            ->where('id_marca','=',$anuncio->id_marca)
-            ->where('id_modelo','=',$anuncio->id_modelo)
+        $msg = DB::table('anuncios')
+            ->where('id_marca', '=', $anuncio->id_marca)
+            ->where('id_modelo', '=', $anuncio->id_modelo)
             ->get();
-            $soma=0;
-            $contador=0;
-            foreach ($msg as $marca){
-                $soma+= $marca->preco;
-                $contador++;
-            }
-            $media = $soma / $contador;
+        $soma = 0;
+        $contador = 0;
+        foreach ($msg as $marca) {
+            $soma += $marca->preco;
+            $contador++;
+        }
+        $media = $soma / $contador;
 
-            $max = DB::table('anuncios')
-            ->where('id_marca','=',$anuncio->id_marca)
-            ->where('id_modelo','=',$anuncio->id_modelo)
+        $max = DB::table('anuncios')
+            ->where('id_marca', '=', $anuncio->id_marca)
+            ->where('id_modelo', '=', $anuncio->id_modelo)
             ->max('preco');
 
-            $min = DB::table('anuncios')
-            ->where('id_marca','=',$anuncio->id_marca)
-            ->where('id_modelo','=',$anuncio->id_modelo)
+        $min = DB::table('anuncios')
+            ->where('id_marca', '=', $anuncio->id_marca)
+            ->where('id_modelo', '=', $anuncio->id_modelo)
             ->min('preco');
 
-            $array = array(
-                0 => $min,
-                1 => $max,
-                2   => $media,
-                
-            );
-            
-            $array = array($media);
-           
-            //$array=collect($min,$max,$media);
-            //dd($array[0]);
-            
-            return $array;
+        $array = array(
+            0 => $min,
+            1 => $max,
+            2   => $media,
+
+        );
+
+        $array = array($media);
+
+        //$array=collect($min,$max,$media);
+        //dd($array[0]);
+
+        return $array;
     }
 
-    public static function min_preco(anuncios $anuncio )
+    public static function min_preco(anuncios $anuncio)
     {
         //dd($$anuncio->id_marca);
 
-           
 
-            $min = DB::table('anuncios')
-            ->where('id_marca','=',$anuncio->id_marca)
-            ->where('id_modelo','=',$anuncio->id_modelo)
+
+        $min = DB::table('anuncios')
+            ->where('id_marca', '=', $anuncio->id_marca)
+            ->where('id_modelo', '=', $anuncio->id_modelo)
             ->min('preco');
 
-            
-            
-            $array = array($min);
-           
-            //$array=collect($min,$max,$media);
-            //dd($array[0]);
-            
-            return $array;
+
+
+        $array = array($min);
+
+        //$array=collect($min,$max,$media);
+        //dd($array[0]);
+
+        return $array;
     }
 
-    public static function max_preco(anuncios $anuncio )
+    public static function max_preco(anuncios $anuncio)
     {
         //dd($$anuncio->id_marca);
 
-           
 
-            $max = DB::table('anuncios')
-            ->where('id_marca','=',$anuncio->id_marca)
-            ->where('id_modelo','=',$anuncio->id_modelo)
+
+        $max = DB::table('anuncios')
+            ->where('id_marca', '=', $anuncio->id_marca)
+            ->where('id_modelo', '=', $anuncio->id_modelo)
             ->max('preco');
 
-           
-            
-            $array = array($max);
-           
-            //$array=collect($min,$max,$media);
-            //dd($array[0]);
-            
-            return $array;
+
+
+        $array = array($max);
+
+        //$array=collect($min,$max,$media);
+        //dd($array[0]);
+
+        return $array;
     }
 
-    public static function total_preco(anuncios $anuncio )
+    public static function total_preco(anuncios $anuncio)
     {
         //dd($$anuncio->id_marca);
 
-           
 
-            $max = DB::table('anuncios')
-            ->where('id_marca','=',$anuncio->id_marca)
-            ->where('id_modelo','=',$anuncio->id_modelo)
+
+        $max = DB::table('anuncios')
+            ->where('id_marca', '=', $anuncio->id_marca)
+            ->where('id_modelo', '=', $anuncio->id_modelo)
             ->sum('preco');
 
-           
-            
-            $array = array($max);
-           
-            //$array=collect($min,$max,$media);
-            //dd($array[0]);
-            
-            return $array;
+
+
+        $array = array($max);
+
+        //$array=collect($min,$max,$media);
+        //dd($array[0]);
+
+        return $array;
     }
 
     public static function returnMarcaId()
     {
 
         $marcas = DB::table('anuncios')->groupBy('id_marca')->having(DB::raw('count(id_marca)'), '>', 0)->get('id_marca', 'count');
-        $array = array($marcas);
-        //dd($array[0][0]);
-        return ($array);
-        //dd($array);
+        //dd($marcas[0]->id_marca);
+        return ($marcas);
     }
 
     public static function countMarcas($id)
     {
         //dd($id[0][0]['id_marca']);
-        $count= DB::table('anuncios')->select()->where('id_marca','=',$id)->count();
+        $count = DB::table('anuncios')->select()->where('id_marca', '=', $id)->count();
         return ($count);
     }
 
-    public static function listAnuncios(){
-        $anuncios=anuncios::all();
-        return($anuncios);
+    public static function listAnuncios()
+    {
+        $anuncios = anuncios::all();
+        return ($anuncios);
     }
 }

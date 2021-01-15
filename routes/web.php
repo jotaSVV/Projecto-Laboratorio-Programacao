@@ -70,10 +70,11 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/chat', function () {
         return view('chat.index');
     });
-    
+
     Route::get('/anuncios/show/{anuncio}', [AnunciosController::class, 'show']);
 
 
+    Route::get('/admin', [UtilizadoresController::class, 'admin']);
 });
 
 Route::get('/', [AnunciosController::class, 'anuncios_home']);
@@ -106,21 +107,6 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/admin', function () {
-    return view('admin.index');
-});
-
-Route::get('/admin/login', function () {
-    return view('admin.login');
-});
-
-Route::get('/admin/charts', function () {
-    return view('admin.charts');
-});
-
-Route::get('/admin/tables', function () {
-    return view('admin.tables');
-});
 
 
 

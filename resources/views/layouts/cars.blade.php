@@ -275,7 +275,7 @@
                 {!! $anuncios->links('pagination::bootstrap-4') !!}
 
                 <!--- 
-                 <div class="pagination__option">
+                <div class="pagination__option">
                     <a href="#" class="active">1</a>
                     <a href="#">2</a>
                     <a href="#">3</a>
