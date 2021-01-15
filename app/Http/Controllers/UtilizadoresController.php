@@ -55,7 +55,7 @@ class UtilizadoresController extends Controller
 
         utilizadores::create($request->all());
 
-        return redirect('/register')->with('success', 'User created successfully.'); 
+        return redirect('/register')->with('success', 'User created successfully.');
     }
 
     /**
@@ -101,13 +101,13 @@ class UtilizadoresController extends Controller
             'id_freguesia' => ['required', 'integer', 'max:3092'],
             'foto_perfil' => ['image', 'mimes:jpeg,png,jpg,gif,svg', 'max:10240'],
         ]);
-        if($request->hasFile('foto_perfil')) {
+        if ($request->hasFile('foto_perfil')) {
 
-        $files = Storage::allFiles('utilizadoresImg/'. $utilizadores['id']);
-        Storage::delete($files);
-        $name = Storage::putFile('utilizadoresImg/'. $utilizadores['id'] , $request['foto_perfil']);
-        
-        $utilizadores['foto_perfil'] = $name;
+            $files = Storage::allFiles('utilizadoresImg/' . $utilizadores['id']);
+            Storage::delete($files);
+            $name = Storage::putFile('utilizadoresImg/' . $utilizadores['id'], $request['foto_perfil']);
+
+            $utilizadores['foto_perfil'] = $name;
         }
         $utilizadores->update($request->only(['nome', 'apelido', 'data_nascimento', 'sexo', 'tipovendedor', 'id_freguesia']));
 
@@ -202,8 +202,16 @@ class UtilizadoresController extends Controller
     }
 
 
-    public static function listUtilizadores() {
+    public static function listUtilizadores()
+    {
         $users = utilizadores::all();
         return ($users);
+    }
+
+    public function admin()
+    {
+        if (Auth::user()->admin == 1)
+            return view('admin.index');
+        return redirect('/dashboard');
     }
 }
