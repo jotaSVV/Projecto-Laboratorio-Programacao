@@ -229,10 +229,6 @@
                 <div class="section-title">
                     <h2>Anúncios</h2>
                 </div>
-                <ul class="filter__controls">
-                    <li class="active" data-filter="*">Mais Procurados</li>
-                    <li data-filter=".sale">Mais recentes</li>
-                </ul>
             </div>
         </div>
         <div class="row">
