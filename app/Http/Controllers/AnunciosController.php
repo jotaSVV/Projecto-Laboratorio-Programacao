@@ -42,41 +42,44 @@ class AnunciosController extends Controller
      */
     public function store(Request $request)
     {
-
+        $max1 = 'max:1';
+        $max10 = 'max:10';
+        $max50 = 'max:50';
+        $max100 = 'max:100';
         $request->validate([
             'titulo' => ['required', 'string', 'max:90'],
             'descricao' => ['required', 'string', 'max:9000'],
-            'id_marca' => ['required', 'integer', 'max:100'],
-            'id_modelo' => ['required', 'string', 'max:100'], //*
-            'preco' => ['required', 'integer', 'max:10000000'], //*
-            'valor_fixo' => ['required', 'integer', 'max:1'], //* //*
-            'data_registo' => ['required', 'date'], //validar
-            'cor' => ['required', 'string', 'max:10'],
-            'estado' => ['required', 'integer', 'max:1'], //*
-            'versao' => ['required', 'string', 'max:60'], ///-----------
+            'id_marca' => ['required', 'integer', $max100],
+            'id_modelo' => ['required', 'string', $max100],
+            'preco' => ['required', 'integer', 'max:10000000'],
+            'valor_fixo' => ['required', 'integer', $max1],
+            'data_registo' => ['required', 'date'],
+            'cor' => ['required', 'string', $max10],
+            'estado' => ['required', 'integer', $max1],
+            'versao' => ['required', 'string', 'max:60'],
             'combustivel' => ['required', 'string', 'max:30'],
             'quilometragem' => ['required', 'integer', 'max:30000000', 'min:0'],
             'potencia' => ['required', 'integer', 'max:1000'],
             'cilindrada' => ['required', 'integer', 'max:32767'],
-            'retoma' => ['required', 'integer', 'max:1'],
-            'financiamento' => ['required', 'integer', 'max:1'],
+            'retoma' => ['required', 'integer', $max1],
+            'financiamento' => ['required', 'integer', $max1],
             'segmento' => ['required', 'string', 'max:20'],
-            'metalizado' => ['integer', 'max:1'],
-            'caixa' => ['required', 'integer', 'max:10'],
+            'metalizado' => ['integer', $max1],
+            'caixa' => ['required', 'integer', $max10],
             'lotacao' => ['required', 'integer', 'max:9'],
             'portas' => ['required', 'integer', 'max:5'],
-            'classe_veiculo' => ['required', 'string', 'max:50'],
-            'garantia_stand' => ['integer', 'max:1'],
-            'nr_registos' => ['required', 'integer', 'max:50'],
-            'tracao' => ['required', 'string', 'max:10'],
-            'livro_revisoes' => ['integer', 'max:1'],
-            'seg_chave' => ['integer', 'max:1'],
-            'jantes_liga_leve' => ['integer', 'max:1'],
-            'estofos' => ['required', 'string', 'max:10'],
-            'medida_jantes' => ['required', 'integer', 'max:50'],
-            'airbags' => ['integer', 'max:1'],
-            'ar_condicionado' => ['integer', 'max:1'],
-            'importado' => ['integer', 'max:1'],
+            'classe_veiculo' => ['required', 'string', $max50],
+            'garantia_stand' => ['integer', $max1],
+            'nr_registos' => ['required', 'integer', $max50],
+            'tracao' => ['required', 'string', $max10],
+            'livro_revisoes' => ['integer', $max1],
+            'seg_chave' => ['integer', $max1],
+            'jantes_liga_leve' => ['integer', $max1],
+            'estofos' => ['required', 'string', $max10],
+            'medida_jantes' => ['required', 'integer', $max50],
+            'airbags' => ['integer', $max1],
+            'ar_condicionado' => ['integer', $max1],
+            'importado' => ['integer', $max1],
             'fotos.*' => ['required', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:10240']
         ]);
 
@@ -91,8 +94,9 @@ class AnunciosController extends Controller
             $request['garantia_stand'] = 1;
         }
         if (empty($data['livro_revisoes'])) {
-        } else
-            $request['livro_revisoes'] = 0; {
+            $request['livro_revisoes'] = 0;
+        } 
+        else {
             $request['livro_revisoes'] = 1;
         }
         if (empty($data['seg_chave'])) {
@@ -171,7 +175,6 @@ class AnunciosController extends Controller
             $a->importado = $request->importado;
             $a->fotos = "teste";
             $a->destacado = 0;
-            //var_dump($a);
             $a->save();
 
             $dir = "anunciosImg";
@@ -182,22 +185,18 @@ class AnunciosController extends Controller
                 foreach ($files as $pics) {
                     Storage::putFile("anunciosImg" . "/"  . $a['id_utilizador'] . "/" . $a['id_anuncio'], $pics);
                 }
-            } else {
+            } 
+            else {
                 Storage::makeDirectory($dir . "/" . $a['id_utilizador']);
                 Storage::makeDirectory("anunciosImg" . "/"  . $a['id_utilizador'] . "/" . $a->id_anuncio);
                 $files = $save;
                 foreach ($files as $pics) {
-                    /*$fileName = $pics->getClientOriginalName();
-                    $extension = $pics->getClientOriginalExtension();
-                    $storeName = $fileName . '.' . $extension;
-                    $pics->move("anunciosImg" . "/"  . $a['id_utilizador'] . "/" . $a->id_anuncio, $storeName);*/
                     Storage::putFile("anunciosImg" . "/"  . $a['id_utilizador'] . "/" . $a['id_anuncio'], $pics);
                 }
             }
 
             $a['fotos'] = "anunciosImg" . "/"  . $a['id_utilizador'] . "/" . $a->id_anuncio;
             $files = scandir("storage/app/anunciosImg" . "/"  . $a['id_utilizador'] . "/" . $a->id_anuncio);
-            //var_dump($files);
             $name = $files[2];
             $a['foto_perfil'] = $name;
             $a->save();
@@ -244,54 +243,55 @@ class AnunciosController extends Controller
      */
     public function update(Request $request, anuncios $anuncios)
     {
+        $max1 = 'max:1';
+        $max10 = 'max:10';
+        $max50 = 'max:50';
+        $max100 = 'max:100';
         $anuncios = anuncios::findOrFail($request->id_anuncio);
         $request->validate([
             'titulo' => ['required', 'string', 'max:90'],
             'descricao' => ['required', 'string', 'max:9000'],
-            'id_marca' => ['required', 'integer', 'max:100'],
-            'id_modelo' => ['required', 'string', 'max:100'], //*
-            'preco' => ['required', 'integer', 'max:10000000'], //*
-            'valor_fixo' => ['required', 'integer', 'max:1'], //* //*
-            'data_registo' => ['required', 'date'], //validar
-            'cor' => ['required', 'string', 'max:10'],
-            'estado' => ['required', 'integer', 'max:1'], //*
-            'versao' => ['required', 'string', 'max:60'], ///-----------
+            'id_marca' => ['required', 'integer', $max100],
+            'id_modelo' => ['required', 'string', $max100],
+            'preco' => ['required', 'integer', 'max:10000000'],
+            'valor_fixo' => ['required', 'integer', $max1],
+            'data_registo' => ['required', 'date'],
+            'cor' => ['required', 'string', $max10],
+            'estado' => ['required', 'integer', $max1],
+            'versao' => ['required', 'string', 'max:60'],
             'combustivel' => ['required', 'string', 'max:30'],
             'quilometragem' => ['required', 'integer', 'max:30000000', 'min:0'],
             'potencia' => ['required', 'integer', 'max:1000'],
             'cilindrada' => ['required', 'integer', 'max:32767'],
-            'retoma' => ['required', 'integer', 'max:1'],
-            'financiamento' => ['required', 'integer', 'max:1'],
+            'retoma' => ['required', 'integer', $max1],
+            'financiamento' => ['required', 'integer', $max1],
             'segmento' => ['required', 'string', 'max:20'],
-            'metalizado' => ['integer', 'max:1'],
-            'caixa' => ['required', 'integer', 'max:10'],
+            'metalizado' => ['integer', $max1],
+            'caixa' => ['required', 'integer', $max10],
             'lotacao' => ['required', 'integer', 'max:9'],
             'portas' => ['required', 'integer', 'max:5'],
-            'classe_veiculo' => ['required', 'string', 'max:50'],
-            'garantia_stand' => ['integer', 'max:1'],
-            'nr_registos' => ['required', 'integer', 'max:50'],
-            'tracao' => ['required', 'string', 'max:10'],
-            'livro_revisoes' => ['integer', 'max:1'],
-            'seg_chave' => ['integer', 'max:1'],
-            'jantes_liga_leve' => ['integer', 'max:1'],
-            'estofos' => ['required', 'string', 'max:10'],
-            'medida_jantes' => ['required', 'integer', 'max:50'],
-            'airbags' => ['integer', 'max:1'],
-            'ar_condicionado' => ['integer', 'max:1'],
-            'importado' => ['integer', 'max:1'],
+            'classe_veiculo' => ['required', 'string', $max50],
+            'garantia_stand' => ['integer', $max1],
+            'nr_registos' => ['required', 'integer', $max50],
+            'tracao' => ['required', 'string', $max10],
+            'livro_revisoes' => ['integer', $max1],
+            'seg_chave' => ['integer', $max1],
+            'jantes_liga_leve' => ['integer', $max1],
+            'estofos' => ['required', 'string', $max10],
+            'medida_jantes' => ['required', 'integer', $max50],
+            'airbags' => ['integer', $max1],
+            'ar_condicionado' => ['integer', $max1],
+            'importado' => ['integer', $max1],
             'fotos.*' => ['image', 'mimes:jpeg,png,jpg,gif,svg', 'max:10240']
         ]);
 
-        //$anuncios = anuncios::find
 
         $val = explode("-", $request->id_modelo);
         $modelo_id = (int) $val[1];
         $anuncios->id_modelo = $modelo_id;
-        //dd($anuncios);
 
         if ($request->hasFile('fotos')) {
             $files = Storage::allFiles('anunciosImg/' . $anuncios['id_utilizador'] . "/" . $anuncios['id_anuncio']);
-            //dd($request);
             Storage::delete($files);
             $save = $request['fotos'];
             foreach ($save as $pics) {
@@ -305,7 +305,7 @@ class AnunciosController extends Controller
             $anuncios['foto_perfil'] = $name;
         }
         $anuncios->update($request->only(['titulo', 'descricao', 'id_marca', 'preco', 'valor_fixo', 'data_registo', 'cor', 'estado', ' versao', 'combustivel', 'quilometragem', 'potencia', 'cilindrada', 'retoma', 'financiamento', 'segmento', 'metalizado', 'caixa', 'lotacao', 'portas', 'classe_veiculo', 'garantia_stand', 'nr_registos', 'tracao', 'livro_revisoes', 'seg_chave', 'jantes_liga_leve', 'estofos', 'medida_jantes', 'airbags', 'ar_condicionado', 'importado']));
-        return redirect('/dashboard')->with('success', 'Anúncio alterado com sucesso!');;
+        return redirect('/dashboard')->with('success', 'Anúncio alterado com sucesso!');
     }
 
 
@@ -318,12 +318,7 @@ class AnunciosController extends Controller
     public function delete(request $anuncios)
 
     {
-        //dd($anuncios);
-
-        //$data = anuncios::where('id_anuncio', $anuncios->id_anuncio);
         $data = anuncios::findOrFail($anuncios);
-
-        //dd($data[0]->disponivel);
 
         if ($data[0]->disponivel == "1") {
             $data[0]->disponivel = "0";
@@ -369,37 +364,30 @@ class AnunciosController extends Controller
     {
 
         $modelos = modelos::orderBy('nome', 'asc')->get(); //get data from table
-        //dd($distrito);
-        //return view('findDistritos'); //sent data to view
-        //return view('register'); //sent data to view~
         return ($modelos);
     }
 
     public static function findAnunciosId()
     {
         $anuncios = anuncios::orderBy('created_at', 'desc')->where('id_anuncio', '=', Auth::user()->id)->get();
-        //$anuncios = anuncios::orderBy('id_utilizador', 'asc')->get();
         return ($anuncios);
     }
 
     public static function findAnunciosById($id)
     {
         $anuncios = anuncios::orderBy('created_at', 'desc')->where('id_utilizador', '=', $id)->where('disponivel', '=', 1)->get();
-        //$anuncios = anuncios::orderBy('id_utilizador', 'asc')->get();
         return ($anuncios);
     }
 
     public static function findInfoAboutAnuncio($id)
     {
         $anuncios = anuncios::orderBy('created_at', 'desc')->where('id_anuncio', '=', $id)->where('disponivel', '=', 1)->get();
-        //$anuncios = anuncios::orderBy('id_utilizador', 'asc')->get();
         return ($anuncios);
     }
 
     public static function findAnunciosArquivados($id)
     {
         $anuncios = anuncios::orderBy('created_at', 'desc')->where('id_utilizador', '=', $id)->where('disponivel', '=', 0)->get();
-        //$anuncios = anuncios::orderBy('id_utilizador', 'asc')->get();
         return ($anuncios);
     }
 
@@ -417,7 +405,6 @@ class AnunciosController extends Controller
         ///o id que recebe como argumento é o id que é para excluir.
 
         $anuncios = anuncios::inRandomOrder()->where('id_anuncio', '!=', $id)->limit(3)->get();
-        //$anuncios = anuncios::orderBy('id_utilizador', 'asc')->get();
         return ($anuncios);
     }
 
@@ -436,7 +423,6 @@ class AnunciosController extends Controller
     public static function getImgs($dir)
     {
         $files = File::allFiles($dir);
-        //$files = Storage::files('/storage/app/anunciosImg/1/1');
         return ($files);
     }
 
@@ -462,7 +448,7 @@ class AnunciosController extends Controller
     public function filter(Request $request)
     {
 
-        $filter = array();    //  $filter = ['marca' => $request->marca, 'cor' => $request->cor, 'quilometragem' => $request->quilometragem];
+        $filter = array();
         $count = 0;
         if ($request->marca != null) {
             $filter['id_marca'] = $request->marca;
@@ -488,30 +474,37 @@ class AnunciosController extends Controller
 
         if ($request->preco != null && $request->quilometragem != null) { //preco + quilometragem
             $count += 2;
-            if ($count > 2)
+            if ($count > 2) {
                 $anuncios = anuncios::where($filter)->whereRaw('preco <=' . $request->preco)->whereRaw('quilometragem <=' . $request->quilometragem)->paginate($request->num);
-            else
+            } 
+            else {
                 $anuncios = anuncios::whereRaw('preco <=' . $request->preco)->whereRaw('quilometragem <=' . $request->quilometragem)->paginate($request->num);
+            }
         }
 
         if ($request->preco != null && $request->quilometragem == null) {  //preco 
             $count++;
-            if ($count > 1)
-                $anuncios = anuncios::where($filter)->whereRaw('preco <=' . $request->preco)->paginate($request->num);
-            else
+            if ($count > 1) {
+                    $anuncios = anuncios::where($filter)->whereRaw('preco <=' . $request->preco)->paginate($request->num);
+                }
+                else {
                 $anuncios = anuncios::whereRaw('preco <=' . $request->preco)->paginate($request->num);
+                }
         }
 
         if ($request->preco == null && $request->quilometragem != null) { // quilometragem
             $count++;
-            if ($count > 1)
+            if ($count > 1) {
                 $anuncios = anuncios::where($filter)->whereRaw('quilometragem <=' . $request->quilometragem)->paginate($request->num);
-            else
+            }
+            else {
                 $anuncios = anuncios::whereRaw('quilometragem <=' . $request->quilometragem)->paginate($request->num);
+            }
         }
 
-        if ($request->preco == null && $request->quilometragem == null)
+        if ($request->preco == null && $request->quilometragem == null) {
             $anuncios = anuncios::where($filter)->paginate($request->num);
+        }
 
 
 
@@ -522,25 +515,20 @@ class AnunciosController extends Controller
                 'anuncios' => $anuncios,
                 'count' => $nr_encontrados,
             ]);
-        } else {
+        } 
+        else {
             return $this->todos_anuncios($request);
-            /*
-            $anuncios = anuncios::paginate(9);
-            $nr_encontrados = $anuncios->count();
-            return view('layouts.cars', [
-                'anuncios_filtrados' => $anuncios,
-                'count' => $nr_encontrados,
-            ]);
-            */
         }
     }
 
     public function anuncios(Request $request)
     {
-        if ($request->filled('filtrar'))
+        if ($request->filled('filtrar')) {
             return $this->filter($request);
-        else
+        }
+        else {
             return $this->todos_anuncios($request);
+        }
     }
 
 
@@ -549,15 +537,14 @@ class AnunciosController extends Controller
     public static function findMarcasById($id)
     {
         $marcas = marcas::where('id_marca', '=', $id)->get();
-        foreach ($marcas as $marca)
+        foreach ($marcas as $marca) {
             return $marca->nome;
+        }
     }
 
 
     public static function grafico_preco(anuncios $anuncio)
     {
-        //dd($$anuncio->id_marca);
-
         $msg = DB::table('anuncios')
             ->where('id_marca', '=', $anuncio->id_marca)
             ->where('id_modelo', '=', $anuncio->id_modelo)
@@ -580,47 +567,32 @@ class AnunciosController extends Controller
             ->where('id_modelo', '=', $anuncio->id_modelo)
             ->min('preco');
 
-        $array = array(
+        $array = array([
             0 => $min,
             1 => $max,
             2   => $media,
-
-        );
+        ]);
 
         $array = array($media);
 
-        //$array=collect($min,$max,$media);
-        //dd($array[0]);
 
         return $array;
     }
 
     public static function min_preco(anuncios $anuncio)
     {
-        //dd($$anuncio->id_marca);
-
-
-
         $min = DB::table('anuncios')
             ->where('id_marca', '=', $anuncio->id_marca)
             ->where('id_modelo', '=', $anuncio->id_modelo)
             ->min('preco');
 
-
-
         $array = array($min);
-
-        //$array=collect($min,$max,$media);
-        //dd($array[0]);
 
         return $array;
     }
 
     public static function max_preco(anuncios $anuncio)
     {
-        //dd($$anuncio->id_marca);
-
-
 
         $max = DB::table('anuncios')
             ->where('id_marca', '=', $anuncio->id_marca)
@@ -628,20 +600,14 @@ class AnunciosController extends Controller
             ->max('preco');
 
 
-
         $array = array($max);
 
-        //$array=collect($min,$max,$media);
-        //dd($array[0]);
 
         return $array;
     }
 
     public static function total_preco(anuncios $anuncio)
     {
-        //dd($$anuncio->id_marca);
-
-
 
         $max = DB::table('anuncios')
             ->where('id_marca', '=', $anuncio->id_marca)
@@ -649,11 +615,8 @@ class AnunciosController extends Controller
             ->sum('preco');
 
 
-
         $array = array($max);
 
-        //$array=collect($min,$max,$media);
-        //dd($array[0]);
 
         return $array;
     }
@@ -662,13 +625,11 @@ class AnunciosController extends Controller
     {
 
         $marcas = DB::table('anuncios')->groupBy('id_marca')->having(DB::raw('count(id_marca)'), '>', 0)->get('id_marca', 'count');
-        //dd($marcas[0]->id_marca);
         return ($marcas);
     }
 
     public static function countMarcas($id)
     {
-        //dd($id[0][0]['id_marca']);
         $count = DB::table('anuncios')->select()->where('id_marca', '=', $id)->count();
         return ($count);
     }

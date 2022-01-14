@@ -87,7 +87,6 @@ class FrequesiasController extends Controller
     public static function findFregById($id)
     {
         $freguesia = DB::table('freguesias')->where('id_freguesia','=',$id)->get();
-        //$anuncios = anuncios::orderBy('id_utilizador', 'asc')->get();
         return ($freguesia);
     }
 }

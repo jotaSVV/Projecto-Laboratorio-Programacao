@@ -203,11 +203,11 @@
                                 </div>
                                 <div class="testimonial__item__author__text">
                                     <div class="rating">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
+                                        <em class="fa fa-star"></em>
+                                        <em class="fa fa-star"></em>
+                                        <em class="fa fa-star"></em>
+                                        <em class="fa fa-star"></em>
+                                        <em class="fa fa-star"></em>
                                     </div>
                                     <h5>John Smith /<span> CEO Colorlib</span></h5>
                                 </div>
@@ -224,11 +224,11 @@
                                 </div>
                                 <div class="testimonial__item__author__text">
                                     <div class="rating">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
+                                        <em class="fa fa-star"></em>
+                                        <em class="fa fa-star"></em>
+                                        <em class="fa fa-star"></em>
+                                        <em class="fa fa-star"></em>
+                                        <em class="fa fa-star"></em>
                                     </div>
                                     <h5>Emma Sandoval /<span> Marketing Manager</span></h5>
                                 </div>
@@ -245,11 +245,11 @@
                                 </div>
                                 <div class="testimonial__item__author__text">
                                     <div class="rating">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
+                                        <em class="fa fa-star"></em>
+                                        <em class="fa fa-star"></em>
+                                        <em class="fa fa-star"></em>
+                                        <em class="fa fa-star"></em>
+                                        <em class="fa fa-star"></em>
                                     </div>
                                     <h5>John Smith /<span> CEO Colorlib</span></h5>
                                 </div>
@@ -266,11 +266,11 @@
                                 </div>
                                 <div class="testimonial__item__author__text">
                                     <div class="rating">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
+                                        <em class="fa fa-star"></em>
+                                        <em class="fa fa-star"></em>
+                                        <em class="fa fa-star"></em>
+                                        <em class="fa fa-star"></em>
+                                        <em class="fa fa-star"></em>
                                     </div>
                                     <h5>Emma Sandoval /<span> Marketing Manager</span></h5>
                                 </div>

@@ -3,5 +3,5 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
 
 <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-            <a class="navbar-brand" href="{{url('/admin')}}">Dashboard Admin</a>
+        <a class="navbar-brand" href="{{url('/admin')}}">Dashboard Admin</a>
         </nav>

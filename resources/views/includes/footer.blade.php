@@ -6,7 +6,6 @@
 <link rel="stylesheet" href="/resources/theme/css/magnific-popup.css" type="text/css">
 <link rel="stylesheet" href="/resources/theme/css/jquery-ui.min.css" type="text/css">
 <link rel="stylesheet" href="/resources/theme/css/owl.carousel.min.css" type="text/css">
-<!-- <link rel="stylesheet" href="/resources/theme/css/slicknav.min.css" type="text/css"> -->
 
 <link rel="stylesheet" href="/resources/theme/css/style.css" type="text/css">
 
@@ -22,10 +21,10 @@
                     </div>
                     <p>Visita as nossas rede sociais!</p>
                     <div class="footer__social">
-                        <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
-                        <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
-                        <a href="#" class="google"><i class="fa fa-google"></i></a>
-                        <a href="#" class="skype"><i class="fa fa-skype"></i></a>
+                        <a href="#" class="facebook"><em class="fa fa-facebook"></em></a>
+                        <a href="#" class="twitter"><em class="fa fa-twitter"></em></a>
+                        <a href="#" class="google"><em class="fa fa-google"></em></a>
+                        <a href="#" class="skype"><em class="fa fa-skype"></em></a>
                     </div>
                 </div>
             </div>

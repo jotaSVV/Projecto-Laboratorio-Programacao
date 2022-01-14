@@ -89,10 +89,10 @@ class UtilizadoresController extends Controller
      */
     public function update(Request $request, utilizadores $utilizadores)
     {
-        //$utilizadores = Auth::user();
+        $max255 = 'max:255';
         $request->validate([
-            'nome' => ['required', 'string', 'max:255'],
-            'apelido' => ['required', 'string', 'max:255'],
+            'nome' => ['required', 'string', $max255],
+            'apelido' => ['required', 'string', $max255],
 
             'data_nascimento' => ['required', 'date'],
             'sexo' => ['required', 'string', 'max:1'],
@@ -111,7 +111,7 @@ class UtilizadoresController extends Controller
         }
         $utilizadores->update($request->only(['nome', 'apelido', 'data_nascimento', 'sexo', 'tipovendedor', 'id_freguesia']));
 
-        return redirect('/dashboard')->with('success', 'Dados alterados com sucesso!');;
+        return redirect('/dashboard')->with('success', 'Dados alterados com sucesso!');
     }
 
     /**
@@ -123,11 +123,11 @@ class UtilizadoresController extends Controller
      */
     public function updateemail(Request $request, utilizadores $utilizadores)
     {
-        //$utilizadores = Auth::user();
+        $max255 = 'max:255';
         $request->validate([
-            'oldemail' => ['required', 'string', 'max:255'],
-            'nvemail' => ['required', 'string', 'max:255'],
-            'nvemailc' => ['required', 'string', 'max:255'],
+            'oldemail' => ['required', 'string', $max255],
+            'nvemail' => ['required', 'string', $max255],
+            'nvemailc' => ['required', 'string', $max255],
         ]);
 
         ///Se o email antigo for corretamente inserido
@@ -158,11 +158,11 @@ class UtilizadoresController extends Controller
      */
     public function updatepassword(Request $request, utilizadores $utilizadores)
     {
-        //$utilizadores = Auth::user();
+        $max255 = 'max:255';
         $request->validate([
-            'oldpass' => ['required', 'string', 'max:255'],
-            'nvpass' => ['required', 'string', 'max:255'],
-            'nvpassc' => ['required', 'string', 'max:255'],
+            'oldpass' => ['required', 'string', $max255],
+            'nvpass' => ['required', 'string', $max255],
+            'nvpassc' => ['required', 'string', $max255],
         ]);
 
         /// se as passwords derem match , testamos o novo campo
@@ -197,7 +197,6 @@ class UtilizadoresController extends Controller
     public static function findUserById($id)
     {
         $utilizador = DB::table('utilizadores')->where('id', '=', $id)->get();
-        //$anuncios = anuncios::orderBy('id_utilizador', 'asc')->get();
         return ($utilizador);
     }
 
@@ -210,8 +209,9 @@ class UtilizadoresController extends Controller
 
     public function admin()
     {
-        if (Auth::user()->admin == 1)
+        if (Auth::user()->admin == 1) {
             return view('admin.index');
+        }
         return redirect('/dashboard');
     }
 }

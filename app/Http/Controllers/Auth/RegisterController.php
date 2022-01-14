@@ -54,10 +54,11 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
+        $max255 = 'max:255';
         return Validator::make($data, [
-            'nome' => ['required', 'string', 'max:255'],
-            'apelido' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:utilizadores'],
+            'nome' => ['required', 'string', $max255],
+            'apelido' => ['required', 'string', $max255],
+            'email' => ['required', 'string', 'email', $max255, 'unique:utilizadores'],
             'telefone' => ['integer', 'min:9', 'unique:utilizadores'],
             'data_nascimento' => ['required', 'date'],
             'sexo' => ['required', 'string', 'max:1'],
@@ -78,11 +79,9 @@ class RegisterController extends Controller
     {
         $request = request();
         $request->foto_perfil;
-        //var_dump($request);
 
         $a = new utilizadores;
         $a->nome = $request->nome;
-        //var_dump($request->nome);
         $a->apelido = $request->apelido;
         $a->email = $request->email;
         $a->telefone = $request->telefone;
@@ -100,11 +99,9 @@ class RegisterController extends Controller
         $a->save();
 
         $dir = "utilizadoresImg";
-        //var_dump($a);
         Storage::makeDirectory($dir . "/"  . $a['id']);
         $name = Storage::putFile($dir . "/" . $a['id'], $request->foto_perfil);
         $a->foto_perfil = $name;
-        //dd($a->foto_perfil);
         $a->save();
 
         return $a;

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zxx">
+<html lang="pt">
 
 <head>
     <meta charset="UTF-8">
@@ -37,25 +37,25 @@
     <div class="offcanvas-menu-overlay"></div>
     <div class="offcanvas-menu-wrapper">
         <div class="offcanvas__widget">
-            <a href="#"><i class="fa fa-cart-plus"></i></a>
+            <a href="#"><em class="fa fa-cart-plus"></em></a>
         </div>
         <div class="offcanvas__logo">
             <a href="./index.html"><img src="public/img/logo.png" alt=""></a>
         </div>
         <div id="mobile-menu-wrap"></div>
         <ul class="offcanvas__widget__add">
-            <li><i class="fa fa-clock-o"></i> Week day: 08:00 am to 18:00 pm</li>
-            <li><i class="fa fa-envelope-o"></i> Info.colorlib@gmail.com</li>
+            <li><em class="fa fa-clock-o"></em> Week day: 08:00 am to 18:00 pm</li>
+            <li><em class="fa fa-envelope-o"></em> Info.colorlib@gmail.com</li>
         </ul>
         <div class="offcanvas__phone__num">
-            <i class="fa fa-phone"></i>
+            <em class="fa fa-phone"></em>
             <span>(+12) 345 678 910</span>
         </div>
         <div class="offcanvas__social">
-            <a href="#"><i class="fa fa-facebook"></i></a>
-            <a href="#"><i class="fa fa-twitter"></i></a>
-            <a href="#"><i class="fa fa-google"></i></a>
-            <a href="#"><i class="fa fa-instagram"></i></a>
+            <a href="#"><em class="fa fa-facebook"></em></a>
+            <a href="#"><em class="fa fa-twitter"></em></a>
+            <a href="#"><em class="fa fa-google"></em></a>
+            <a href="#"><em class="fa fa-instagram"></em></a>
         </div>
     </div>
     <!-- Offcanvas Menu End -->

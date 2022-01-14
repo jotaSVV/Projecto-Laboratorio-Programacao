@@ -22,11 +22,8 @@ class ConversasController extends Controller
         
         $data = $request ->all();
         $data['id_emissor'] = Auth::user()->id;
-        $data['id_recetor'] = $data['id_recetor'];
-        $data['id_anuncio'] = $data['id_anuncio'];
         
-        
-        $t= conversas::create($data);
+        $t = conversas::create($data);
 
  
         return redirect('/dashboard/mensagens');

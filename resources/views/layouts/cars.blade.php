@@ -68,52 +68,6 @@
                                 @endforeach
                             </select>
 
-
-
-                            <!--
-                            <select class="form-select" name="modelo" id="modelo_id" style="moverflow-x: hidden">
-                                <option value="">Modelo</option>
-                                @foreach(App\Http\Controllers\AnunciosController::findModelos() as $modelo)
-                                <option value=" {{ $modelo->id_marca }}-{{ $modelo->id_modelo }}">{{ $modelo->nome }} </option>
-                                @endforeach
-                            </select>
-
-                            <script>
-                                $(document).ready(function() {
-                                    var $options = $("#modelo_id").clone(); // this will save all initial options in the second dropdown
-
-                                    $("#marca_id").change(function() {
-                                        var filters = [];
-                                        if ($(this).val() == "") {
-                                            $(this).find("option").each(function(index, option) {
-                                                if ($(option).val() != "")
-                                                    filters.push($(option).val());
-                                            });
-                                        } else {
-                                            filters.push($(this).val())
-                                        }
-
-                                        $("#modelo_id").html("");
-
-                                        $.each(filters, function(index, value) {
-                                            $options.find("option").each(function(optionIndex, option) { // a second loop that check if the option value starts with the filter value
-                                                var val = $(option).val().split("-");
-                                                console.log(val);
-                                                if (value.localeCompare(val[0]) == 0)
-                                                    $(option).clone().appendTo($("#modelo_id"));
-                                            });
-
-                                        });
-
-                                    });
-                                });
-                            </script>
-                        -->
-
-
-
-
-
                             <select name="estado">
                                 <option value="">Condição</option>
                                 <option value="1">Novo</option>
@@ -158,20 +112,6 @@
                                 <option value="100000">Até 100.000€</option>
                                 <option value="200000">Até 200.000€</option>
                             </select>
-                            <!--
-                            <div class="filter-price">
-                                <p>Preço:</p>
-                                <div class="price-range-wrap">
-                                    <div class="filter-price-range"></div>
-                                    <div class="range-slider">
-                                        <div class="price-input">
-                                            <input type="text" id="filterAmount">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            -->
-
 
                             <div>
                                 <div class="car__filter__btn">
@@ -240,10 +180,10 @@
                             <div class="car__item__pic__slider owl-carousel">
 
 
-                                <img src="/storage/app/anunciosImg/{{$anuncio->id_utilizador}}/{{$anuncio->id_anuncio}}/{{$anuncio->foto_perfil}}" alt="">
+                                <img src="/storage/app/anunciosImg/{{$anuncio->id_utilizador}}/{{$anuncio->id_anuncio}}/{{$anuncio->foto_perfil}}" alt="" style="width:262.5px;height:175.1px;">
                                 @foreach(App\Http\Controllers\AnunciosController::getImgs("storage/app/anunciosImg/".$anuncio->id_utilizador."/".$anuncio->id_anuncio."/") as $files)
                                 @if(strcmp($files->getFilename(),$anuncio->foto_perfil)!=0)
-                                <img src="/storage/app/anunciosImg/{{$anuncio->id_utilizador}}/{{$anuncio->id_anuncio}}/{{ $files->getFilename() }}" alt="">
+                                <img src="/storage/app/anunciosImg/{{$anuncio->id_utilizador}}/{{$anuncio->id_anuncio}}/{{ $files->getFilename() }}" alt="" style="width:262.5px;height:175.1px;">
                                 @endif
                                 @endforeach
 
@@ -273,16 +213,6 @@
                 </div>
 
                 {!! $anuncios->links('pagination::bootstrap-4') !!}
-
-                <!--- 
-                <div class="pagination__option">
-                    <a href="#" class="active">1</a>
-                    <a href="#">2</a>
-                    <a href="#">3</a>
-                    <a href="#"><span class="arrow_carrot-2right"></span></a>
-                </div>  -->
-
-
 
             </div>
         </div>

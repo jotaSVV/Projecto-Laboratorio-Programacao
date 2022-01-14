@@ -39,16 +39,15 @@ class MensagensController extends Controller
      */
     public function store(Request $request)
     {
+        $max255 = 'max:255';
         $request->validate([
-            'texto' => ['required', 'string', 'max:255'],
-            'id_recetor' => ['required', 'int', 'max:255'],
-            'id_anuncio' => ['required', 'int', 'max:255'],
+            'texto' => ['required', 'string', $max255],
+            'id_recetor' => ['required', 'int', $max255],
+            'id_anuncio' => ['required', 'int', $max255],
         ]);
         
         $data = $request ->all();
         $data['id_emissor'] = Auth::user()->id;
-        $data['id_recetor'] = $data['id_recetor'];
-        $data['id_anuncio'] = $data['id_anuncio'];
         $data['data'] = "2020/10/10";
         $data['fotos'] = "tste";
         $data['visto'] = 1;
@@ -134,11 +133,10 @@ class MensagensController extends Controller
     public function show($mensagens)
     {   
 
-        //dd($mensagem->id_conversa);
         $msg = DB::table('mensagens')
             ->where('id_conversa','=',$mensagens)
         ->first();
-         
+        
         return view('Utilizadores.utilizadorConversa', [
             'mensagem' => $msg,
         ]);
@@ -188,81 +186,28 @@ class MensagensController extends Controller
         ->orWhere('id_emissor','=',Auth::user()->id)
         ->get();
         return ($getconversa);
-
-        // $mensagem = mensagens::max('id_anuncio');
-        // $arr = array();
-        // for($i=1;$i<=$mensagem;$i++){
-        //     $arr[$i] = DB::table('mensagens')
-        //     ->select()
-        //     ->where('id_anuncio','=',$i)
-        //     ->where('id_recetor', '=' , Auth::user()->id)
-        //     ->where('id_recetor','!=',DB::raw('id_emissor'))
-        //     ->limit(1)
-        //     ->get();
-
-        // }
-
-        // $users = DB::select("select nome,apelido,id_mensagem,id_emissor,id_anuncio,mensagens.created_at 
-        // from utilizadores LEFT  JOIN  mensagens ON utilizadores.id = mensagens.id_emissor  and mensagens.id_recetor = " . Auth::user()->id . "
-        // where utilizadores.id != " . Auth::user()->id . " GROUP BY nome,apelido,id_mensagem,id_emissor,id_anuncio,mensagens.created_at 
-        // ");
-        //$mensagens= collect($getconversa);
-        //$mensagens = collect($arr);
-        // $mensagens = DB::table('mensagens')
-        //     ->where('id_recetor','=',Auth::user()->id)
-        //     ->where('id_recetor','!=',DB::raw('id_emissor'))
-        //     ->where('id_anuncio','=',[$mensagem->id_anuncio])
-        //     ->distinct()
-        //     ->get();
-        //mensagens::inRandomOrder()->where('id_anuncio', '!=', $id)->limit(3)->get();
-        //$anuncios = anuncios::orderBy('id_utilizador', 'asc')->get();
-        
     }
 
     public static function countConversas($id)
     {   
-       // $mensagem = mensagens::findOrFail(Auth::user()->id);
         ///o id que recebe como argumento é o id que é para excluir.
-        
-        
         $mensagens = DB::table('conversas')
             ->select()
             ->where('id_anuncio','=',$id)
             ->count();
-            
-  
-        
-        
-        //$mensagens = collect($arr);
-        // $mensagens = DB::table('mensagens')
-        //     ->where('id_recetor','=',Auth::user()->id)
-        //     ->where('id_recetor','!=',DB::raw('id_emissor'))
-        //     ->where('id_anuncio','=',[$mensagem->id_anuncio])
-        //     ->distinct()
-        //     ->get();
-        //mensagens::inRandomOrder()->where('id_anuncio', '!=', $id)->limit(3)->get();
-        //$anuncios = anuncios::orderBy('id_utilizador', 'asc')->get();
         return ($mensagens);
     }
 
     public static function findMensagensConversa($id)
     {   
         //vai buscar a 1º mensagem
-        //$mensagem = mensagens::findOrFail($id);
         //carrega todas as mensagens da conversa com base na 1º mensagem
         
 
-            $conversa = DB::table('mensagens')
-           
-            ->where('id_conversa','=',$id)
-            
-            ->get();
-
-            
-            
-
+        $conversa = DB::table('mensagens')
+        ->where('id_conversa','=',$id)
+        ->get();
+        
         return ($conversa);
     }
-
-   
 }

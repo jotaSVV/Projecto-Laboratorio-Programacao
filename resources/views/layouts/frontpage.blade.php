@@ -143,15 +143,17 @@
 
         <div class="row">
             @foreach($anuncios as $anuncio)
+            @if($anuncio->disponivel == 1)
+
             <div class="col-lg-4 col-md-4">
                 <div class="car__item">
                     <div class="car__item__pic__slider owl-carousel">
 
 
-                        <img src="/storage/app/anunciosImg/{{$anuncio->id_utilizador}}/{{$anuncio->id_anuncio}}/{{$anuncio->foto_perfil}}" alt="">
+                        <img src="/storage/app/anunciosImg/{{$anuncio->id_utilizador}}/{{$anuncio->id_anuncio}}/{{$anuncio->foto_perfil}}" alt="" style="width:400px;height:275px;">
                         @foreach(App\Http\Controllers\AnunciosController::getImgs("storage/app/anunciosImg/".$anuncio->id_utilizador."/".$anuncio->id_anuncio."/") as $files)
                         @if(strcmp($files->getFilename(),$anuncio->foto_perfil)!=0)
-                        <img src="/storage/app/anunciosImg/{{$anuncio->id_utilizador}}/{{$anuncio->id_anuncio}}/{{ $files->getFilename() }}" alt="">
+                        <img src="/storage/app/anunciosImg/{{$anuncio->id_utilizador}}/{{$anuncio->id_anuncio}}/{{ $files->getFilename() }}" alt="" style="width:400px;height:275px;">
                         @endif
                         @endforeach
 
@@ -175,6 +177,7 @@
                     </div>
                 </div>
             </div>
+            @endif
             @endforeach
         </div>
 
@@ -203,7 +206,7 @@
                     <img src="resources/theme/img/services/services-3.png" alt="">
                     <h5>Confiança</h5>
                     <p>Compre com confiança!</p>
-                    <a href="/cars"><i class="fa fa-long-arrow-right"></i></a>
+                    <a href="/cars"><em class="fa fa-long-arrow-right"></em></a>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6 col-sm-6">
@@ -211,7 +214,7 @@
                     <img src="resources/theme/img/services/services-2.png" alt="">
                     <h5>Venda de Carros</h5>
                     <p>Compre o seu carro teu carro de sonho ao preço que nunca sonhou pagar </p>
-                    <a href="/cars"><i class="fa fa-long-arrow-right"></i></a>
+                    <a href="/cars"><em class="fa fa-long-arrow-right"></em></a>
                 </div>
             </div>
 
@@ -233,14 +236,15 @@
         </div>
         <div class="row">
             @foreach($anuncios_naodestacados as $anuncio)
+            @if($anuncio->disponivel == 1)
             <div class="col-lg-4 col-md-4">
                 <div class="car__item">
                     <div class="car__item__pic__slider owl-carousel">
 
-                        <img src="/storage/app/anunciosImg/{{$anuncio->id_utilizador}}/{{$anuncio->id_anuncio}}/{{$anuncio->foto_perfil}}" alt="">
+                        <img src="/storage/app/anunciosImg/{{$anuncio->id_utilizador}}/{{$anuncio->id_anuncio}}/{{$anuncio->foto_perfil}}" alt="" style="width:400px;height:275px;">
                         @foreach(App\Http\Controllers\AnunciosController::getImgs("storage/app/anunciosImg/".$anuncio->id_utilizador."/".$anuncio->id_anuncio."/") as $files)
                         @if(strcmp($files->getFilename(),$anuncio->foto_perfil)!=0)
-                        <img src="/storage/app/anunciosImg/{{$anuncio->id_utilizador}}/{{$anuncio->id_anuncio}}/{{ $files->getFilename() }}" alt="">
+                        <img src="/storage/app/anunciosImg/{{$anuncio->id_utilizador}}/{{$anuncio->id_anuncio}}/{{ $files->getFilename() }}" alt="" style="width:400px;height:275px;">
                         @endif
                         @endforeach
 
@@ -264,6 +268,7 @@
                     </div>
                 </div>
             </div>
+            @endif
             @endforeach
         </div>
     </div>
@@ -281,9 +286,9 @@
 
                     </div>
                     <ul>
-                        <li><i class="fa fa-check-circle"></i> Site conceitudado no mercado, que garante que a segurança das vendas
+                        <li><em class="fa fa-check-circle"></em> Site conceitudado no mercado, que garante que a segurança das vendas
                             .</li>
-                        <li><i class="fa fa-check-circle"></i> Maior plataforma de comercialização e aluguer de carros portuguesa
+                        <li><em class="fa fa-check-circle"></em> Maior plataforma de comercialização e aluguer de carros portuguesa
                         </li>
 
                     </ul>
@@ -293,7 +298,7 @@
         </div>
     </div>
     <div class="chooseus__video set-bg">
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/Xd0Ok-MkqoE" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/Xd0Ok-MkqoE" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
 </section>
 <!-- Chooseus Section End -->

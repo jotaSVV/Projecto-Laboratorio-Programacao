@@ -1,6 +1,7 @@
-<html>
- 
- <body>
+<!DOCTYPE html>
+
+
+<body>
 
 @include('includes.header')
 

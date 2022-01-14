@@ -96,10 +96,6 @@
 
                                     </div>
                                     <div class="col-sm-2 text-dark">
-                                        <i class="fa fa-eye" aria-hidden="true"></i>
-                                        Views
-                                    </div>
-                                    <div class="col-sm-2 text-dark">
                                         <i class="fa fa-envelope" aria-hidden="true"></i>
                                         @if(App\Http\Controllers\MensagensController::countConversas($anuncio->id_anuncio) > 0 )
                                         {{App\Http\Controllers\MensagensController::countConversas($anuncio->id_anuncio)}} Mensagens

@@ -1,4 +1,5 @@
-<html>
+<!DOCTYPE html>
+<html lang="pt">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
         <title>Insert title here</title>
@@ -11,7 +12,7 @@
     Pusher.logToConsole = true;
 
     var pusher = new Pusher('75f818b071a2ca8da95a', {
-      cluster: 'eu'
+        cluster: 'eu'
     });
 
     var channel = pusher.subscribe('my-channel');

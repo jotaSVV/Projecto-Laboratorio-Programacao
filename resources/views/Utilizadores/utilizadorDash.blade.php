@@ -16,6 +16,7 @@
         <nav class="header__menu">
           <ul>
             <li><a href="{{url('/dashboard')}}">Anúncios</a></li>
+            <li><a href="{{url('/dashboard/favoritos')}}">Favoritos</a></li>
             <li><a href="{{url('/dashboard/mensagens')}}">Mensagens</a></li>
             <li><a href="{{url('/about')}}">Pagamentos</a></li>
             <li><a href="{{url('/dashboard/definicoes')}}">Definições</a></li>
@@ -43,8 +44,8 @@
 
     <div class="container-fluid">
       <a class="btn btn-primary" href="{{ url('/product') }}" role="button">Criar Anuncio</a>
-      <div class="row">
         @forelse(App\Http\Controllers\AnunciosController::findAnunciosById(Auth::user()->id) as $anuncio)
+      <div class="row">
         <div class="col-12 mt-3">
 
 
@@ -97,10 +98,6 @@
 
                   </div>
                   <div class="col-sm-2 text-dark">
-                    <i class="fa fa-eye" aria-hidden="true"></i>
-                    Views
-                  </div>
-                  <div class="col-sm-2 text-dark">
                     <i class="fa fa-envelope" aria-hidden="true"></i>
                     @if(App\Http\Controllers\MensagensController::countConversas($anuncio->id_anuncio) > 0 )
                     {{App\Http\Controllers\MensagensController::countConversas($anuncio->id_anuncio)}} Mensagens
@@ -111,7 +108,12 @@
                   </div>
                   <div class="col-sm-2 text-dark">
                     <i class="fa fa-heart" aria-hidden="true"></i>
-                    Favs
+                    @if(App\Http\Controllers\FavoritosController::countFavoritos($anuncio->id_anuncio) > 0 )
+                    {{App\Http\Controllers\FavoritosController::countFavoritos($anuncio->id_anuncio)}} Favoritos
+                    @else
+                    {{'0 Favoritos'}}
+                    @endif
+
                   </div>
 
                   <div>
@@ -135,6 +137,8 @@
       @endforelse
     </div>
   </div>
+  </div>
+
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
 

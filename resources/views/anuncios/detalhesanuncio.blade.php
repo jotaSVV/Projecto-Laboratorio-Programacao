@@ -65,7 +65,7 @@
                                     
                                     @endif
                                     
-                                     @if( Auth::user()->id != $anuncio->id_utilizador)
+                                    @if( Auth::user()->id != $anuncio->id_utilizador)
                                     <form action="{{ ('/fav') }}" method="POST">
                                         @csrf
                                         <input type="hidden" id="id_utilizador" name="id_utilizador" value="{{ Auth::user()->id}}">
@@ -84,74 +84,74 @@
                                             <h5>Detalhes técnicos sobre o veículo:</h5>
                                             <ul style="columns:2">
                                                 @foreach(App\Http\Controllers\MarcasController::findMarcasById($anuncio->id_marca) as $marca)
-                                                <li><i class="fa fa-long-arrow-right"></i> Marca: {{$marca->nome}}</li>
+                                                <li><em class="fa fa-long-arrow-right"></em> Marca: {{$marca->nome}}</li>
                                                 @endforeach
                                                 @foreach(App\Http\Controllers\ModelosController::findModeloById($anuncio->id_modelo) as $modelo)
-                                                <li><i class="fa fa-long-arrow-right"></i> Modelo: {{$modelo->nome}}</li>
+                                                <li><em class="fa fa-long-arrow-right"></em> Modelo: {{$modelo->nome}}</li>
                                                 @endforeach
 
-                                                <li><i class="fa fa-long-arrow-right"></i> Versao: {{$anuncio->versao}}</li>
-                                                <li><i class="fa fa-long-arrow-right"></i> Cor: {{$anuncio->cor}}</li>
-                                                <li><i class="fa fa-long-arrow-right"></i> Combustivel: {{$anuncio->combustivel}}</li>
-                                                <li><i class="fa fa-long-arrow-right"></i> Data de Registo: {{$anuncio->data_registo}}</li>
-                                                <li><i class="fa fa-long-arrow-right"></i> Quilómetros: {{$anuncio->quilometragem}} km</li>
-                                                <li><i class="fa fa-long-arrow-right"></i> Cilindrada: {{$anuncio->cilindrada}} cc</li>
-                                                <li><i class="fa fa-long-arrow-right"></i> Potência: {{$anuncio->potencia}} cv</li>
+                                                <li><em class="fa fa-long-arrow-right"></em> Versao: {{$anuncio->versao}}</li>
+                                                <li><em class="fa fa-long-arrow-right"></em> Cor: {{$anuncio->cor}}</li>
+                                                <li><em class="fa fa-long-arrow-right"></em> Combustivel: {{$anuncio->combustivel}}</li>
+                                                <li><em class="fa fa-long-arrow-right"></em> Data de Registo: {{$anuncio->data_registo}}</li>
+                                                <li><em class="fa fa-long-arrow-right"></em> Quilómetros: {{$anuncio->quilometragem}} km</li>
+                                                <li><em class="fa fa-long-arrow-right"></em> Cilindrada: {{$anuncio->cilindrada}} cc</li>
+                                                <li><em class="fa fa-long-arrow-right"></em> Potência: {{$anuncio->potencia}} cv</li>
                                                 @if($anuncio->retoma == 0)
-                                                <li><i class="fa fa-long-arrow-right"></i> Retoma: Não </li>
+                                                <li><em class="fa fa-long-arrow-right"></em> Retoma: Não </li>
                                                 @else
-                                                <li><i class="fa fa-long-arrow-right"></i> Retoma: Sim </li>
+                                                <li><em class="fa fa-long-arrow-right"></em> Retoma: Sim </li>
                                                 @endif
                                                 @if($anuncio->financiamento == 0)
-                                                <li><i class="fa fa-long-arrow-right"></i> Financiamento: Não </li>
+                                                <li><em class="fa fa-long-arrow-right"></em> Financiamento: Não </li>
                                                 @else
-                                                <li><i class="fa fa-long-arrow-right"></i> Financiamento: Sim </li>
+                                                <li><em class="fa fa-long-arrow-right"></em> Financiamento: Sim </li>
                                                 @endif
-                                                <li><i class="fa fa-long-arrow-right"></i> Segmento: {{$anuncio->segmento}} </li>
-                                                <li><i class="fa fa-long-arrow-right"></i> Metalizado: {{$anuncio->metalizado}} </li>
-                                                <li><i class="fa fa-long-arrow-right"></i> Caixa: {{$anuncio->caixa}} </li>
-                                                <li><i class="fa fa-long-arrow-right"></i> Lotação: {{$anuncio->lotacao}} </li>
-                                                <li><i class="fa fa-long-arrow-right"></i> Portas: {{$anuncio->portas}} </li>
-                                                <li><i class="fa fa-long-arrow-right"></i> Classe Veiculo: {{$anuncio->classe_veiculo}} </li>
-                                                <li><i class="fa fa-long-arrow-right"></i> Tração: {{$anuncio->tracao}} </li>
+                                                <li><em class="fa fa-long-arrow-right"></em> Segmento: {{$anuncio->segmento}} </li>
+                                                <li><em class="fa fa-long-arrow-right"></em> Metalizado: {{$anuncio->metalizado}} </li>
+                                                <li><em class="fa fa-long-arrow-right"></em> Caixa: {{$anuncio->caixa}} </li>
+                                                <li><em class="fa fa-long-arrow-right"></em> Lotação: {{$anuncio->lotacao}} </li>
+                                                <li><em class="fa fa-long-arrow-right"></em> Portas: {{$anuncio->portas}} </li>
+                                                <li><em class="fa fa-long-arrow-right"></em> Classe Veiculo: {{$anuncio->classe_veiculo}} </li>
+                                                <li><em class="fa fa-long-arrow-right"></em> Tração: {{$anuncio->tracao}} </li>
                                                 @if($anuncio->garantia_stand == 0)
-                                                <li><i class="fa fa-long-arrow-right"></i> Garantia Stand: Não </li>
+                                                <li><em class="fa fa-long-arrow-right"></em> Garantia Stand: Não </li>
                                                 @else
-                                                <li><i class="fa fa-long-arrow-right"></i> Garantia Stand: Sim </li>
+                                                <li><em class="fa fa-long-arrow-right"></em> Garantia Stand: Sim </li>
                                                 @endif
-                                                <li><i class="fa fa-long-arrow-right"></i> Número de Registos: {{$anuncio->nr_registos}} </li>
+                                                <li><em class="fa fa-long-arrow-right"></em> Número de Registos: {{$anuncio->nr_registos}} </li>
                                                 @if($anuncio->livro_revisoes == 0)
-                                                <li><i class="fa fa-long-arrow-right"></i> Livro de Revisões: Não </li>
+                                                <li><em class="fa fa-long-arrow-right"></em> Livro de Revisões: Não </li>
                                                 @else
-                                                <li><i class="fa fa-long-arrow-right"></i> Livro de Revisões: Sim </li>
+                                                <li><em class="fa fa-long-arrow-right"></em> Livro de Revisões: Sim </li>
                                                 @endif
                                                 @if($anuncio->seg_chave == 0)
-                                                <li><i class="fa fa-long-arrow-right"></i> Segunda-chave: Não </li>
+                                                <li><em class="fa fa-long-arrow-right"></em> Segunda-chave: Não </li>
                                                 @else
-                                                <li><i class="fa fa-long-arrow-right"></i> Segunda-chave: Sim </li>
+                                                <li><em class="fa fa-long-arrow-right"></em> Segunda-chave: Sim </li>
                                                 @endif
                                                 @if($anuncio->jantes_liga_leve == 0)
-                                                <li><i class="fa fa-long-arrow-right"></i> Jantes Liga Leve: Não </li>
+                                                <li><em class="fa fa-long-arrow-right"></em> Jantes Liga Leve: Não </li>
                                                 @else
-                                                <li><i class="fa fa-long-arrow-right"></i> Jantes Liga Leve: Sim </li>
+                                                <li><em class="fa fa-long-arrow-right"></em> Jantes Liga Leve: Sim </li>
                                                 @endif
 
-                                                <li><i class="fa fa-long-arrow-right"></i> Estofos: {{$anuncio->estofos}} </li>
-                                                <li><i class="fa fa-long-arrow-right"></i> Medida Jantes: {{$anuncio->medida_jantes}} </li>
+                                                <li><em class="fa fa-long-arrow-right"></em> Estofos: {{$anuncio->estofos}} </li>
+                                                <li><em class="fa fa-long-arrow-right"></em> Medida Jantes: {{$anuncio->medida_jantes}} </li>
                                                 @if($anuncio->airbags == 0)
-                                                <li><i class="fa fa-long-arrow-right"></i> Airbags: Não </li>
+                                                <li><em class="fa fa-long-arrow-right"></em> Airbags: Não </li>
                                                 @else
-                                                <li><i class="fa fa-long-arrow-right"></i> Airbags: Sim </li>
+                                                <li><em class="fa fa-long-arrow-right"></em> Airbags: Sim </li>
                                                 @endif
                                                 @if($anuncio->ar_condicionado == 0)
-                                                <li><i class="fa fa-long-arrow-right"></i> Ar Condicionado: Não </li>
+                                                <li><em class="fa fa-long-arrow-right"></em> Ar Condicionado: Não </li>
                                                 @else
-                                                <li><i class="fa fa-long-arrow-right"></i> Ar Condicionado: Sim </li>
+                                                <li><em class="fa fa-long-arrow-right"></em> Ar Condicionado: Sim </li>
                                                 @endif
                                                 @if($anuncio->importado == 0)
-                                                <li><i class="fa fa-long-arrow-right"></i> Origem: Nacional </li>
+                                                <li><em class="fa fa-long-arrow-right"></em> Origem: Nacional </li>
                                                 @else
-                                                <li><i class="fa fa-long-arrow-right"></i> Origem: Importado </li>
+                                                <li><em class="fa fa-long-arrow-right"></em> Origem: Importado </li>
                                                 @endif
                                             </ul>
                                         </div>
@@ -206,7 +206,8 @@
                                 var x = document.getElementById("myDIV");
                                 if (x.innerHTML === "Mostrar") {
                                     x.innerHTML = {{$utilizador->telefone}};
-                                } else {
+                                } 
+                                else {
                                     x.innerHTML = "Mostrar";
                                 }
                             }
@@ -224,14 +225,13 @@
 
 
 
- <div class="container" style="padding-bottom: 50px;">
+<div class="container" style="padding-bottom: 50px;">
 <h3> Medidor de Preço </h3>
 
 @foreach(App\Http\Controllers\AnunciosController::grafico_preco($anuncio) as $media)
     @foreach(App\Http\Controllers\AnunciosController::max_preco($anuncio) as $max)
         @foreach(App\Http\Controllers\AnunciosController::min_preco($anuncio) as $min)
             @foreach(App\Http\Controllers\AnunciosController::total_preco($anuncio) as $total)
-  
     <canvas id="myCanvas2" width="1140" height="100"
 style="border:0px solid #d3d3d3 ">
 

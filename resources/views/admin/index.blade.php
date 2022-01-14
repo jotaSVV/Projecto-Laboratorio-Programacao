@@ -26,7 +26,7 @@
                     </ol>
                     <div class="card mb-4">
                         <div class="card-header">
-                            <i class="fas fa-table mr-1"></i>
+                            <em class="fas fa-table mr-1"></em>
                             Tabela de utilizadores
                         </div>
                         <div class="card-body">
@@ -34,26 +34,26 @@
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>Id</th>
-                                            <th>Nome</th>
-                                            <th>Apelido</th>
-                                            <th>Email</th>
-                                            <th>Telefone</th>
-                                            <th>Sexo</th>
-                                            <th>Tipo de vendedor</th>
-                                            <th>Foto de perfil</th>
+                                            <th id=1>Id</th>
+                                            <th id=1>Nome</th>
+                                            <th id=1>Apelido</th>
+                                            <th id=1>Email</th>
+                                            <th id=1>Telefone</th>
+                                            <th id=1>Sexo</th>
+                                            <th id=1>Tipo de vendedor</th>
+                                            <th id=1>Foto de perfil</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
                                         <tr>
-                                            <th>Id</th>
-                                            <th>Nome</th>
-                                            <th>Apelido</th>
-                                            <th>Email</th>
-                                            <th>Telefone</th>
-                                            <th>Sexo</th>
-                                            <th>Tipo de vendedor</th>
-                                            <th>Foto de perfil</th>
+                                            <th id=1>Id</th>
+                                            <th id=1>Nome</th>
+                                            <th id=1>Apelido</th>
+                                            <th id=1>Email</th>
+                                            <th id=1>Telefone</th>
+                                            <th id=1>Sexo</th>
+                                            <th id=1>Tipo de vendedor</th>
+                                            <th id=1>Foto de perfil</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
@@ -76,7 +76,7 @@
                     </div>
                     <div class="card mb-4">
                         <div class="card-header">
-                            <i class="fas fa-table mr-1"></i>
+                            <em class="fas fa-table mr-1"></em>
                             Lista dos anúncios
                         </div>
                         <div class="card-body">
@@ -84,21 +84,21 @@
                                 <table class="table table-bordered" id="dataTable2" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>Id</th>
-                                            <th>Id Utilizador</th>
-                                            <th>Marca</th>
-                                            <th>Modelo</th>
-                                            <th>Preço (€)</th>
+                                            <th id=2>Id</th>
+                                            <th id=2>Id Utilizador</th>
+                                            <th id=2>Marca</th>
+                                            <th id=2>Modelo</th>
+                                            <th id=2>Preço (€)</th>
 
                                         </tr>
                                     </thead>
                                     <tfoot>
                                         <tr>
-                                            <th>Id</th>
-                                            <th>Id Utilizador</th>
-                                            <th>Marca</th>
-                                            <th>Modelo</th>
-                                            <th>Preço (€)</th>
+                                            <th id=2>Id</th>
+                                            <th id=2>Id Utilizador</th>
+                                            <th id=2>Marca</th>
+                                            <th id=2>Modelo</th>
+                                            <th id=2>Preço (€)</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>

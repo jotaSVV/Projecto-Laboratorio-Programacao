@@ -2,6 +2,7 @@
 <html>
 
 <head>
+<script type="text/javascript" src="/javascripts/jquery-3.1.1.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <style type="text/css">

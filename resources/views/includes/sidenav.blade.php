@@ -9,16 +9,16 @@
                         <div class="nav">
                             <div class="sb-sidenav-menu-heading">Core</div>
                             <a class="nav-link" href="{{url('/admin')}}">
-                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                <div class="sb-nav-link-icon"><em class="fas fa-tachometer-alt"></em></div>
                                 Dashboard
                             </a>
                             <div class="sb-sidenav-menu-heading">Addons</div>
                             <a class="nav-link" href="{{url('/admin/charts')}}">
-                                <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
+                                <div class="sb-nav-link-icon"><em class="fas fa-chart-area"></em></div>
                                 Gráficos
                             </a>
                             <a class="nav-link" href="{{url('/admin/tables')}}">
-                                <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                                <div class="sb-nav-link-icon"><em class="fas fa-table"></em></div>
                                 Tabelas
                             </a>
                         </div>
